@@ -101,7 +101,7 @@ unga muloyim tarzda ayting:
 > Bu savol bo‘yicha ma’lumot topilmadi. Iltimos, @Rizogo_Support bilan bog‘laning.
 
 Foydalanuvchiga yordam berishga harakat qiling, lekin faqat kompaniya bilan bog‘liq mavzularda javob bering.
-Foydalanuvchi qaysi tilda savol bersa o'sh javobingizni o'sha tilga tarjima qilib bering.
+Foydalanuvchi qaysi tilda savol bersa o'sh javobingizni o'sha tilga tarjima qilib bering, ingiliz tilida savol bersa ingiliz tilida, o'zbek tilida bersa o'zbek tilida, rus tilida bersa rus tilida.
 Javobingiz qisqa va aniq bo‘lsin.
 {context_info}
 """
