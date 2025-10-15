@@ -1,0 +1,5 @@
+INFO 2025-08-26 17:16:05,757 autoreload Watching for file changes with StatReloader
+INFO 2025-08-26 17:17:13,115 autoreload /home/asrorbek/test-abd-bot/TestAbdBot/settings.py changed, reloading.
+INFO 2025-08-26 17:17:14,672 autoreload Watching for file changes with StatReloader
+INFO 2025-08-26 17:17:16,531 autoreload /home/asrorbek/test-abd-bot/TestAbdBot/settings.py changed, reloading.
+INFO 2025-08-26 17:17:19,042 autoreload Watching for file changes with StatReloader

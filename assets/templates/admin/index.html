@@ -1,0 +1,97 @@
+{% extends 'admin/base.html' %} 
+{% load static %}
+
+{% load i18n unfold %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block title %}
+    {% trans 'Dashboard' %} | {{ site_title|default:_('Django site admin') }}
+{% endblock %}
+
+{% block extrahead %}
+    {% if plausible_domain %}
+        <script defer data-domain="{{ plausible_domain }}" src="https://plausible.io/js/script.js"></script>
+    {% endif %}    
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block content %}
+    {% include "unfold/helpers/messages.html" %}
+
+    {% component "unfold/components/container.html" %}        
+        <div class="flex flex-col gap-8 mb-12">
+            <div class="flex gap-4">
+                {% component "unfold/components/navigation.html" with items=navigation %}{% endcomponent %}
+
+                {% component "unfold/components/navigation.html" with class="ml-auto" items=filters %}{% endcomponent %}
+            </div>
+
+
+            <div class="flex flex-col gap-8 lg:flex-row">
+                {% for stats in kpi %}                
+                    {% component "unfold/components/card.html" with class="lg:w-1/3" label=stats.number footer=stats.footer %}
+                        {% component "unfold/components/text.html" %}
+                            {{ stats.title }}
+                        {% endcomponent %}   
+
+                        {% component "unfold/components/title.html" %}
+                            {{ stats.metric }}
+                        {% endcomponent %}                                  
+                    {% endcomponent %}
+                {% endfor %}
+            </div>
+            
+            
+            <div>
+                {% component "unfold/components/title.html" with class="mb-2" %}
+                The last 10 users to join the bot
+                {% endcomponent %}
+
+                <ul class="max-w-md divide-y divide-gray-200 dark:divide-gray-700">
+                    {% for user in tgusers %}
+                        <li class="pb-3 sm:pb-4 user-card">
+                        <div class="flex items-center space-x-4 rtl:space-x-reverse" style="margin:15px">
+                            <div class="social-links">
+                                <img src="{% static 'images/user_profile.png' %}" alt="Telegram" style="width:50px;height:50px;border-radius:100%;margin-right:10px">
+                                
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                    {{ user.first_name }}
+                                </p>
+                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                    <a href="https://t.me/{{ user.username }}">@{{ user.username }}</a>
+                                </p>
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white" style="margin-left:80px">
+                                ID: {{ user.user_id }}
+                            </div>
+                        </div>
+                        </li>
+                    {% endfor %}
+                    <style>
+                        .user-card {
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        padding: 10px;
+                        transition: transform 0.2s ease, background-color 0.2s ease;
+                        border-radius: 20px;
+                        }
+                        .user-card:hover {
+                        transform: scale(1.05);
+                        background-color: #1d3557;
+                        }
+                    </style>
+  
+                </ul>
+            </div>
+
+          
+        </div>
+    {% endcomponent %}
+{% endblock %}
