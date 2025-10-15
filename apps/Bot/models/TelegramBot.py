@@ -2,6 +2,9 @@ from django.db import models
 from django.utils.timezone import now
 from django.db.models import Count
 from asgiref.sync import sync_to_async
+from django.contrib.postgres.fields import ArrayField
+from django.db.models import JSONField
+
 
 # Create your models here.
 
@@ -384,6 +387,8 @@ class CompanyData(models.Model):
     """
 
     content = models.TextField(help_text="Kompaniya haqida matnli ma'lumot.")
+
+    embedding = JSONField(null=True, blank=True)
 
     def __str__(self):
         # Admin panelda qisqa ko‘rinishda chiqadi

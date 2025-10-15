@@ -46,31 +46,40 @@ client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 from difflib import SequenceMatcher
 
 # 🧠 Bazadagi eng o‘xshash ma’lumotlarni olish
+import numpy as np
+from openai import AsyncOpenAI
+from asgiref.sync import sync_to_async
+from .models.TelegramBot import CompanyData
+import os
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+
+# 🧮 Kosinus o‘xshashligini hisoblash
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+    
+
 @sync_to_async
-def get_similar_company_data(user_message: str, limit: int = 10, threshold: float = 0.2):
-    """
-    Foydalanuvchi so‘rovi bilan eng o‘xshash 10 ta ma’lumotni qaytaradi.
-    threshold – o‘xshashlik minimal foizi 0.0 - 1.0 oralig‘ida
-    """
-    all_data = list(CompanyData.objects.all().values_list("content", flat=True))
+def get_top_similar_data(user_vector, top_k=5):
+    """Embedding asosida bazadan eng o‘xshash ma’lumotlarni olish"""
+    datas = CompanyData.objects.exclude(embedding=None).values("id", "content", "embedding")
     scored = []
 
-    for item in all_data:
-        ratio = SequenceMatcher(None, user_message.lower(), item.lower()).ratio()
-        if ratio >= threshold:
-            scored.append((ratio, item))
+    for d in datas:
+        emb = np.array(d["embedding"])
+        sim = cosine_similarity(user_vector, emb)
+        scored.append((sim, d["content"]))
 
-    # eng o‘xshashlarini tartiblab olish
-    scored.sort(reverse=True, key=lambda x: x[0])
-    similar_data = [text for _, text in scored[:limit]]
+    # Eng o‘xshash top_k ta ma’lumotni qaytarish
+    top_matches = sorted(scored, key=lambda x: x[0], reverse=True)[:top_k]
+    return "\n\n".join([m[1] for m in top_matches])
 
-    # agar hech narsa topilmasa – bo‘sh ro‘yxat qaytadi
-    return similar_data
 
 
 # 💬 AI asosida javob generatsiya qilish
 async def generate_ai_response(user_message: str):
-    similar_data = await get_similar_company_data(user_message)
+    similar_data = await get_top_similar_data(user_message)
 
     # 🔍 agar o‘xshash ma’lumot topilsa — shuni yuboramiz
     if similar_data:
@@ -108,3 +117,39 @@ Foydalanuvchiga yordam berishga harakat qiling, lekin faqat kompaniya bilan bog�
     )
 
     return response.choices[0].message.content.strip()
+
+
+async def generate_ai_response(user_message: str):
+    """AI asosida kontekstli javob yaratish"""
+    
+    # 1️⃣ User so‘rovini embeddingga o‘giramiz
+    embedding_response = await client.embeddings.create(
+        model="text-embedding-3-small",
+        input=user_message,
+    )
+    user_vector = np.array(embedding_response.data[0].embedding)
+
+    # 2️⃣ Bazadan eng o‘xshash ma’lumotlarni olish
+    similar_info = await get_top_similar_data(user_vector, top_k=5)
+
+    # 3️⃣ AI uchun kontekstli prompt
+    prompt = f"""
+Siz Rizo Go nomli kompaniya uchun mo‘ljallangan virtual yordamchisiz. Faqat Rizo Go kompaniya faoliyati, xizmatlari, narxlari, ish vaqti, joylashuvi, haydovchilar, mijozlarga xizmat, buyurtma berish va shunga o‘xshash mavzularga oid savollarga javob bering. Agar foydalanuvchi salomlashsa (masalan: "salom", "assalomu alaykum", "hi", "hello"), unga qulay va muloyim tarzda salom qaytaring, masalan: > "Assalomu alaykum! 👋 Siz Rizo Go kompaniyasining rasmiy chat botidasiz. Qanday yordam bera olaman?" Agar foydalanuvchi savoli Rizo Go kompaniyaga aloqador bo‘lmasa, yoki quyidagi kompaniya ma’lumotlari ichida aniq javob topilmasa foydalanuchi adminga bog'lanishini sizda bu savolga javob yo'qligini ayting, adminning telegram usernamesi @Rizogo_Support bilan bog'lanishini tavsiya qiling. Iloji boricha foydalanuvchiga yordam berishga harakat qiling, lekin faqat yuqoridagi mavzular doirasida javob bering va qisqa javob berishga harakat qiling.
+
+🧾 Kompaniya haqida foydali ma’lumotlar:
+{similar_info}
+"""
+
+    # 4️⃣ AI javobini olish
+    response = await client.chat.completions.create(
+        model="gpt-4o-mini",  # yoki 3.5-turbo agar arzonroq bo‘lishi kerak bo‘lsa
+        messages=[
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": user_message},
+        ],
+        max_tokens=300,
+        temperature=0.4,
+    )
+
+    return response.choices[0].message.content.strip()
+
