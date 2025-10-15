@@ -5,3 +5,6 @@ import asyncio
 class BotConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "apps.Bot"
+
+    def ready(self):
+        from . import signals
