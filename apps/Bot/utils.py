@@ -152,7 +152,7 @@ Foydalanuvchi qaysi tilda savol bersa o'sh tilda javob bering, ingiliz tilida sa
 
 Javobingiz qisqa va aniq bo‘lsin.
 
-{similar_info if similar_info else 'Bu savol bo‘yicha ma’lumot topilmadi. Iltimos, @Rizogo_Support bilan bog‘lanishini ayting.'}
+{similar_info}
 """
 
     # 4️⃣ AI javobini olish
