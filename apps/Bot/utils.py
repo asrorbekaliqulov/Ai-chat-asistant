@@ -77,47 +77,49 @@ def get_top_similar_data(user_vector, top_k=5):
 
 
 
-# 💬 AI asosida javob generatsiya qilish
-async def generate_ai_response(user_message: str):
-    similar_data = await get_top_similar_data(user_message)
+# # 💬 AI asosida javob generatsiya qilish
+# async def generate_ai_response(user_message: str):
+#     similar_data = await get_top_similar_data(user_message)
 
-    # 🔍 agar o‘xshash ma’lumot topilsa — shuni yuboramiz
-    if similar_data:
-        company_info = "\n\n".join(similar_data)
-        context_info = f"🧾 Kompaniya haqida mos ma’lumotlar:\n{company_info}"
-    else:
-        context_info = "⚠️ Hech qanday mos ma’lumot topilmadi."
+#     # 🔍 agar o‘xshash ma’lumot topilsa — shuni yuboramiz
+#     if similar_data:
+#         company_info = "\n\n".join(similar_data)
+#         context_info = f"🧾 Kompaniya haqida mos ma’lumotlar:\n{company_info}"
+#     else:
+#         context_info = "⚠️ Hech qanday mos ma’lumot topilmadi."
 
-    # 🧠 AI uchun kontekstli prompt
-    prompt = f"""
-Siz Rizo Go kompaniyasi uchun mo‘ljallangan virtual yordamchisiz.
-Faqat kompaniya faoliyati, xizmatlari, narxlari, joylashuvi, haydovchilar, mijozlarga xizmat, buyurtma berish kabi mavzularga oid savollarga javob bering.
+#     # 🧠 AI uchun kontekstli prompt
+#     prompt = f"""
+# Siz Rizo Go kompaniyasi uchun mo‘ljallangan virtual yordamchisiz.
+# Faqat kompaniya faoliyati, xizmatlari, narxlari, joylashuvi, haydovchilar, mijozlarga xizmat, buyurtma berish kabi mavzularga oid savollarga javob bering.
 
-Agar foydalanuvchi salomlashsa, shunday javob qaytaring:
-> Assalomu alaykum! 👋 Siz Rizo Go kompaniyasining rasmiy chat botidasiz. Qanday yordam bera olaman?
+# Agar foydalanuvchi salomlashsa, shunday javob qaytaring:
+# Siz ham muloyimlik bilan salomlashing
 
-Agar foydalanuvchi savoli Rizo Go kompaniyaga aloqador bo‘lmasa yoki quyidagi ma’lumotlarda javob topilmasa,
-unga muloyim tarzda ayting:
-> Bu savol bo‘yicha ma’lumot topilmadi. Iltimos, @Rizogo_Support bilan bog‘laning.
+# Agar foydalanuvchi savoli Rizo Go kompaniyaga aloqador bo‘lmasa yoki quyidagi ma’lumotlarda javob topilmasa,
+# unga muloyim tarzda telegram admini @Rizogo_Support bilan bog‘lanishini ayting.
 
-Foydalanuvchiga yordam berishga harakat qiling, lekin faqat kompaniya bilan bog‘liq mavzularda javob bering.
-Foydalanuvchi qaysi tilda savol bersa o'sh tilda javob bering, ingiliz tilida savol bersa ingiliz tilida, o'zbek tilida bersa o'zbek tilida, rus tilida bersa rus tilida.
-Javobingiz qisqa va aniq bo‘lsin.
-{context_info}
-"""
+# Foydalanuvchiga yordam berishga harakat qiling, lekin faqat kompaniya bilan bog‘liq mavzularda javob bering.
 
-    # 🧩 ChatGPT’dan javob olish
-    response = await client.chat.completions.create(
-        model="gpt-4o-mini",  # yoki 3.5-turbo, yoki 4o agar byudjet bo‘lsa
-        messages=[
-            {"role": "system", "content": prompt},
-            {"role": "user", "content": user_message},
-        ],
-        max_tokens=300,
-        temperature=0.3,
-    )
+# Foydalanuvchi qaysi tilda savol bersa o'sh tilda javob bering, ingiliz tilida savol bersa ingiliz tilida, o'zbek tilida bersa o'zbek tilida, rus tilida bersa rus tilida.
 
-    return response.choices[0].message.content.strip()
+# Javobingiz qisqa va aniq bo‘lsin.
+
+# {context_info}
+# """
+
+#     # 🧩 ChatGPT’dan javob olish
+#     response = await client.chat.completions.create(
+#         model="gpt-4o-mini",  # yoki 3.5-turbo, yoki 4o agar byudjet bo‘lsa
+#         messages=[
+#             {"role": "system", "content": prompt},
+#             {"role": "user", "content": user_message},
+#         ],
+#         max_tokens=300,
+#         temperature=0.3,
+#     )
+
+#     return response.choices[0].message.content.strip()
 
 
 async def generate_ai_response(user_message: str):
@@ -135,10 +137,22 @@ async def generate_ai_response(user_message: str):
 
     # 3️⃣ AI uchun kontekstli prompt
     prompt = f"""
-Siz Rizo Go nomli kompaniya uchun mo‘ljallangan virtual yordamchisiz. Faqat Rizo Go kompaniya faoliyati, xizmatlari, narxlari, ish vaqti, joylashuvi, haydovchilar, mijozlarga xizmat, buyurtma berish va shunga o‘xshash mavzularga oid savollarga javob bering. Agar foydalanuvchi salomlashsa (masalan: "salom", "assalomu alaykum", "hi", "hello"), unga qulay va muloyim tarzda salom qaytaring, masalan: > "Assalomu alaykum! 👋 Siz Rizo Go kompaniyasining rasmiy chat botidasiz. Qanday yordam bera olaman?" Agar foydalanuvchi savoli Rizo Go kompaniyaga aloqador bo‘lmasa, yoki quyidagi kompaniya ma’lumotlari ichida aniq javob topilmasa foydalanuchi adminga bog'lanishini sizda bu savolga javob yo'qligini ayting, adminning telegram usernamesi @Rizogo_Support bilan bog'lanishini tavsiya qiling. Iloji boricha foydalanuvchiga yordam berishga harakat qiling, lekin faqat yuqoridagi mavzular doirasida javob bering va qisqa javob berishga harakat qiling.
+Siz Rizo Go kompaniyasi uchun mo‘ljallangan virtual yordamchisiz.
+Faqat kompaniya faoliyati, xizmatlari, narxlari, joylashuvi, haydovchilar, mijozlarga xizmat, buyurtma berish kabi mavzularga oid savollarga javob bering.
 
-🧾 Kompaniya haqida foydali ma’lumotlar:
-{similar_info}
+Agar foydalanuvchi salomlashsa, shunday javob qaytaring:
+Siz ham muloyimlik bilan salomlashing
+
+Agar foydalanuvchi savoli Rizo Go kompaniyaga aloqador bo‘lmasa yoki quyidagi ma’lumotlarda javob topilmasa,
+unga muloyim tarzda telegram admini @Rizogo_Support bilan bog‘lanishini ayting.
+
+Foydalanuvchiga yordam berishga harakat qiling, lekin faqat kompaniya bilan bog‘liq mavzularda javob bering.
+
+Foydalanuvchi qaysi tilda savol bersa o'sh tilda javob bering, ingiliz tilida savol bersa ingiliz tilida, o'zbek tilida bersa o'zbek tilida, rus tilida bersa rus tilida.
+
+Javobingiz qisqa va aniq bo‘lsin.
+
+{similar_info if similar_info else 'Bu savol bo‘yicha ma’lumot topilmadi. Iltimos, @Rizogo_Support bilan bog‘lanishini ayting.'}
 """
 
     # 4️⃣ AI javobini olish
