@@ -14,23 +14,30 @@ client = AsyncOpenAI(api_key=OPENAI_API_KEY)
 def create_embedding_on_save(sender, instance, created, **kwargs):
     """Yangi ma’lumot qo‘shilganda avtomatik embedding yaratish"""
     if created and not instance.embedding:
-        # Signal sync ishlaydi, lekin embedding async — shuning uchun toza bridge orqali ishga tushiramiz
-        asyncio.create_task(_generate_embedding_async(instance))
+        try:
+            loop = asyncio.get_running_loop()
+            # Agar loop ishlayotgan bo‘lsa (masalan bot ichida)
+            loop.create_task(_generate_embedding_async(instance))
+        except RuntimeError:
+            # Agar loop mavjud bo‘lmasa (masalan admin panel orqali save qilingan bo‘lsa)
+            asyncio.run(_generate_embedding_async(instance))
 
 
 async def _generate_embedding_async(instance):
     """Embedding yaratish va saqlash (to‘liq async)"""
     try:
+        print(f"🔄 Embedding yaratilmoqda: {instance.id}")
+
         response = await client.embeddings.create(
             model="text-embedding-3-small",
             input=instance.content,
         )
         embedding_vector = response.data[0].embedding
+        instance.embedding = embedding_vector
 
         # Bazaga asinxron saqlaymiz
         await sync_to_async(instance.save, thread_sensitive=True)(update_fields=["embedding"])
-        instance.embedding = embedding_vector
-
         print(f"✅ Embedding avtomatik yaratildi: {instance.id}")
+
     except Exception as e:
         print(f"❌ Embedding yaratishda xato ({instance.id}): {e}")
