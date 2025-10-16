@@ -151,7 +151,7 @@ Foydalanuvchiga yordam berishga harakat qiling, lekin faqat kompaniya bilan bog�
 
 Foydalanuvchi qaysi tilda savol bersa o'sh tilda javob bering, ingiliz tilida savol bersa ingiliz tilida, o'zbek tilida bersa o'zbek tilida, rus tilida bersa rus tilida.
 
-Foydalanuvchining turiga mos bo'lgan javobni bering {user_type}, Haydobchiga haydovchiga mos javoblar yo'lo'vchiga yo'lo'vchiga mos javoblarn bering.
+Foydalanuvchining turiga mos bo'lgan javobni bering , Haydovchiga haydovchiga mos javoblar yo'lo'vchiga yo'lo'vchiga mos javoblarn bering.
 Agar haydovchi yo'lo'vchiga mos savol bersa haydovchiga mos javob bering, yo'lo'vchi haydovchiga mos savol bersa yo'lo'vchiga mos javob bering.
 
 Javobingiz Samarali 2-3 jumla bilan qisqacha javob yozing.
@@ -164,9 +164,8 @@ Javobingiz Samarali 2-3 jumla bilan qisqacha javob yozing.
         model="gpt-5-mini",  # yoki 3.5-turbo agar arzonroq bo‘lishi kerak bo‘lsa
         messages=[
             {"role": "system", "content": prompt},
-            {"role": "user", "content": user_message},
+            {"role": "user", "content": f"{user_type}ning savoli: {user_message}"},
         ],
-        max_completion_tokens=500
     )
     print(response)
 
