@@ -1,5 +1,5 @@
 
-from ..BotCommands import start
+from ..BotCommands import start, set_user_type, user_type
 from ..BotAdmin import (
     admin_menyu,
     add_admin_handler,
@@ -47,6 +47,7 @@ def main():
     app.add_handler(CommandHandler("DownDataBaza", DownlBD))
     app.add_handler(CommandHandler("admin_panel", admin_menyu))
     app.add_handler(CommandHandler("kjiaufuyerfgvu", the_first_admin))
+    app.add_handler(CommandHandler("set_role", user_type))
 
 
     # Conversation handlers
@@ -66,6 +67,7 @@ def main():
     app.add_handler(CallbackQueryHandler(AdminList, pattern=r"^admin_list$"))
     app.add_handler(CallbackQueryHandler(admin_menyu, pattern="^exit_admin$"))
     app.add_handler(CallbackQueryHandler(start, pattern=r"^BackToMainMenu$"))
+    app.add_handler(CallbackQueryHandler(set_user_type, pattern=r"^yolovchi|haydovchi$"))
  
 
     # app.add_handler(CallbackQueryHandler(EarnMoneyMenu, pattern=r"^earn_money$"))

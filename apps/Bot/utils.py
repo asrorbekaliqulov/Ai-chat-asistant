@@ -122,7 +122,7 @@ def get_top_similar_data(user_vector, top_k=5):
 #     return response.choices[0].message.content.strip()
 
 
-async def generate_ai_response(user_message: str):
+async def generate_ai_response(user_message: str, user_id: int):
     """AI asosida kontekstli javob yaratish"""
     
     # 1️⃣ User so‘rovini embeddingga o‘giramiz
@@ -132,6 +132,8 @@ async def generate_ai_response(user_message: str):
     )
     user_vector = np.array(embedding_response.data[0].embedding)
 
+    user_type = await TelegramUser.get_user_type(user_id)
+    print("USER TYPE:", user_type)
     # 2️⃣ Bazadan eng o‘xshash ma’lumotlarni olish
     similar_info = await get_top_similar_data(user_vector, top_k=5)
 
@@ -140,8 +142,7 @@ async def generate_ai_response(user_message: str):
 Siz Rizo Go kompaniyasi uchun mo‘ljallangan virtual yordamchisiz.
 Faqat kompaniya faoliyati, xizmatlari, narxlari, joylashuvi, haydovchilar, mijozlarga xizmat, buyurtma berish kabi mavzularga oid savollarga javob bering.
 
-Agar foydalanuvchi salomlashsa, shunday javob qaytaring:
-Siz ham muloyimlik bilan salomlashing
+Agar foydalanuvchi salomlashsa siz ham muloyimlik bilan salomlashing
 
 Agar foydalanuvchi savoli Rizo Go kompaniyaga aloqador bo‘lmasa yoki quyidagi ma’lumotlarda javob topilmasa,
 unga muloyim tarzda telegram admini @Rizogo_Support bilan bog‘lanishini ayting.
@@ -150,6 +151,9 @@ Foydalanuvchiga yordam berishga harakat qiling, lekin faqat kompaniya bilan bog�
 
 Foydalanuvchi qaysi tilda savol bersa o'sh tilda javob bering, ingiliz tilida savol bersa ingiliz tilida, o'zbek tilida bersa o'zbek tilida, rus tilida bersa rus tilida.
 
+Foydalanuvchining turiga mos bo'lgan javobni bering {user_type}, Haydobchiga haydovchiga mos javoblar yo'lo'vchiga yo'lo'vchiga mos javoblarn bering.
+Agar haydovchi yo'lo'vchiga mos savol bersa haydovchiga mos javob bering, yo'lo'vchi haydovchiga mos savol bersa yo'lo'vchiga mos javob bering.
+
 Javobingiz qisqa va aniq bo‘lsin.
 
 {similar_info}
@@ -157,14 +161,14 @@ Javobingiz qisqa va aniq bo‘lsin.
 
     # 4️⃣ AI javobini olish
     response = await client.chat.completions.create(
-        model="gpt-4o-mini",  # yoki 3.5-turbo agar arzonroq bo‘lishi kerak bo‘lsa
+        model="gpt-5-mini",  # yoki 3.5-turbo agar arzonroq bo‘lishi kerak bo‘lsa
         messages=[
             {"role": "system", "content": prompt},
             {"role": "user", "content": user_message},
         ],
-        max_tokens=300,
-        temperature=0.4,
+        
     )
+    print(response)
 
     return response.choices[0].message.content.strip()
 

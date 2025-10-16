@@ -8,9 +8,10 @@ from ..decorators import typing_action
 @typing_action
 async def handle_user_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_text = update.message.text.strip()
+    user_id = update.effective_user.id
 
     # AI dan javob olish
-    ai_reply = await generate_ai_response(user_text)
+    ai_reply = await generate_ai_response(user_text, user_id)
 
     # # Mavzudan chet yoki javob yo‘q bo‘lsa
     # if "Menda bu savolga oid ma’lumot mavjud emas" in ai_reply or len(ai_reply) < 5:

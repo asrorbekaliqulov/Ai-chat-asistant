@@ -25,6 +25,14 @@ class TelegramUser(models.Model):
     is_admin = models.BooleanField(default=False, verbose_name="Is Admin")
     is_active = models.BooleanField(default=True, verbose_name="Is Active")
 
+    user_type = models.CharField(
+        max_length=50,
+        choices=[("yolovchi", "Yo'lo'vchi"), ("haydovchi", "Haydovchi")],
+        default=None,
+        null=True,
+        blank=True,
+        verbose_name="User Type",
+    )
     access_token = models.CharField(
         max_length=512, blank=True, null=True, verbose_name="Access Token"
     )
@@ -57,6 +65,34 @@ class TelegramUser(models.Model):
                 cls.objects.filter(is_admin=True).values_list("user_id", flat=True)
             )
         )()
+    
+    @classmethod
+    async def get_user_type(cls, user_id):
+        """
+        Foydalanuvchi turini qaytaradi.
+        """
+        try:
+            user = await sync_to_async(cls.objects.get)(user_id=user_id)
+            return user.user_type
+        except cls.DoesNotExist:
+            return None
+
+    @classmethod
+    async def update_user_type(cls, user_id, user_type):
+        """
+        Foydalanuvchi turini yangilaydi.
+        :param user_id: Foydalanuvchi ID si
+        :param user_type: Yangi foydalanuvchi turi
+        :return: Yangilangan user obyekti yoki None (user topilmasa)
+        """
+        try:
+            user = await sync_to_async(cls.objects.get)(user_id=user_id)
+            user.user_type = user_type
+            await sync_to_async(user.save)(update_fields=["user_type"])
+            return user
+        except cls.DoesNotExist:
+            return None
+
 
     @classmethod
     async def get_today_new_users(cls):
