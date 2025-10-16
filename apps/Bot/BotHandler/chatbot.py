@@ -1,11 +1,11 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 from ..utils import generate_ai_response
+from telegram.constants import ChatAction
 from ..decorators import typing_action
 
 
 # 💬 Foydalanuvchi xabarini qabul qilish va AI javobini yuborish
-@typing_action
 async def handle_user_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_text = update.message.text.strip()
     user_id = update.effective_user.id
@@ -28,4 +28,5 @@ async def handle_user_message(update: Update, context: ContextTypes.DEFAULT_TYPE
     await update.message.reply_text(
         f"🤖 <b>AI javobi:</b>\n{ai_reply}",
         parse_mode="HTML",
+        actions=[ChatAction.TYPING],
     )
