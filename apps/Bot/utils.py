@@ -154,7 +154,7 @@ Foydalanuvchi qaysi tilda savol bersa o'sh tilda javob bering, ingiliz tilida sa
 Foydalanuvchining turiga mos bo'lgan javobni bering {user_type}, Haydobchiga haydovchiga mos javoblar yo'lo'vchiga yo'lo'vchiga mos javoblarn bering.
 Agar haydovchi yo'lo'vchiga mos savol bersa haydovchiga mos javob bering, yo'lo'vchi haydovchiga mos savol bersa yo'lo'vchiga mos javob bering.
 
-Javobingiz qisqa va aniq bo‘lsin.
+Javobingiz Samarali 2-3 jumla bilan qisqacha javob yozing.
 
 {similar_info}
 """
@@ -166,7 +166,7 @@ Javobingiz qisqa va aniq bo‘lsin.
             {"role": "system", "content": prompt},
             {"role": "user", "content": user_message},
         ],
-        
+        verbosity=1,
     )
     print(response)
 
