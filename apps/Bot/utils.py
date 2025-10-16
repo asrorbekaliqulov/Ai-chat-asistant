@@ -166,7 +166,7 @@ Javobingiz Samarali 2-3 jumla bilan qisqacha javob yozing.
             {"role": "system", "content": prompt},
             {"role": "user", "content": user_message},
         ],
-        verbosity=1,
+        max_completion_tokens=500
     )
     print(response)
 
