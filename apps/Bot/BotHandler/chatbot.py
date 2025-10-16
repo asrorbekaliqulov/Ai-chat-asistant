@@ -28,5 +28,5 @@ async def handle_user_message(update: Update, context: ContextTypes.DEFAULT_TYPE
     await update.message.reply_text(
         f"🤖 <b>AI javobi:</b>\n{ai_reply}",
         parse_mode="HTML",
-        actions=[ChatAction.TYPING],
+        actions=ChatAction.TYPING,
     )
