@@ -6,3 +6,4 @@ from .data_list import show_data_handler
 from .delete_data import delete_data_handler
 from .chatbot import handle_user_message
 from .yoq_funksiya import yoqfunksiya
+from .catalog import handle_text_catalog, catalog_pagination_handler, product_detail_handler, close_catalog_handler

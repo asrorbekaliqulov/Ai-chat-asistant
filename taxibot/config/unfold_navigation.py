@@ -58,6 +58,14 @@ PAGES = [
                     request.user, "view_telegramuser"
                 ),
             },
+            {
+                "title": _("Chat xabarlari"),
+                "icon": "chat",
+                "link": reverse_lazy("admin:Bot_chatmessage_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_chatmessage"
+                ),
+            }
         ],
     },
     {
@@ -74,6 +82,20 @@ PAGES = [
             }
         ],
     },
+    {
+        "seperator": True,
+        "title": _("Buyurtmalar"),
+        "items": [
+            {
+                "title": _("Buyurtmalar"),
+                "icon": "shopping_cart",
+                "link": reverse_lazy("admin:Bot_order_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_order"
+                ),
+            }
+        ],
+    }
     
 ]
 

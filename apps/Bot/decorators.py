@@ -5,7 +5,6 @@ from telegram.ext import ContextTypes, ConversationHandler
 from asgiref.sync import sync_to_async
 from .models.TelegramBot import Channel, TelegramUser
 from telegram.constants import ChatAction
-from .utils import save_user_to_db
 
 lists = ["administrator", "member", "creator"]
 
@@ -15,6 +14,8 @@ def admin_required(func):
     async def wrapper(
         update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs
     ):
+        from .utils import save_user_to_db
+
         user_id = update.effective_user.id
         # Adminni tekshirish
         try:
@@ -88,6 +89,8 @@ def mandatory_channel_required(func):
                     continue
 
         except TelegramUser.DoesNotExist:
+            from .utils import save_user_to_db
+
             # Agar foydalanuvchi topilmasa, uni bazaga saqlash
             data = update.effective_user
             is_save = await save_user_to_db(data)

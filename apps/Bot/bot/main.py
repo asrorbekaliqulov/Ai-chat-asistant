@@ -23,6 +23,10 @@ from ..BotHandler import (
     delete_data_handler,
     handle_user_message,
     yoqfunksiya,
+    handle_text_catalog,
+    catalog_pagination_handler,
+    product_detail_handler,
+    close_catalog_handler
 )
 
 from ..BotCommands.DownDB import DownlBD
@@ -67,12 +71,22 @@ def main():
     app.add_handler(CallbackQueryHandler(AdminList, pattern=r"^admin_list$"))
     app.add_handler(CallbackQueryHandler(admin_menyu, pattern="^exit_admin$"))
     app.add_handler(CallbackQueryHandler(start, pattern=r"^BackToMainMenu$"))
-    app.add_handler(CallbackQueryHandler(set_user_type, pattern=r"^yolovchi|haydovchi$"))
- 
+    app.add_handler(CallbackQueryHandler(set_user_type, pattern=r"^yolovcmutaxasishi|fuqaro$"))
+
+    # Bosh menyudagi "📚 Katalog" tugmasi uchun
+
+    # Sahifalar o'rtasida navigatsiya uchun (masalan: cat_page_2)
+    app.add_handler(CallbackQueryHandler(catalog_pagination_handler, pattern="^cat_page_"))
+
+    # Alohida atir ma'lumotini ko'rish uchun (masalan: prod_15)
+    app.add_handler(CallbackQueryHandler(product_detail_handler, pattern="^prod_"))
+
+    # Katalogni yopish uchun
+    app.add_handler(CallbackQueryHandler(close_catalog_handler, pattern="^close_catalog$"))
 
     # app.add_handler(CallbackQueryHandler(EarnMoneyMenu, pattern=r"^earn_money$"))
     app.add_handler(CallbackQueryHandler(InlineButton))
-
+    app.add_handler(MessageHandler(filters.Text("📚 Katalog"), handle_text_catalog))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_user_message))
 
     app.add_handler(MessageHandler(~filters.COMMAND & ~filters.TEXT, yoqfunksiya))

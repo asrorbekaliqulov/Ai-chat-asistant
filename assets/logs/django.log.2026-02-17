@@ -1,0 +1,786 @@
+INFO 2026-02-17 16:30:36,094 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:30:59,760 basehttp "GET / HTTP/1.1" 200 4583
+INFO 2026-02-17 16:30:59,979 basehttp "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:00,062 basehttp "GET /static/images/telegram-icon.svg HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:00,079 basehttp "GET /static/images/github-icon.svg HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:00,097 basehttp "GET /static/images/instagram-icon.svg HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:00,125 basehttp "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:05,791 basehttp "GET /en/admin/ HTTP/1.1" 200 38324
+INFO 2026-02-17 16:31:06,003 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,019 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,013 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,021 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,021 basehttp "GET /static/css/tailwind.css HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,087 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,116 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,217 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,303 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,308 basehttp "GET /static/images/user_profile.png HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,443 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,556 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,557 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,576 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,564 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,563 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,967 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,968 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:06,970 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:07,053 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 200 256424
+INFO 2026-02-17 16:31:17,438 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 73997
+INFO 2026-02-17 16:31:17,547 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:17,550 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-02-17 16:31:17,557 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-02-17 16:31:17,570 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:17,577 basehttp "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:17,598 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:17,595 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:17,609 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:17,630 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:31:22,982 basehttp "POST /en/admin/Bot/companydata/ HTTP/1.1" 200 34706
+INFO 2026-02-17 16:31:23,072 basehttp "GET /static/admin/js/cancel.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:25,873 basehttp "POST /en/admin/Bot/companydata/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:31:25,934 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 35306
+INFO 2026-02-17 16:31:26,068 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:31:48,711 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:31:48,813 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:31:48,829 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:31:48,836 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2026-02-17 16:32:01,095 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:32:01,151 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 40865
+INFO 2026-02-17 16:32:01,287 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:32:07,441 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:32:07,514 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:32:10,281 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:32:10,331 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 43528
+INFO 2026-02-17 16:32:10,462 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:32:12,217 basehttp "GET /en/admin/Bot/companydata/20/change/ HTTP/1.1" 200 79493
+INFO 2026-02-17 16:32:12,307 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:32:15,518 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 43053
+INFO 2026-02-17 16:32:15,593 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:32:32,524 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:32:32,615 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:32:38,275 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:32:38,342 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 46014
+INFO 2026-02-17 16:32:38,488 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:00,150 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:33:00,217 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:05,474 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:33:05,532 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 48698
+INFO 2026-02-17 16:33:05,653 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:11,465 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:33:11,555 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:14,727 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:33:14,785 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 51305
+INFO 2026-02-17 16:33:14,915 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:21,050 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:33:21,127 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:24,044 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:33:24,106 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 53941
+INFO 2026-02-17 16:33:24,232 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:31,341 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:33:31,409 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:34,532 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:33:34,589 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 56570
+INFO 2026-02-17 16:33:34,707 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:42,368 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:33:42,439 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:45,958 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:33:46,047 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 59220
+INFO 2026-02-17 16:33:46,158 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:52,460 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:33:52,559 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:33:55,659 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:33:55,731 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 61848
+INFO 2026-02-17 16:33:55,845 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:34:40,351 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:34:40,415 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:34:43,856 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:34:43,958 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 64494
+INFO 2026-02-17 16:34:44,095 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:34:50,028 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:34:50,118 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:34:52,803 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:34:52,896 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 67114
+INFO 2026-02-17 16:34:52,980 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:34:58,343 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:34:58,413 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:01,002 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:35:01,085 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 69766
+INFO 2026-02-17 16:35:01,184 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:07,071 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:35:07,152 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:09,833 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:35:09,930 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 72380
+INFO 2026-02-17 16:35:10,020 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:15,526 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:35:15,609 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:18,267 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:35:18,361 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 75035
+INFO 2026-02-17 16:35:18,448 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:24,844 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:35:24,933 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:27,679 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:35:27,777 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 77664
+INFO 2026-02-17 16:35:27,855 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:35,251 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:35:35,320 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:38,112 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:35:38,200 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 80292
+INFO 2026-02-17 16:35:38,290 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:43,229 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:35:43,338 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:45,849 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:35:45,973 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 82900
+INFO 2026-02-17 16:35:46,059 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:51,637 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:35:51,737 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:35:54,679 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:35:54,787 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 85537
+INFO 2026-02-17 16:35:54,883 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:36:01,181 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:36:01,261 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:36:04,100 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:36:04,198 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 88154
+INFO 2026-02-17 16:36:04,309 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:10,424 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:41:10,519 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:13,941 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:41:14,042 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 90785
+INFO 2026-02-17 16:41:14,121 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:20,908 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:41:20,981 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:23,675 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:41:23,821 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 93363
+INFO 2026-02-17 16:41:23,929 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:30,687 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:41:30,761 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:33,573 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:41:33,705 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 95985
+INFO 2026-02-17 16:41:33,785 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:40,078 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:41:40,161 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:42,793 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:41:42,945 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 98608
+INFO 2026-02-17 16:41:43,066 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:48,342 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:41:48,427 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:50,765 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:41:50,881 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 101218
+INFO 2026-02-17 16:41:50,978 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:55,772 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:41:55,849 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:41:58,628 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:41:58,741 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 103823
+INFO 2026-02-17 16:41:58,825 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:04,857 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:42:04,924 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:07,455 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:42:07,581 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 106461
+INFO 2026-02-17 16:42:07,672 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:13,719 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:42:13,808 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:16,548 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:42:16,800 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 109071
+INFO 2026-02-17 16:42:16,995 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:21,757 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:42:21,839 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:24,317 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:42:24,444 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 111704
+INFO 2026-02-17 16:42:24,555 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:29,654 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:42:29,732 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:32,324 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:42:32,441 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 114298
+INFO 2026-02-17 16:42:32,514 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:38,527 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:42:38,617 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:41,016 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:42:41,134 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 116945
+INFO 2026-02-17 16:42:41,211 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:46,536 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:42:46,624 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:49,031 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:42:49,160 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 119569
+INFO 2026-02-17 16:42:49,251 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:53,985 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:42:54,076 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:42:56,724 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:42:56,865 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 122216
+INFO 2026-02-17 16:42:56,970 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:01,818 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:43:01,905 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:04,654 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:43:04,809 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 124866
+INFO 2026-02-17 16:43:04,931 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:09,885 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:43:09,974 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:12,464 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:43:12,600 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 127508
+INFO 2026-02-17 16:43:12,682 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:19,994 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:43:20,098 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:22,466 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:43:22,610 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 130145
+INFO 2026-02-17 16:43:22,696 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:27,424 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:43:27,513 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:30,270 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:43:30,416 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 132772
+INFO 2026-02-17 16:43:30,491 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:36,409 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:43:36,489 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:41,061 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:43:41,184 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 135341
+INFO 2026-02-17 16:43:41,252 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:47,382 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 35513
+INFO 2026-02-17 16:43:47,482 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:43:49,768 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 16:43:49,905 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 137999
+INFO 2026-02-17 16:43:50,004 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:48:10,465 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/models/TelegramBot.py changed, reloading.
+INFO 2026-02-17 16:48:19,421 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:48:26,201 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/models/TelegramBot.py changed, reloading.
+INFO 2026-02-17 16:48:31,241 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:53:20,992 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-17 16:53:26,888 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:53:49,952 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-17 16:53:56,836 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:53:58,938 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-17 16:56:28,922 autoreload Watching for file changes with StatReloader
+ERROR 2026-02-17 16:57:01,809 log Internal Server Error: /en/admin/Bot/companydata/
+Traceback (most recent call last):
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/admin.py", line 484, in changelist_view
+    return super().changelist_view(request, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/contrib/admin/options.py", line 2138, in changelist_view
+    **self.admin_site.each_context(request),
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/sites.py", line 121, in each_context
+    "sidebar_navigation": self.get_sidebar_list(request)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/sites.py", line 263, in get_sidebar_list
+    item["active"] = self._get_is_active(
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/sites.py", line 418, in _get_is_active
+    link = str(link)
+           ^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+               ^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'Bot_chatmessage_changelist' not found. 'Bot_chatmessage_changelist' is not a valid view function or pattern name.
+ERROR 2026-02-17 16:57:01,821 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 500 167528
+WARNING 2026-02-17 16:57:02,316 log Not Found: /favicon.ico
+WARNING 2026-02-17 16:57:02,317 basehttp "GET /favicon.ico HTTP/1.1" 404 3916
+INFO 2026-02-17 16:57:34,738 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-17 16:57:40,598 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:57:44,795 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-17 16:57:50,092 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:57:52,755 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-17 16:57:57,255 autoreload Watching for file changes with StatReloader
+ERROR 2026-02-17 16:58:13,078 log Internal Server Error: /en/admin/Bot/companydata/
+Traceback (most recent call last):
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/contrib/admin/options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/admin.py", line 484, in changelist_view
+    return super().changelist_view(request, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/contrib/admin/options.py", line 2138, in changelist_view
+    **self.admin_site.each_context(request),
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/sites.py", line 121, in each_context
+    "sidebar_navigation": self.get_sidebar_list(request)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/sites.py", line 263, in get_sidebar_list
+    item["active"] = self._get_is_active(
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/unfold/sites.py", line 418, in _get_is_active
+    link = str(link)
+           ^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 119, in __str__
+    return str(self.__cast())
+               ^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/utils/functional.py", line 110, in __cast
+    return func(*self._args, **self._kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asrorbek/Ai-chat-asistant/.venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'Bot_chatmessage_changelist' not found. 'Bot_chatmessage_changelist' is not a valid view function or pattern name.
+ERROR 2026-02-17 16:58:13,106 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 500 167656
+WARNING 2026-02-17 16:58:13,544 log Not Found: /favicon.ico
+WARNING 2026-02-17 16:58:13,549 basehttp "GET /favicon.ico HTTP/1.1" 404 3916
+INFO 2026-02-17 16:59:21,059 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/admin/base.py changed, reloading.
+INFO 2026-02-17 16:59:30,347 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:59:47,118 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 16:59:51,947 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 140670
+INFO 2026-02-17 16:59:52,145 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 16:59:52,952 basehttp "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2026-02-17 16:59:55,002 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 57571
+INFO 2026-02-17 16:59:55,072 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:00:02,274 basehttp "GET /en/admin/Bot/chatmessage/ HTTP/1.1" 200 92857
+INFO 2026-02-17 17:00:02,354 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:00:50,056 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 140670
+INFO 2026-02-17 17:00:50,138 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:00:52,523 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:00:52,606 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:00:55,398 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:00:55,561 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 143793
+INFO 2026-02-17 17:00:55,647 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:02,532 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:01:02,616 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:05,285 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:01:05,445 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 146444
+INFO 2026-02-17 17:01:05,536 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:10,716 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:01:10,793 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:13,463 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:01:13,625 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 149049
+INFO 2026-02-17 17:01:13,702 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:20,687 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:01:20,775 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:23,415 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:01:23,562 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 151686
+INFO 2026-02-17 17:01:23,670 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:36,907 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:01:36,992 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:39,994 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:01:40,156 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 154323
+INFO 2026-02-17 17:01:40,250 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:45,609 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:01:45,683 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:48,383 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:01:48,536 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 156938
+INFO 2026-02-17 17:01:48,606 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:54,069 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:01:54,173 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:01:57,106 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:01:57,278 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 159519
+INFO 2026-02-17 17:01:57,367 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:03,496 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:02:03,583 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:06,240 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:02:06,428 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 162147
+INFO 2026-02-17 17:02:06,505 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:11,966 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:02:12,054 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:14,750 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:02:14,919 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 164774
+INFO 2026-02-17 17:02:15,013 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:20,609 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:02:20,701 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:23,202 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:02:23,366 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 167409
+INFO 2026-02-17 17:02:23,444 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:29,345 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:02:29,464 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:31,905 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:02:32,082 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 170054
+INFO 2026-02-17 17:02:32,163 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:38,117 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:02:38,189 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:40,656 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:02:40,838 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 172744
+INFO 2026-02-17 17:02:40,926 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:47,115 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:02:47,220 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:49,554 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:02:49,830 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 175343
+INFO 2026-02-17 17:02:49,931 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:56,091 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:02:56,179 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:02:58,603 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:02:58,800 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 178025
+INFO 2026-02-17 17:02:58,895 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:04,359 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:03:04,435 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:06,971 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:03:07,141 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 180603
+INFO 2026-02-17 17:03:07,235 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:12,833 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:03:12,911 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:15,451 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:03:15,646 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 183247
+INFO 2026-02-17 17:03:15,733 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:29,553 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:03:29,644 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:32,259 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:03:32,447 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 185873
+INFO 2026-02-17 17:03:32,525 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:37,872 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:03:37,965 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:40,442 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:03:40,678 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 188509
+INFO 2026-02-17 17:03:40,792 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:46,020 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:03:46,145 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:48,908 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:03:49,088 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 191129
+INFO 2026-02-17 17:03:49,191 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:55,558 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:03:55,663 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:03:58,164 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:03:58,351 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 193734
+INFO 2026-02-17 17:03:58,435 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:05,497 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:04:05,572 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:10,301 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:04:10,499 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 196387
+INFO 2026-02-17 17:04:10,610 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:21,481 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:04:21,561 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:25,294 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:04:25,565 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 199005
+INFO 2026-02-17 17:04:25,688 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:30,928 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:04:31,019 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:33,933 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:04:34,192 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 201602
+INFO 2026-02-17 17:04:34,289 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:39,450 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:04:39,551 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:42,304 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:04:42,556 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 204279
+INFO 2026-02-17 17:04:42,640 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:49,982 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:04:50,086 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:52,925 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:04:53,137 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 206856
+INFO 2026-02-17 17:04:53,228 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:04:58,680 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:04:58,788 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:01,380 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:05:01,618 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 209517
+INFO 2026-02-17 17:05:01,713 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:06,409 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:05:06,496 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:08,972 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:05:09,170 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 212116
+INFO 2026-02-17 17:05:09,265 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:15,640 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:05:15,721 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:18,200 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:05:18,424 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 214775
+INFO 2026-02-17 17:05:18,519 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:23,976 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:05:24,076 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:26,776 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:05:27,023 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 217367
+INFO 2026-02-17 17:05:27,112 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:33,320 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:05:33,415 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:35,928 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:05:36,192 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 220017
+INFO 2026-02-17 17:05:36,276 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:41,133 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:05:41,204 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:43,776 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:05:44,004 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 222664
+INFO 2026-02-17 17:05:44,080 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:49,297 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:05:49,395 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:51,905 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:05:52,135 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 225308
+INFO 2026-02-17 17:05:52,265 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:05:58,741 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:05:58,806 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:01,863 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:06:02,091 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 227954
+INFO 2026-02-17 17:06:02,173 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:07,414 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:06:07,480 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:10,640 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:06:11,151 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 230586
+INFO 2026-02-17 17:06:11,225 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:17,082 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:06:17,172 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:19,354 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:06:19,627 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 233203
+INFO 2026-02-17 17:06:19,723 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:24,186 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:06:24,300 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:26,870 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:06:27,086 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 235846
+INFO 2026-02-17 17:06:27,213 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:33,348 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:06:33,419 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:35,772 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:06:36,002 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 238486
+INFO 2026-02-17 17:06:36,073 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:43,138 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:06:43,214 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:46,221 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:06:46,527 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 241118
+INFO 2026-02-17 17:06:46,612 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:52,299 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:06:52,381 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:06:55,042 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:06:55,315 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 243761
+INFO 2026-02-17 17:06:55,434 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:03,342 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:07:03,421 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:05,893 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:07:06,158 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 246431
+INFO 2026-02-17 17:07:06,248 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:14,277 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:07:14,357 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:16,903 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:07:17,153 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 249076
+INFO 2026-02-17 17:07:17,235 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:21,949 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:07:22,047 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:24,875 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:07:25,120 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 251704
+INFO 2026-02-17 17:07:25,198 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:32,345 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:07:32,424 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:35,182 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:07:35,511 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 254341
+INFO 2026-02-17 17:07:35,607 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:41,252 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:07:41,361 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:07:44,227 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:07:44,494 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 256994
+INFO 2026-02-17 17:07:44,622 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:11:15,523 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 38658
+INFO 2026-02-17 17:11:15,627 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:11:42,481 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 17:11:42,794 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 259633
+INFO 2026-02-17 17:11:42,890 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:04,681 basehttp "GET /en/admin/ HTTP/1.1" 200 41469
+INFO 2026-02-17 17:13:08,783 basehttp "GET /en/admin/Bot/telegramuser/ HTTP/1.1" 200 77054
+INFO 2026-02-17 17:13:08,851 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:14,801 basehttp "GET /en/admin/Bot/chatmessage/ HTTP/1.1" 200 154428
+INFO 2026-02-17 17:13:14,872 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:18,193 basehttp "GET /en/admin/Bot/chatmessage/?o=1.4 HTTP/1.1" 200 157235
+INFO 2026-02-17 17:13:18,265 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:19,710 basehttp "GET /en/admin/Bot/chatmessage/?o=-1.4 HTTP/1.1" 200 157286
+INFO 2026-02-17 17:13:19,827 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:29,945 basehttp "GET /en/admin/Bot/chatmessage/?o=-1.4 HTTP/1.1" 200 157286
+INFO 2026-02-17 17:13:30,009 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:43,593 basehttp "GET /en/admin/Bot/chatmessage/?o=1.4 HTTP/1.1" 200 157235
+INFO 2026-02-17 17:13:43,690 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:45,233 basehttp "GET /en/admin/Bot/chatmessage/?o=-1.4 HTTP/1.1" 200 157286
+INFO 2026-02-17 17:13:45,305 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:46,763 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 155479
+INFO 2026-02-17 17:13:46,841 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:13:49,707 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 155528
+INFO 2026-02-17 17:13:49,792 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:14:14,047 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:14:14,121 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:14:19,431 basehttp "GET /en/admin/Bot/chatmessage/35/change/?_changelist_filters=o%3D-4 HTTP/1.1" 200 41017
+INFO 2026-02-17 17:14:19,539 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:14:19,560 basehttp "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2026-02-17 17:14:19,573 basehttp "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2026-02-17 17:14:19,590 basehttp "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2026-02-17 17:14:27,403 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:14:38,966 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 161571
+INFO 2026-02-17 17:14:39,038 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:14:40,310 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:14:40,381 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:14:48,763 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:14:48,851 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:14:50,660 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:14:50,723 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:14:51,646 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:14:51,709 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:15:13,745 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:15:13,814 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:15:14,988 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:15:15,059 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:15:25,333 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:15:25,395 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:15:26,281 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:15:26,352 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:15:34,568 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:15:34,637 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:15:39,771 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 61853
+INFO 2026-02-17 17:15:39,858 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:16:39,208 basehttp "GET /en/admin/Bot/chatmessage/ HTTP/1.1" 200 160468
+INFO 2026-02-17 17:16:39,371 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:16:41,991 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:16:42,058 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:17:42,130 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 161571
+INFO 2026-02-17 17:17:42,232 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:17:43,363 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:17:43,435 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:18:07,626 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 259157
+INFO 2026-02-17 17:18:07,708 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:18:09,144 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 61853
+INFO 2026-02-17 17:18:09,225 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:18:19,187 basehttp "GET /en/admin/ HTTP/1.1" 200 41469
+INFO 2026-02-17 17:18:25,566 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 259157
+INFO 2026-02-17 17:18:25,670 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:18:27,393 basehttp "GET /en/admin/Bot/chatmessage/ HTTP/1.1" 200 160468
+INFO 2026-02-17 17:18:27,481 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:18:29,491 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:18:29,568 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:20:29,207 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 161571
+INFO 2026-02-17 17:20:29,310 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:20:30,186 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 161622
+INFO 2026-02-17 17:20:30,301 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:23:29,967 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 197980
+INFO 2026-02-17 17:23:30,074 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:23:31,121 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 198043
+INFO 2026-02-17 17:23:31,226 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:33:48,823 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 252666
+INFO 2026-02-17 17:33:48,942 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:33:50,401 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 252747
+INFO 2026-02-17 17:33:50,489 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:36:19,520 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 259157
+INFO 2026-02-17 17:36:19,625 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:42:43,122 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 66090
+INFO 2026-02-17 17:42:43,230 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:51:09,214 basehttp "GET /en/admin/Bot/telegramuser/ HTTP/1.1" 200 83079
+INFO 2026-02-17 17:51:09,291 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:51:21,456 basehttp "GET /en/admin/Bot/chatmessage/ HTTP/1.1" 200 263243
+INFO 2026-02-17 17:51:21,516 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:51:25,359 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 265324
+INFO 2026-02-17 17:51:25,455 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:51:40,964 basehttp "GET /en/admin/Bot/chatmessage/69/change/?_changelist_filters=o%3D-4 HTTP/1.1" 200 41072
+INFO 2026-02-17 17:51:41,049 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:51:49,760 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 265324
+INFO 2026-02-17 17:52:06,022 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 265238
+INFO 2026-02-17 17:52:06,123 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 17:52:07,469 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 265324
+INFO 2026-02-17 17:52:07,537 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 18:06:38,646 basehttp "GET /en/admin/Bot/chatmessage/?o=4 HTTP/1.1" 200 265238
+INFO 2026-02-17 18:06:38,729 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 18:06:40,483 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 265324
+INFO 2026-02-17 18:06:40,563 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 18:55:29,196 basehttp "GET /en/admin/ HTTP/1.1" 200 42727
+INFO 2026-02-17 19:06:07,017 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/models/TelegramBot.py changed, reloading.
+INFO 2026-02-17 19:22:54,935 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 19:23:01,731 basehttp "GET /en/admin/ HTTP/1.1" 200 43135
+INFO 2026-02-17 19:31:06,687 basehttp "GET /en/admin/Bot/product/ HTTP/1.1" 200 46603
+INFO 2026-02-17 19:31:06,802 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:31:08,938 basehttp "GET /en/admin/Bot/product/add/ HTTP/1.1" 200 40863
+INFO 2026-02-17 19:31:09,025 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:31:17,307 basehttp "GET /en/admin/auth/user/ HTTP/1.1" 200 60064
+INFO 2026-02-17 19:31:17,398 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:31:19,349 basehttp "GET /en/admin/auth/user/1/change/ HTTP/1.1" 200 64144
+INFO 2026-02-17 19:31:19,464 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:31:19,515 basehttp "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2026-02-17 19:31:19,515 basehttp "GET /static/admin/js/SelectBox.js HTTP/1.1" 200 4530
+INFO 2026-02-17 19:31:19,515 basehttp "GET /static/admin/js/SelectFilter2.js HTTP/1.1" 200 15502
+INFO 2026-02-17 19:32:07,755 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/admin/base.py changed, reloading.
+INFO 2026-02-17 19:32:13,337 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 19:32:16,515 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/admin/base.py changed, reloading.
+INFO 2026-02-17 19:32:20,572 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 19:32:27,081 basehttp "GET /en/admin/Bot/product/ HTTP/1.1" 200 46506
+INFO 2026-02-17 19:32:27,166 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:32:29,061 basehttp "GET /en/admin/Bot/product/add/ HTTP/1.1" 200 44037
+INFO 2026-02-17 19:32:29,145 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:32:42,806 basehttp "GET /en/admin/Bot/product/ HTTP/1.1" 200 46506
+INFO 2026-02-17 19:32:42,907 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:32:44,848 basehttp "GET /en/admin/Bot/product/add/ HTTP/1.1" 200 44037
+INFO 2026-02-17 19:32:44,971 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:32:48,473 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 76622
+INFO 2026-02-17 19:32:48,612 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:32:48,911 basehttp "GET /static/unfold/fonts/inter/Inter-Bold.woff2 HTTP/1.1" 200 46552
+INFO 2026-02-17 19:33:05,683 basehttp "POST /en/admin/Bot/order/ HTTP/1.1" 200 35653
+INFO 2026-02-17 19:33:07,595 basehttp "POST /en/admin/Bot/order/ HTTP/1.1" 302 0
+INFO 2026-02-17 19:33:07,688 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 48659
+INFO 2026-02-17 19:33:07,830 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:33:09,417 basehttp "GET /en/admin/Bot/order/add/ HTTP/1.1" 200 52839
+INFO 2026-02-17 19:33:09,502 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:33:09,504 basehttp "GET /static/admin/js/inlines.js HTTP/1.1" 200 14687
+INFO 2026-02-17 19:33:48,159 basehttp "GET /en/admin/Bot/product/ HTTP/1.1" 200 46506
+INFO 2026-02-17 19:33:48,354 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:33:49,758 basehttp "GET /en/admin/Bot/product/add/ HTTP/1.1" 200 44037
+INFO 2026-02-17 19:33:49,857 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:33:59,304 basehttp "POST /en/admin/Bot/product/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 19:33:59,386 basehttp "GET /en/admin/Bot/product/ HTTP/1.1" 200 59586
+INFO 2026-02-17 19:33:59,527 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:34:02,387 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 48315
+INFO 2026-02-17 19:34:02,494 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:34:04,638 basehttp "GET /en/admin/Bot/order/add/ HTTP/1.1" 200 52839
+INFO 2026-02-17 19:34:04,736 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:36:21,117 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/admin/base.py changed, reloading.
+INFO 2026-02-17 19:36:28,508 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 19:36:33,706 basehttp "GET /en/admin/Bot/order/add/ HTTP/1.1" 200 58541
+INFO 2026-02-17 19:36:33,816 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:36:45,866 basehttp "POST /en/admin/Bot/order/add/ HTTP/1.1" 200 59311
+INFO 2026-02-17 19:36:45,974 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:37:00,764 basehttp "POST /en/admin/Bot/order/add/ HTTP/1.1" 302 0
+INFO 2026-02-17 19:37:00,928 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 63848
+INFO 2026-02-17 19:37:01,031 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:37:12,629 basehttp "GET /en/admin/Bot/product/ HTTP/1.1" 200 59170
+INFO 2026-02-17 19:37:12,696 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:37:17,992 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 63436
+INFO 2026-02-17 19:37:18,089 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 19:54:48,893 autoreload /home/asrorbek/Ai-chat-asistant/apps/Bot/models/TelegramBot.py changed, reloading.
+INFO 2026-02-17 19:54:57,194 autoreload Watching for file changes with StatReloader
+INFO 2026-02-17 20:36:07,913 basehttp "POST /en/admin/Bot/order/ HTTP/1.1" 302 0
+INFO 2026-02-17 20:36:08,251 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 63788
+INFO 2026-02-17 20:36:08,429 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-17 20:36:12,875 basehttp "POST /en/admin/Bot/order/ HTTP/1.1" 302 0
+INFO 2026-02-17 20:36:12,937 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 63787
+INFO 2026-02-17 20:36:13,054 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342

@@ -27,7 +27,7 @@ class TelegramUser(models.Model):
 
     user_type = models.CharField(
         max_length=50,
-        choices=[("yolovchi", "Yo'lo'vchi"), ("haydovchi", "Haydovchi")],
+        choices=[("mutaxasis", "Mutaxasis"), ("fuqaro", "Fuqaro")],
         default=None,
         null=True,
         blank=True,
@@ -430,3 +430,87 @@ class CompanyData(models.Model):
         # Admin panelda qisqa ko‘rinishda chiqadi
         return self.content[:60] + ("..." if len(self.content) > 60 else "")
 
+
+class Product(models.Model):
+    GENDER_CHOICES = [
+        ('men', 'Erkaklar uchun'),
+        ('women', 'Ayollar uchun'),
+        ('unisex', 'Unisex (Erkak va Ayol)'),
+    ]
+
+    name = models.CharField(max_length=255, verbose_name="Atir nomi")
+    brand = models.CharField(max_length=100, verbose_name="Brend")
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='unisex')
+    
+    # Asosiy akkordlar (Katalogdagi sitrusli, mevali, yog'ochli va h.k.) [cite: 7, 18, 32]
+    description = models.TextField(blank=True, verbose_name="Tavsif / Akkordlar")
+    
+    # Statistika uchun yordamchi maydonlar
+    is_active = models.BooleanField(default=True, verbose_name="Sotuvda bor")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Katalog mahsuloti"
+        verbose_name_plural = "Katalog mahsulotlari"
+        ordering = ['brand', 'name']
+
+    def __str__(self):
+        return f"{self.brand} - {self.name}"
+
+class ChatMessage(models.Model):
+    user = models.ForeignKey(TelegramUser, on_delete=models.CASCADE, related_name="messages")
+    role = models.CharField(max_length=10, choices=[('user', 'User'), ('model', 'AI')])
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created_at']  # Xabarlar ketma-ketligini saqlash uchun
+
+    def __str__(self):
+        return f"{self.user.first_name} - {self.role}: {self.content[:30]}..."
+
+class OrderItem(models.Model):
+    order = models.ForeignKey('Order', on_delete=models.CASCADE, related_name="items")
+    # Atirni katalogdan tanlash
+    product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name="sales")
+    quantity = models.PositiveIntegerField(default=1, verbose_name="Soni")
+
+    def __str__(self):
+        return f"{self.product.name} ({self.quantity} ta)"
+
+class Order(models.Model):
+    PACKAGE_CHOICES = [
+        ('5_set', '5 ta (10ml) premium qutida'),
+        ('10_set', '10 ta (10ml) premium qutida'),
+    ]
+    
+    STATUS_CHOICES = [
+        ('new', 'Yangi'),
+        ('confirmed', 'Tasdiqlangan'),
+        ('delivered', 'Yetkazilgan'),
+    ]
+
+    user = models.ForeignKey('TelegramUser', on_delete=models.SET_NULL, null=True)
+    package_type = models.CharField(max_length=20, choices=PACKAGE_CHOICES, verbose_name="Nabor turi")
+    
+    # Narxlar (10ml naborlar uchun maxsus narxlar)
+    original_price = models.DecimalField(max_digits=10, decimal_places=0, verbose_name="Asl narxi")
+    total_price = models.DecimalField(max_digits=10, decimal_places=0, verbose_name="Sotuv narxi (Chegirmada)")
+    
+    phone = models.CharField(max_length=20, verbose_name="Telefon")
+    address = models.TextField(verbose_name="Manzil") 
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if self.package_type == '5_set':
+            self.original_price = 500000
+            self.total_price = 250000
+        elif self.package_type == '10_set':
+            self.original_price = 1000000
+            self.total_price = 500000
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = "Buyurtma"
+        verbose_name_plural = "Buyurtmalar"

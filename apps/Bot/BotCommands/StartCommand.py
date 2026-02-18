@@ -8,15 +8,15 @@ from ..decorators import (
 )
 from telegram import ReplyKeyboardRemove
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, ReplyKeyboardMarkup
 from asgiref.sync import sync_to_async
 
 
 async def user_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Foydalanuvchi turini so'rash"""
     buttons = [
-        [InlineKeyboardButton("🚖 Yo'lovchi", callback_data="yolovchi")],
-        [InlineKeyboardButton("🛺 Haydovchi", callback_data="haydovchi")],
+        [InlineKeyboardButton("🏢 Mutaxasis", callback_data="mutaxasis")],
+        [InlineKeyboardButton("👥 Fuqaro", callback_data="fuqaro")],
     ]
     markup = InlineKeyboardMarkup(buttons)
 
@@ -50,16 +50,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Foydalanuvchini bazaga saqlaymiz
     is_save = await save_user_to_db(data)
 
-    user_typ = await TelegramUser.get_user_type(update.effective_user.id)
-    print(user_typ)
-    if user_typ is None:
-        return await user_type(update, context)
+    # user_typ = await TelegramUser.get_user_type(update.effective_user.id)
+    # print(user_typ)
+    # if user_typ is None:
+    #     return await user_type(update, context)
 
     # Inline tugmalar (faqat username bor adminlar uchun)
-    buttons = [[InlineKeyboardButton(f"📞 Admin bilan bog'lanish", url=f"https://t.me/Rizogo_Support")]]
+    buttons = [[KeyboardButton(f"📚 Katalog"), KeyboardButton("🛍 Buyurtma berish")]]
 
 
-    markup = InlineKeyboardMarkup(buttons) if buttons else None
+    markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True) if buttons else None
 
     # Agar user admin bo‘lsa, admin panelni ham ko‘rsatamiz
     admin_id = await TelegramUser.get_admin_ids()
@@ -70,13 +70,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=remove,
             parse_mode="html",
         )
+    text="""<b>👋 Salom! Men — Aromazona.uz virtual yordamchisiman.</b> 
 
-    # Asosiy salomlashuv xabari
-    text = (
-        "<b>👋 Salom! Men sizga yordam beruvchi botman.</b>\n\n"
-        "Siz Rizo Go kompaniyasining rasmiy yordamchisiga yozdingiz.\n"
-        "Savolingizni yozing AI sizga javob beradi yoki quyidagi adminlar orqali bog‘lanishingiz mumkin 👇"
-    )
+Sizga dunyo brendlarining eng sara premium iforlarini tanlashda yordam beraman.  🧴✨
+
+Menga brend nomini yozing yoki xohishingizni bildiring.
+
+Men sizga darhol eng yaxshi variantlarni topaman! 🚀
+
+<b>Bog'lanish uchun:</b>
+📞 +998333635333 📱 Instagram: @Aromazone.uz"""
 
     await context.bot.send_message(
         chat_id=update.effective_user.id,
@@ -96,7 +99,7 @@ async def set_user_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await TelegramUser.update_user_type(user_id, user_type)
 
-    await update.callback_query.answer("Siz tanladingiz: " + ("Yo'lovchi" if user_type == "yolovchi" else "Haydovchi"))
+    await update.callback_query.answer("Siz tanladingiz: " + ("Mutaxasis" if user_type == "mutaxasis" else "Fuqaro"))
     await update.callback_query.edit_message_text("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!")
 
     # Start komandani chaqiramiz

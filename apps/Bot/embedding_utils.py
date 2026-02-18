@@ -1,48 +1,59 @@
 import asyncio
 import os
-from openai import AsyncOpenAI
+import numpy as np
+from google import genai  # Yangi SDK
 from django.conf import settings
 from asgiref.sync import sync_to_async
 from .models.TelegramBot import CompanyData
 
-# 🔐 API kalit
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-client = AsyncOpenAI(api_key=OPENAI_API_KEY)
-
+# 🔐 Yangi SDK Clientini sozlash
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 async def update_company_embeddings():
-    """Bazadagi contentlardan embedding yaratish va saqlash (to‘liq asinxron)"""
+    """Bazadagi contentlardan yangi SDK orqali Gemini embedding yaratish va saqlash"""
 
-    # 🧠 Embedding yo‘q ma’lumotlarni olish (asinxron)
+    # 🧠 Embeddingi yo‘q ma’lumotlarni olish
     datas = await sync_to_async(list)(
         CompanyData.objects.filter(embedding__isnull=True)
     )
 
     if not datas:
-        print("✅ Hamma ma'lumotlar embeddingga o‘girilgan.")
+        print("✅ Hamma ma'lumotlar Gemini embeddingiga o‘girilgan.")
         return
+
+    print(f"🚀 {len(datas)} ta ma'lumotni qayta ishlash boshlandi...")
 
     # 🔁 Har bir ma’lumot uchun embedding yaratish
     for data in datas:
         try:
-            print(f"🔄 Embedding yaratilmoqda: {data.id}")
-            response = await client.embeddings.create(
-                model="text-embedding-3-small",  # 🔹 Arzon va tez model
-                input=data.content,
+            print(f"🔄 Gemini embedding (v4) yaratilmoqda: {data.id}")
+            
+            # Yangi SDK-da metod: client.models.embed_content
+            result = client.models.embed_content(
+                model="gemini-embedding-001",
+                contents=data.content,
+                config={
+                    'task_type': 'RETRIEVAL_DOCUMENT'
+                }
             )
 
-            embedding_vector = response.data[0].embedding
+            # Natijani olish formati o'zgargan: .embeddings[0].values
+            embedding_vector = result.embeddings[0].values
 
-            # 🧩 Ma’lumotni saqlash (asinxron)
-            await sync_to_async(setattr)(data, "embedding", embedding_vector)
-            await sync_to_async(data.save)()
+            # 🧩 Ma’lumotni saqlash
+            data.embedding = embedding_vector
+            await sync_to_async(data.save)(update_fields=["embedding"])
 
-            print(f"✅ Embedding saqlandi: {data.id}")
+            print(f"✅ Muvaffaqiyatli saqlandi: {data.id}")
+
+            # API Rate Limit'ga tushmaslik uchun juda qisqa tanaffus (ixtiyoriy)
+            await asyncio.sleep(0.1) 
 
         except Exception as e:
-            print(f"❌ Xato: {data.id} - {e}")
+            print(f"❌ Xato: ID {data.id} - {e}")
 
-
-# 🔄 Test uchun ishga tushirish (shell yoki scriptda)
+# 🔄 Scriptni ishga tushirish (Django muhitida)
 if __name__ == "__main__":
+   
     asyncio.run(update_company_embeddings())
