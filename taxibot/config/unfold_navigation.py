@@ -24,28 +24,28 @@ PAGES = [
             },
         ],
     },
-    {
-        "seperator": True,
-        "title": _("Foydalanuvchilar"),
-        "items": [
-            {
-                "title": _("Guruhlar"),
-                "icon": "person_add",
-                "link": reverse_lazy("admin:auth_group_changelist"),
-                "permission": lambda request: user_has_group_or_permission(
-                    request.user, "view_group"
-                ),
-            },
-            {
-                "title": _("Foydalanuvchilar"),
-                "icon": "person_add",
-                "link": reverse_lazy("admin:auth_user_changelist"),
-                "permission": lambda request: user_has_group_or_permission(
-                    request.user, "view_user"
-                ),
-            },
-        ],
-    },
+    # {
+    #     "seperator": True,
+    #     "title": _("Foydalanuvchilar"),
+    #     "items": [
+    #         {
+    #             "title": _("Guruhlar"),
+    #             "icon": "person_add",
+    #             "link": reverse_lazy("admin:auth_group_changelist"),
+    #             "permission": lambda request: user_has_group_or_permission(
+    #                 request.user, "view_group"
+    #             ),
+    #         },
+    #         {
+    #             "title": _("Foydalanuvchilar"),
+    #             "icon": "person_add",
+    #             "link": reverse_lazy("admin:auth_user_changelist"),
+    #             "permission": lambda request: user_has_group_or_permission(
+    #                 request.user, "view_user"
+    #             ),
+    #         },
+    #     ],
+    # },
     {
         "seperator": True,
         "title": _("Telegram Bot"),
@@ -70,7 +70,7 @@ PAGES = [
     },
     {
         "seperator": True,
-        "title": _("Kampaniya ma'lumotlari"),
+        "title": _("Do'kon ma'lumotlari"),
         "items": [
             {
                 "title": _("Ma'lumotlar"),
@@ -88,10 +88,26 @@ PAGES = [
         "items": [
             {
                 "title": _("Buyurtmalar"),
-                "icon": "shopping_cart",
+                "icon": "orders",
                 "link": reverse_lazy("admin:Bot_order_changelist"),
                 "permission": lambda request: user_has_group_or_permission(
                     request.user, "view_order"
+                ),
+            },
+            {
+                "title": _("Mahsulotlar"),
+                "icon": "inventory",
+                "link": reverse_lazy("admin:Bot_product_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_product"
+                ),
+            },
+            {
+                "title": _("Savatlar"),
+                "icon": "shopping_cart",
+                "link": reverse_lazy("admin:Bot_cart_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_cart"
                 ),
             }
         ],
@@ -123,6 +139,22 @@ TABS = [
                 "title": _("Ma'lumotlar"),
                 "link": reverse_lazy("admin:Bot_companydata_changelist"),
             },
+            {
+                "title": _("Chat xabarlari"),
+                "link": reverse_lazy("admin:Bot_chatmessage_changelist"),
+            },
+            {
+                "title": _("Buyurtmalar"),
+                "link": reverse_lazy("admin:Bot_order_changelist"),
+            },
+            {
+                "title": _("Mahsulotlar"),
+                "link": reverse_lazy("admin:Bot_product_changelist"),
+            },
+            {
+                "title": _("Savatlar"),
+                "link": reverse_lazy("admin:Bot_cart_changelist"),
+            }
         ],
     },
 ]

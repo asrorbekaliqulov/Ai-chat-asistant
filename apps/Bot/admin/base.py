@@ -1,5 +1,5 @@
 from django.contrib import admin
-from ..models.TelegramBot import TelegramUser, CompanyData, ChatMessage, Order, OrderItem, Product
+from ..models.TelegramBot import *
 from unfold.admin import ModelAdmin
 from django.db.models import Sum
 from django.utils.html import format_html
@@ -129,7 +129,6 @@ class OrderAdmin(ModelAdmin):
     ordering = ('-created_at',)
 
 
-
 @admin.register(Product)
 class ProductAdmin(ModelAdmin):
     # Ro'yxatda ko'rinadigan ustunlar
@@ -174,3 +173,22 @@ class ProductAdmin(ModelAdmin):
             'fields': ('total_sold_display',),
         }),
     )
+
+class SelectedItemInline(admin.TabularInline):
+    model = SelectedItem
+    extra = 0
+    raw_id_fields = ['product']
+
+@admin.register(Cart)
+class CartAdmin(ModelAdmin):
+    list_display = ('user', 'selected_package', 'items_count')
+    inlines = [SelectedItemInline]
+    
+    def items_count(self, obj):
+        return obj.selected_items.count()
+    items_count.short_description = "Savatdagi atirlar soni"
+
+@admin.register(SelectedItem)
+class SelectedItemAdmin(ModelAdmin):
+    list_display = ('cart', 'product', 'is_selected')
+    list_filter = ('is_selected',)

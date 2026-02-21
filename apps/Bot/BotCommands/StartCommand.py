@@ -56,7 +56,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     #     return await user_type(update, context)
 
     # Inline tugmalar (faqat username bor adminlar uchun)
-    buttons = [[KeyboardButton(f"📚 Katalog"), KeyboardButton("🛍 Buyurtma berish")]]
+    buttons = [
+        [
+            KeyboardButton(f"📚 Katalog"), 
+            KeyboardButton("🛒 Savat")
+        ]
+    ]
 
 
     markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True) if buttons else None

@@ -10,35 +10,19 @@ from django.db.models import JSONField
 
 
 class TelegramUser(models.Model):
+    user_id = models.BigIntegerField(unique=True, verbose_name="Telegram User ID")
+    first_name = models.CharField(max_length=256, blank=True, null=True, verbose_name="First Name")
+    username = models.CharField(max_length=256, blank=True, null=True, verbose_name="Username")
+    
+    # Yangi maydonlar (Bot mantiqi uchun)
+    state = models.CharField(max_length=50, default="START", verbose_name="Bot State")
+    phone_number = models.CharField(max_length=20, blank=True, null=True, verbose_name="Telefon")
+    address = models.TextField(blank=True, null=True, verbose_name="Manzil")
 
-    user_id = models.BigIntegerField(
-        null=False, unique=True, verbose_name="Telegram User ID"
-    )
-    first_name = models.CharField(
-        max_length=256, blank=True, null=True, verbose_name="First Name"
-    )
-    username = models.CharField(
-        max_length=256, blank=True, null=True, verbose_name="Username"
-    )
     date_joined = models.DateTimeField(auto_now_add=True, verbose_name="Date Joined")
     last_active = models.DateTimeField(auto_now=True, verbose_name="Last Active")
     is_admin = models.BooleanField(default=False, verbose_name="Is Admin")
     is_active = models.BooleanField(default=True, verbose_name="Is Active")
-
-    user_type = models.CharField(
-        max_length=50,
-        choices=[("mutaxasis", "Mutaxasis"), ("fuqaro", "Fuqaro")],
-        default=None,
-        null=True,
-        blank=True,
-        verbose_name="User Type",
-    )
-    access_token = models.CharField(
-        max_length=512, blank=True, null=True, verbose_name="Access Token"
-    )
-    refresh_token = models.CharField(
-        max_length=512, blank=True, null=True, verbose_name="Refresh Token"
-    )
 
     class Meta:
         verbose_name = "Telegram User"
@@ -46,11 +30,7 @@ class TelegramUser(models.Model):
         ordering = ["-last_active"]
 
     def __str__(self):
-        return (
-            f"{self.first_name} (@{self.username})"
-            if self.username
-            else f"{self.user_id}"
-        )
+        return f"{self.first_name} (@{self.username})" if self.username else f"{self.user_id}"
 
     def is_authenticated(self):
         return bool(self.access_token and self.refresh_token)
@@ -66,32 +46,7 @@ class TelegramUser(models.Model):
             )
         )()
     
-    @classmethod
-    async def get_user_type(cls, user_id):
-        """
-        Foydalanuvchi turini qaytaradi.
-        """
-        try:
-            user = await sync_to_async(cls.objects.get)(user_id=user_id)
-            return user.user_type
-        except cls.DoesNotExist:
-            return None
 
-    @classmethod
-    async def update_user_type(cls, user_id, user_type):
-        """
-        Foydalanuvchi turini yangilaydi.
-        :param user_id: Foydalanuvchi ID si
-        :param user_type: Yangi foydalanuvchi turi
-        :return: Yangilangan user obyekti yoki None (user topilmasa)
-        """
-        try:
-            user = await sync_to_async(cls.objects.get)(user_id=user_id)
-            user.user_type = user_type
-            await sync_to_async(user.save)(update_fields=["user_type"])
-            return user
-        except cls.DoesNotExist:
-            return None
 
 
     @classmethod
@@ -169,148 +124,6 @@ class TelegramUser(models.Model):
             return user
         except cls.DoesNotExist:
             print(f"User with ID {user_id} does not exist.")
-            return None
-
-    @classmethod
-    async def remove_admin(cls, user_id):
-        """
-        Userni adminlikdan chiqaradi.
-        :param user_id: Adminlikdan chiqariladigan foydalanuvchining Telegram user_id-si
-        :return: Yangilangan user obyekti yoki None (user topilmasa)
-        """
-        try:
-            user = await sync_to_async(cls.objects.get)(user_id=user_id)
-            user.is_admin = False
-            await sync_to_async(user.save)(update_fields=["is_admin"])
-            return user
-        except cls.DoesNotExist:
-            print(f"User with ID {user_id} does not exist.")
-            return None
-
-    @property
-    def accuracy_rate(self):
-        """Aniqlik darajasini foizlarda qaytaradi"""
-        if self.total_questions_answered == 0:
-            return 0
-        return round((self.correct_answers / self.total_questions_answered) * 100, 2)
-
-    @classmethod
-    async def update_quiz_stats(cls, user_id, is_correct, points=1):
-        """
-        O'yin statistikasini yangilash
-        :param user_id: Foydalanuvchi ID si
-        :param is_correct: Javob to'g'ri yoki noto'g'ri ekanligi
-        :param points: Qo'shiladigan ballar (default=1)
-        """
-        try:
-            user = await sync_to_async(cls.objects.select_for_update().get)(
-                user_id=user_id
-            )
-
-            # Umumiy statistikani yangilash
-            user.total_questions_answered += 1
-            user.total_points += points if is_correct else 0
-
-            if is_correct:
-                user.correct_answers += 1
-                user.current_streak += 1
-                user.best_streak = max(user.current_streak, user.best_streak)
-            else:
-                user.wrong_answers += 1
-                user.current_streak = 0
-
-            user.last_quiz_date = now()
-
-            await sync_to_async(user.save)()
-            return user
-
-        except cls.DoesNotExist:
-            return None
-
-    @classmethod
-    async def update_highest_score(cls, user_id, score):
-        """
-        Eng yuqori natijani yangilash
-        :param user_id: Foydalanuvchi ID si
-        :param score: Yangi natija
-        """
-        try:
-            user = await sync_to_async(cls.objects.get)(user_id=user_id)
-            if score > user.highest_score:
-                user.highest_score = score
-                await sync_to_async(user.save)(update_fields=["highest_score"])
-            return user
-        except cls.DoesNotExist:
-            return None
-
-    @classmethod
-    async def get_top_players(cls, limit=10):
-        """
-        Eng ko'p ball to'plagan o'yinchilar ro'yxatini qaytaradi
-        :param limit: Qaytariladigan o'yinchilar soni
-        """
-        return await sync_to_async(
-            lambda: list(cls.objects.order_by("-total_points")[:limit])
-        )()
-
-    @classmethod
-    async def get_user_stats(cls, user_id):
-        """
-        Foydalanuvchining barcha statistikasini qaytaradi
-        :param user_id: Foydalanuvchi ID si
-        """
-        try:
-            user = await sync_to_async(cls.objects.get)(user_id=user_id)
-            return {
-                "total_questions": user.total_questions_answered,
-                "correct_answers": user.correct_answers,
-                "wrong_answers": user.wrong_answers,
-                "total_points": user.total_points,
-                "highest_score": user.highest_score,
-                "current_streak": user.current_streak,
-                "best_streak": user.best_streak,
-                "accuracy_rate": user.accuracy_rate,
-                "last_quiz_date": user.last_quiz_date,
-            }
-        except cls.DoesNotExist:
-            return None
-
-    @classmethod
-    async def get_daily_leaders(cls, date=None):
-        """
-        Berilgan kundagi eng yaxshi natijalarni qaytaradi
-        :param date: Sana (None bo'lsa bugungi kun)
-        """
-        if date is None:
-            date = now().date()
-
-        return await sync_to_async(
-            lambda: list(
-                cls.objects.filter(last_quiz_date__date=date).order_by("-total_points")[
-                    :10
-                ]
-            )
-        )()
-
-    @classmethod
-    async def reset_user_stats(cls, user_id):
-        """
-        Foydalanuvchi statistikasini nolga tushirish
-        :param user_id: Foydalanuvchi ID si
-        """
-        try:
-            user = await sync_to_async(cls.objects.get)(user_id=user_id)
-            user.total_questions_answered = 0
-            user.correct_answers = 0
-            user.wrong_answers = 0
-            user.total_points = 0
-            user.highest_score = 0
-            user.current_streak = 0
-            user.best_streak = 0
-            user.last_quiz_date = None
-            await sync_to_async(user.save)()
-            return user
-        except cls.DoesNotExist:
             return None
 
 
@@ -471,7 +284,6 @@ class ChatMessage(models.Model):
 
 class OrderItem(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE, related_name="items")
-    # Atirni katalogdan tanlash
     product = models.ForeignKey(Product, on_delete=models.PROTECT, related_name="sales")
     quantity = models.PositiveIntegerField(default=1, verbose_name="Soni")
 
@@ -514,3 +326,17 @@ class Order(models.Model):
     class Meta:
         verbose_name = "Buyurtma"
         verbose_name_plural = "Buyurtmalar"
+
+# models.py
+class Cart(models.Model):
+    user = models.OneToOneField(TelegramUser, on_delete=models.CASCADE, related_name="cart")
+    items = models.ManyToManyField(Product, blank=True)
+    selected_package = models.CharField(max_length=20, null=True, blank=True) # '5_set' yoki '10_set'
+
+    def __str__(self):
+        return f"{self.user.first_name} savati"
+
+class SelectedItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="selected_items")
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    is_selected = models.BooleanField(default=False) # Shu qatorni qo'shing

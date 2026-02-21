@@ -1,4 +1,6 @@
 
+from apps.Bot.BotHandler.order import handle_checkout_messages
+
 from ..BotCommands import start, set_user_type, user_type
 from ..BotAdmin import (
     admin_menyu,
@@ -26,7 +28,15 @@ from ..BotHandler import (
     handle_text_catalog,
     catalog_pagination_handler,
     product_detail_handler,
-    close_catalog_handler
+    close_catalog_handler,
+    handle_remove_item,
+    handle_set_package,
+    handle_toggle_select,
+    handle_not_ready,
+    handle_finalize_checkout,
+    handle_add_to_cart,
+    handle_view_cart,
+    handle_quantity_change
 )
 
 from ..BotCommands.DownDB import DownlBD
@@ -72,8 +82,14 @@ def main():
     app.add_handler(CallbackQueryHandler(admin_menyu, pattern="^exit_admin$"))
     app.add_handler(CallbackQueryHandler(start, pattern=r"^BackToMainMenu$"))
     app.add_handler(CallbackQueryHandler(set_user_type, pattern=r"^yolovcmutaxasishi|fuqaro$"))
-
-    # Bosh menyudagi "📚 Katalog" tugmasi uchun
+    app.add_handler(CallbackQueryHandler(handle_remove_item, pattern=r"^remove_item_(\d+)$"))
+    app.add_handler(CallbackQueryHandler(handle_set_package, pattern=r"^set_package_(5|10)_set$"))
+    app.add_handler(CallbackQueryHandler(handle_toggle_select, pattern=r"^toggle_select_(\d+)$"))
+    app.add_handler(CallbackQueryHandler(handle_not_ready, pattern=r"^not_ready$"))
+    app.add_handler(CallbackQueryHandler(handle_finalize_checkout, pattern=r"^finalize_checkout$"))
+    app.add_handler(CallbackQueryHandler(handle_add_to_cart, pattern=r"^add_to_cart_(\d+)$"))
+    app.add_handler(CallbackQueryHandler(handle_quantity_change, pattern=r"^(inc|dec)_(\d+)$"))
+    app.add_handler(CallbackQueryHandler(handle_text_catalog, pattern=r"^open_catalog$"))
 
     # Sahifalar o'rtasida navigatsiya uchun (masalan: cat_page_2)
     app.add_handler(CallbackQueryHandler(catalog_pagination_handler, pattern="^cat_page_"))
@@ -87,6 +103,8 @@ def main():
     # app.add_handler(CallbackQueryHandler(EarnMoneyMenu, pattern=r"^earn_money$"))
     app.add_handler(CallbackQueryHandler(InlineButton))
     app.add_handler(MessageHandler(filters.Text("📚 Katalog"), handle_text_catalog))
+    app.add_handler(MessageHandler(filters.Regex("^🛒 Savat$"), handle_view_cart))
+    app.add_handler(MessageHandler(filters.CONTACT | filters.LOCATION, handle_checkout_messages))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_user_message))
 
     app.add_handler(MessageHandler(~filters.COMMAND & ~filters.TEXT, yoqfunksiya))

@@ -1,12 +1,16 @@
-import asyncio
 from asgiref.sync import sync_to_async
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 from apps.Bot.BotHandler.catalog import get_catalog_markup
-from .models.TelegramBot import TelegramUser, Channel, CompanyData, ChatMessage, Order, Product, OrderItem
+from .models.TelegramBot import TelegramUser, Channel, CompanyData, ChatMessage, Order, Product, OrderItem, Cart, SelectedItem
 import os
+import numpy as np
+from google import genai
+from google.genai import types
+from asgiref.sync import sync_to_async
+
 import re
-from django.db.models import Sum
+from django.db.models import Sum, Count
 
 
 async def save_user_to_db(data):
@@ -40,12 +44,6 @@ def create_channel(chat_id, chat_name: str, chat_type: str, url=None):
     )
     return channel
 
-import os
-import numpy as np
-from google import genai
-from google.genai import types
-from asgiref.sync import sync_to_async
-from apps.Bot.models.TelegramBot import CompanyData, TelegramUser, Product, Order, OrderItem
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=GEMINI_API_KEY)
@@ -158,7 +156,8 @@ catalog_tool = types.FunctionDeclaration(
         "type": "OBJECT",
         "properties": {
             "page": {"type": "INTEGER", "description": "Sahifa raqami, odatda 1"}
-        }
+        },
+        "required": ["page"]
     }
 )
 
@@ -170,21 +169,33 @@ async def generate_ai_response(user_message: str, user_id: int, chat_history: li
 
     # 2. System Instruction (Aromazona qoidalari)
     system_instr = f"""
-    Siz "Aromazona.uz" do'konining professional konsultantisiz. 
-    
-    NARXLAR (Mega chegirma):
-    - 5 dona (10ml) nabor: 250,000 so’m (Asl: 500,000) [cite: 843, 844, 1145]
-    - 10 dona (10ml) nabor: 500,000 so’m (Asl: 1,000,000) [cite: 843, 844, 1145]
-    
-    MAHSULOTLAR (Katalogdan topilganlar):
-    {context_data}
-    
-    QOIDALAR:
-    - O'zbek tilida juda qisqa va londa javob bering. 
-    - Foydalanuvchi atir tanlamoqchi bo'lsa, uni nabor sotib olishga yo'naltiring.
-    - Katalog yoki mahsulotlarni ko'rishni so'rasa, darhol 'catalog' funksiyasini chaqiring.
-    - Buyurtma uchun: Nabor turi, Atirlar ro'yxati, Telefon va Manzilni to'liq oling, so'ng 'finalize_order'ni chaqiring.
-    """
+Siz "Aromazona.uz" do'konining professional va do'stona konsultantisiz. Sizning vazifangiz foydalanuvchilarga atir tanlashda yordam berish va ularni bot orqali buyurtma berishga yo'naltirish.
+
+NARXLAR (Mega chegirma):
+- 5 dona (10ml) nabor: 250,000 so’m (Asl: 500,000)
+- 10 dona (10ml) nabor: 500,000 so’m (Asl: 1,000,000)
+
+MAHSULOTLAR (Katalogdan topilganlar):
+{context_data}
+
+BUYURTMA BERISH TARTIBI (Userga o'rgatish uchun):
+1. "📚 Katalog" tugmasi orqali atirlarni ko'ring.
+2. Yoqqan atiringiz ichiga kirib, "Savatga qo'shish" tugmasi orqali uni savatga qo'shing.
+3. "🛒 Savat" bo'limiga o'ting va nabor turini tanlang (5 talik yoki 10 talik).
+4. Savatdagi atirlar orasidan naboringiz uchun kerakli bo'lganlarini tanlab, "Tasdiqlash"ni bosing.
+5. Botdagi maxsus tugmalar orqali telefon raqamingiz va lokatsiyangizni yuboring.
+
+QOIDALAR:
+- O'zbek tilida juda qisqa, londa va samimiy javob bering.
+- Do'konda faqat nabor (5 talik yoki 10 talik) sotiladi. Atirlarni yakka tartibda (naborsiz) sotib olish imkonsiz ekanini tushuntiring.
+- Foydalanuvchi atir tanlamoqchi bo'lsa, uni "📚 Katalog" tugmasidan foydalanishga va yoqqanlarini savatga qo'shishga yo'naltiring .
+- Foydalanuvchi nabor haqida so'rasa, savatga o'tib, nabor turini tanlashi kerakligini ayting.
+- Buyurtma jarayonining oxirida "Telefon raqamini yuborish" va "Manzilni yuborish" tugmalaridan foydalanishni eslating.
+- Hozircha buyurtmani chatbotning o'zi yakunlamaydi, barcha texnik harakatlar bot tugmalari orqali bajariladi.
+- Botga html parse mode da javob berish imkoniyati berilgan, kerak bo'lsa matnni qalin yoki kursiv qilib formatlash mumkin.
+- Foydalanuvchi savatga atir qo'shganidan so'ng, unga nabor turini tanlashni eslatib o'ting.
+- userlar katalogni ko'rishni hohlashsa "catalog" funksiyasini ishga tushirib bering
+"""
 
     # 3. Chat tarixini tayyorlash
     contents = []
@@ -194,35 +205,47 @@ async def generate_ai_response(user_message: str, user_id: int, chat_history: li
             contents.append(types.Content(role=role, parts=[types.Part.from_text(text=msg['content'])]))
     contents.append(types.Content(role="user", parts=[types.Part.from_text(text=user_message)]))
 
+    tool_config = types.ToolConfig(
+        function_calling_config=types.FunctionCallingConfig(
+            mode="AUTO",  # Model qachon funksiya chaqirishni o'zi hal qiladi
+        )
+    )
     try:
         response = client.models.generate_content(
             model="gemini-2.0-flash",
             contents=contents,
             config={
                 'system_instruction': system_instr,
-                'tools': [types.Tool(function_declarations=[order_tool, catalog_tool])],
+                'tools': [types.Tool(function_declarations=[catalog_tool, order_tool])],
+                'tool_config': tool_config,
                 'temperature': 0.1,
             }
         )
 
-        part = response.candidates[0].content.parts[0]
-
-        # Funksiya chaqiruvini tekshirish
-        if part.function_call:
-            fn_name = part.function_call.name
-            fn_args = part.function_call.args
-            
-            if fn_name == "catalog":
-                # Katalog mantiqi handlers.py dagi get_catalog_markup ga ulanishi kerak
-                from .handlers import get_catalog_markup
-                text, markup = await get_catalog_markup(page=fn_args.get("page", 1))
-                return {"type": "catalog", "text": text, "markup": markup}
-            
-            elif fn_name == "finalize_order":
-                res = await finalize_order(user_id, **fn_args)
-                return {"type": "order_completed", **res}
+        parts = response.candidates[0].content.parts
         
-        return {"type": "text", "text": part.text or "Tushunarsiz so'rov."}
+        for part in parts:
+            if part.function_call:
+                fn_name = part.function_call.name
+                fn_args = part.function_call.args
+                
+                if fn_name == "catalog":
+                    print(f"AI requested catalog page: {fn_args.get('page', 1)}")  # Debug log
+                    return {"type": "catalog", "page": fn_args.get("page", 1)}
+                
+                elif fn_name == "finalize_order":
+                    res = await finalize_order(user_id, **fn_args)
+                    return {"type": "order_completed", **res}
+            
+            if part.text:
+                print(f"AI responded with text: {part.text}")  # Debug log
+                # Agar model baribir matn qaytarsa (lekin ichida catalog so'zi bo'lsa)
+                # Bu qo'shimcha "straxovka" (ixtiyoriy)
+                if "catalog(" in part.text:
+                     return {"type": "catalog", "page": 1}
+                return {"type": "text", "text": part.text}
+
+        return {"type": "text", "text": "Tushunarsiz so'rov."}
 
     except Exception as e:
         print(f"AI Error: {e}")
@@ -252,3 +275,141 @@ def save_order_to_db(user_id, product_name, phone, address):
     return order.id
 
 
+@sync_to_async
+def get_cart_markup(user_id):
+    user = TelegramUser.objects.get(user_id=user_id)
+    cart, _ = Cart.objects.get_or_create(user=user)
+    
+    # SelectedItem'larni mahsulot bo'yicha guruhlaymiz va sonini sanaymiz
+    items_data = (
+        SelectedItem.objects.filter(cart=cart)
+        .values('product__id', 'product__name')
+        .annotate(qty=Count('id'))
+        .order_by('product__name')
+    )
+    
+    # Umumiy tanlangan atirlar soni (nabor uchun kerak)
+    total_count = sum(item['qty'] for item in items_data)
+    
+    keyboard = []
+    current_row = []
+
+    # 1. Atirlar tugmalarini generatsiya qilish
+    for item in items_data:
+        p_id = item['product__id']
+        name = item['product__name'][:8] # Tugma sig'ishi uchun qisqartma
+        qty = item['qty']
+        
+        # Agar soni 1 tadan ko'p bo'lsa, qavs ichida ko'rsatamiz
+        display_name = f"❌ {name}" if qty == 1 else f"❌ {name} ({qty})"
+        
+        btn = InlineKeyboardButton(
+            display_name, 
+            callback_data=f"remove_item_{p_id}", # Endi butun guruh uchun callback
+            api_kwargs={"style": "danger"}
+        )
+        current_row.append(btn)
+        
+        # Eniga 5 tadan tugma bo'lganda yangi qatorga o'tish
+        if len(current_row) == 4:
+            keyboard.append(current_row)
+            current_row = []
+            
+    # Qolib ketgan tugmalarni oxirgi qatorga qo'shish
+    if current_row:
+        keyboard.append(current_row)
+
+    # 2. Pastki boshqaruv tugmalari
+    control_buttons = []
+    if total_count < 5:
+        control_buttons.append(InlineKeyboardButton("➕ Atir qo'shish", callback_data="open_catalog", api_kwargs={"style": "success"}))
+        text = f"🛒 <b>Savat</b>\n\nSizda jami {total_count} ta atir bor. Nabor uchun yana {5-total_count} ta qo'shing."
+    else:
+        control_buttons.append(InlineKeyboardButton("🎁 5 talik", callback_data="set_package_5_set"))
+        control_buttons.append(InlineKeyboardButton("🎁 10 talik", callback_data="set_package_10_set"))
+        text = f"🛒 <b>Savat</b>\n\nSizda jami {total_count} ta atir bor. Nabor turini tanlang:"
+    
+    if control_buttons:
+        keyboard.append(control_buttons)
+
+    # 3. Chiqish tugmasi
+    keyboard.append([InlineKeyboardButton("🚪 Chiqish", callback_data="close_cart")])
+
+    return text, InlineKeyboardMarkup(keyboard)
+
+from django.db.models import Count, Q
+
+@sync_to_async
+def get_nabor_selection_markup(user_id, package_type):
+    user = TelegramUser.objects.get(user_id=user_id)
+    cart = Cart.objects.get(user=user)
+    
+    # Savatdagi barcha atirlarni guruhlab olamiz
+    # 'total' - savatda nechta borligi, 'selected' - nechtasi tanlangani
+    items_data = (
+        SelectedItem.objects.filter(cart=cart)
+        .values('product__id', 'product__name')
+        .annotate(
+            total=Count('id'),
+            selected=Count('id', filter=Q(is_selected=True))
+        )
+        .order_by('product__name')
+    )
+    
+    # Jami tanlanganlar soni (global limit uchun)
+    global_selected = SelectedItem.objects.filter(cart=cart, is_selected=True).count()
+    target = 5 if package_type == '5_set' else 10
+    is_ready = (global_selected == target)
+
+    keyboard = []
+    current_row = []
+
+    for item in items_data:
+        p_id = item['product__id']
+        name = item['product__name'][:10] # Tugma sig'ishi uchun
+        total = item['total']
+        selected = item['selected']
+        
+        # Tugma matni mantiqi
+        if selected == 0:
+            # Hali birortasi tanlanmagan
+            display_name = f"{name} ({total})" if total > 1 else name
+        elif 0 < selected < total:
+            # Qisman tanlangan (masalan: 1/3)
+            display_name = f"({selected}/{total}) {name}"
+        else:
+            # Hammasi tanlangan
+            display_name = f"✅ {name}"
+            
+        btn = InlineKeyboardButton(
+            display_name, 
+            callback_data=f"toggle_select_{p_id}",
+            api_kwargs={"style": "success" if selected > 0 else ""}
+        )
+        current_row.append(btn)
+        
+        if len(current_row) == 5:
+            keyboard.append(current_row)
+            current_row = []
+            
+    if current_row: keyboard.append(current_row)
+
+    # Rasmiylashtirish tugmasi
+    btn_style = "primary" if is_ready else ""
+    btn_cb = "finalize_checkout" if is_ready else "not_ready"
+    keyboard.append([InlineKeyboardButton(
+        f"🚀 Tasdiqlash ({global_selected}/{target})", 
+        callback_data=btn_cb, 
+        api_kwargs={"style": btn_style}
+    )])
+
+    return f"🎁 <b>{target} talik nabor</b> uchun atirlarni tanlang:", InlineKeyboardMarkup(keyboard)
+
+@sync_to_async
+def get_product_count_in_cart(user, product):
+    # Agar CartItem modelini ishlatsangiz:
+    # item = CartItem.objects.filter(cart__user=user, product=product).first()
+    # return item.quantity if item else 0
+    
+    # Agar oddiy ManyToMany bo'lsa, faqat bor/yo'qligini tekshiramiz:
+    return 1 if user.cart.items.filter(id=product.id).exists() else 0

@@ -1,0 +1,115 @@
+INFO 2026-02-20 20:59:12,574 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 21:00:50,672 basehttp "GET / HTTP/1.1" 200 4583
+INFO 2026-02-20 21:00:50,985 basehttp "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:51,062 basehttp "GET /static/images/github-icon.svg HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:51,063 basehttp "GET /static/images/telegram-icon.svg HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:51,141 basehttp "GET /static/images/instagram-icon.svg HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:51,257 basehttp "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,794 basehttp "GET /en/admin/ HTTP/1.1" 200 43303
+INFO 2026-02-20 21:00:54,922 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,924 basehttp "GET /static/css/tailwind.css HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,929 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,930 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,962 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,966 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,976 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:54,987 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,023 basehttp "GET /static/images/user_profile.png HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,040 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,132 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,143 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,144 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,175 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,186 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,179 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,452 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,459 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,461 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:55,473 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:57,838 basehttp "GET /en/admin/Bot/cart/ HTTP/1.1" 200 45293
+INFO 2026-02-20 21:00:57,942 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:57,950 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-20 21:00:57,976 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:57,987 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:57,979 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:57,985 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:57,987 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:57,977 basehttp "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:00:58,025 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2026-02-20 21:01:02,862 basehttp "GET /en/admin/Bot/product/ HTTP/1.1" 200 108819
+INFO 2026-02-20 21:01:02,936 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-20 21:01:05,368 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 48485
+INFO 2026-02-20 21:01:05,478 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-20 21:01:24,387 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-20 21:01:31,304 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 21:01:32,736 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 48495
+INFO 2026-02-20 21:01:32,872 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-20 21:01:33,595 basehttp "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2026-02-20 21:01:43,233 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-20 21:01:48,442 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 21:01:51,129 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-20 21:01:59,017 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 21:02:01,223 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-20 21:02:05,239 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 21:02:07,893 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 48493
+INFO 2026-02-20 21:02:08,018 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 200 535
+INFO 2026-02-20 21:02:08,046 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 200 608
+INFO 2026-02-20 21:02:08,053 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 200 4647
+INFO 2026-02-20 21:02:08,064 basehttp "GET /static/css/tailwind.css HTTP/1.1" 200 15588
+INFO 2026-02-20 21:02:08,068 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 200 50918
+INFO 2026-02-20 21:02:08,070 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 200 157275
+INFO 2026-02-20 21:02:08,082 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-20 21:02:08,101 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 200 200633
+INFO 2026-02-20 21:02:08,106 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9048
+INFO 2026-02-20 21:02:08,118 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-02-20 21:02:08,126 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-02-20 21:02:08,142 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-02-20 21:02:08,146 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-02-20 21:02:08,317 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-02-20 21:02:08,341 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-02-20 21:02:08,361 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 200 7736
+INFO 2026-02-20 21:02:08,424 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-02-20 21:02:08,509 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 200 31764
+INFO 2026-02-20 21:02:08,512 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 200 27176
+INFO 2026-02-20 21:02:08,650 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 200 837
+INFO 2026-02-20 21:02:08,669 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 200 15524
+INFO 2026-02-20 21:02:08,668 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 200 703
+INFO 2026-02-20 21:02:08,674 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 200 37891
+INFO 2026-02-20 21:02:08,691 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 200 44659
+INFO 2026-02-20 21:02:09,013 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 200 46552
+INFO 2026-02-20 21:02:09,014 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 200 46552
+INFO 2026-02-20 21:02:09,029 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 200 46552
+INFO 2026-02-20 21:02:09,032 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 200 256424
+INFO 2026-02-20 21:02:09,249 basehttp "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2026-02-20 21:02:27,166 autoreload /home/asrorbek/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-02-20 21:02:32,075 autoreload Watching for file changes with StatReloader
+INFO 2026-02-20 21:02:33,876 basehttp "GET /en/admin/Bot/order/ HTTP/1.1" 200 48487
+INFO 2026-02-20 21:02:33,964 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 200 608
+INFO 2026-02-20 21:02:34,002 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 200 535
+INFO 2026-02-20 21:02:34,010 basehttp "GET /static/css/tailwind.css HTTP/1.1" 200 15588
+INFO 2026-02-20 21:02:34,023 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 200 4647
+INFO 2026-02-20 21:02:34,026 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 200 157275
+INFO 2026-02-20 21:02:34,034 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 200 50918
+INFO 2026-02-20 21:02:34,039 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 200 200633
+INFO 2026-02-20 21:02:34,092 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-02-20 21:02:34,124 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-02-20 21:02:34,135 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-02-20 21:02:34,137 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9048
+INFO 2026-02-20 21:02:34,143 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-02-20 21:02:34,166 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-02-20 21:02:34,174 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-02-20 21:02:34,175 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-02-20 21:02:34,203 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-02-20 21:02:34,218 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 200 7736
+INFO 2026-02-20 21:02:34,281 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 200 31764
+INFO 2026-02-20 21:02:34,303 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 200 27176
+INFO 2026-02-20 21:02:34,402 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 200 15524
+INFO 2026-02-20 21:02:34,479 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 200 837
+INFO 2026-02-20 21:02:34,480 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 200 37891
+INFO 2026-02-20 21:02:34,501 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 200 703
+INFO 2026-02-20 21:02:34,502 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 200 44659
+INFO 2026-02-20 21:02:34,706 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 200 46552
+INFO 2026-02-20 21:02:34,715 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 200 256424
+INFO 2026-02-20 21:02:34,734 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 200 46552
+INFO 2026-02-20 21:02:34,768 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 200 46552
+INFO 2026-02-20 21:02:35,173 basehttp "GET /static/images/favicon.ico HTTP/1.1" 200 15406

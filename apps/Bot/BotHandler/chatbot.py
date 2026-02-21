@@ -43,12 +43,14 @@ async def handle_user_message(update: Update, context: ContextTypes.DEFAULT_TYPE
         
         # --- ODDIIY MATN ---
         if ai_response["type"] == "text":
+            print(f"AI responded with text: {ai_response['text']}")  # Debug log
             resp_text = ai_response["text"]
             await update.message.reply_text(text=resp_text, parse_mode=ParseMode.HTML)
             await save_message_to_db(user_id, role="model", content=resp_text)
 
         # --- KATALOG CHAQIRILGANDA ---
         elif ai_response["type"] == "catalog":
+            print(f"AI requested catalog page: {ai_response.get('page', 1)}")  # Debug log
             # AI dan kelgan sahifa raqamini olamiz (agar bo'lmasa 1-sahifa)
             page_num = ai_response.get("page", 1)
             
