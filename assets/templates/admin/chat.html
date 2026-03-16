@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Data Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .ai-message { background: #1e293b; border-radius: 20px 20px 20px 4px; }
+        .user-message { background: linear-gradient(135deg, #3b82f6, #2563eb); border-radius: 20px 20px 4px 20px; }
+        
+        /* Chiroyli scrollbar */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+
+        /* Yozish animatsiyasi */
+        .dot { width: 6px; height: 6px; background: #60a5fa; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { 0%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); } }
+    </style>
+</head>
+<body class="h-screen overflow-hidden flex flex-col">
+
+    <header class="glass py-4 px-6 flex justify-between items-center shadow-2xl z-10">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-600 w-10 h-10 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+                <i class="fas fa-brain text-white text-lg"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent italic">
+                    AI Assistant
+                </h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-widest">Admin Control Panel</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-4 text-xs font-medium">
+            <span class="flex items-center gap-2"><i class="fas fa-circle text-emerald-500 text-[8px] animate-pulse"></i> Online</span>
+        </div>
+    </header>
+
+    <main id="chatWindow" class="flex-grow overflow-y-auto p-4 md:p-8 custom-scroll space-y-6">
+        <div class="flex justify-start items-end gap-3 max-w-[85%] animate-fade-in">
+            <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-robot text-blue-400 text-xs"></i>
+            </div>
+            <div class="ai-message p-4 shadow-xl text-sm leading-relaxed border border-slate-700/50">
+                Salom Admin! Men loyihangizdagi barcha jadvallarni (bazani) tahlil qila olaman. 
+                Savolingizni bering, men esa ma'lumotlarni qidiraman, hisoblayman va kerak bo'lsa grafik chizaman.
+            </div>
+        </div>
+    </main>
+
+    <div id="aiStatus" class="hidden px-8 py-2">
+        <div class="flex items-center gap-3 ml-10">
+            <div class="flex gap-1">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <span id="statusText" class="text-xs text-blue-400 italic">Bazani o'qiyapman...</span>
+        </div>
+    </div>
+
+    <footer class="p-4 md:p-6 bg-slate-900/50">
+        <div class="max-w-4xl mx-auto relative group">
+            <input type="text" id="queryInput" 
+                   class="w-full bg-slate-800/80 border border-slate-700 rounded-2xl py-4 pl-6 pr-16 text-white placeholder-slate-500 focus:outline-none focus:ring-2 ring-blue-500/50 transition-all shadow-2xl"
+                   placeholder="Masalan: 'O'tgan oyda qancha foyda qildik?'">
+            
+            <button onclick="handleSend()" 
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-500 text-white w-12 h-12 rounded-xl flex items-center justify-center transition-all active:scale-90 shadow-lg">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <!-- <p class="text-center text-[10px] text-slate-500 mt-4 uppercase tracking-tighter">Powered by PandasAI & GPT-4</p> -->
+    </footer>
+
+    <script>
+        const chatWindow = document.getElementById('chatWindow');
+        const aiStatus = document.getElementById('aiStatus');
+        const statusText = document.getElementById('statusText');
+        const queryInput = document.getElementById('queryInput');
+
+        // Enter tugmasini bosganda yuborish
+        queryInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        async function handleSend() {
+            const query = queryInput.value.trim();
+            if (!query) return;
+
+            // 1. Foydalanuvchi xabarini qo'shish
+            addMessage(query, 'user');
+            queryInput.value = '';
+
+            // 2. Statusni ko'rsatish
+            aiStatus.classList.remove('hidden');
+            const phases = ["Bazani skanerlayapman...", "Kodni generatsiya qilyapman...", "Hisob-kitob ketyapti...", "Vizualizatsiya tayyorlanmoqda..."];
+            let phaseIdx = 0;
+            const statusInterval = setInterval(() => {
+                statusText.innerText = phases[phaseIdx % phases.length];
+                phaseIdx++;
+            }, 2000);
+
+            try {
+                // 3. Backendga so'rov yuborish
+                const response = await fetch('/pandasai-query/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: `query=${encodeURIComponent(query)}`
+                });
+
+                const data = await response.json();
+                clearInterval(statusInterval);
+                aiStatus.classList.add('hidden');
+
+                if (data.status === 'success') {
+                    addMessage(data.result, 'ai', data.chart_url);
+                } else {
+                    addMessage("Xatolik yuz berdi: " + data.message, 'error');
+                }
+            } catch (err) {
+                clearInterval(statusInterval);
+                aiStatus.classList.add('hidden');
+                addMessage("Server bilan aloqa uzildi!", 'error');
+            }
+        }
+
+        function addMessage(text, type, chartUrl = null) {
+            const wrapper = document.createElement('div');
+            wrapper.className = `flex ${type === 'user' ? 'justify-end' : 'justify-start'} items-end gap-3 animate-fade-in`;
+            
+            let content = '';
+            if (type === 'user') {
+                content = `<div class="user-message p-4 max-w-[85%] text-sm shadow-lg">${text}</div>`;
+            } else {
+                // Skrinshotdagi holat uchun: agar text o'zi rasm yo'li bo'lib kelsa yoki chartUrl bo'lsa
+                const isImagePath = text.includes('exports/charts/') || text.endsWith('.png');
+                const finalChartUrl = chartUrl || (isImagePath ? text : null);
+                
+                // Agar text rasm yo'li bo'lsa, xabar qismida yo'lni ko'rsatib o'tirmaymiz
+                const displaySafeText = isImagePath ? "Grafik tayyor:" : text;
+
+                content = `
+                    <div class="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-robot text-blue-400 text-xs"></i>
+                    </div>
+                    <div class="ai-message p-4 max-w-[85%] shadow-xl text-sm border border-slate-700/50 ${type === 'error' ? 'text-red-400' : ''}">
+                        <p>${displaySafeText}</p>
+                        ${finalChartUrl ? `
+                            <div class="mt-4 relative group">
+                                <img src="/${finalChartUrl}" 
+                                    onerror="this.src='https://placehold.co/600x400?text=Rasm+topilmadi'"
+                                    class="rounded-lg border border-slate-700 w-full hover:scale-[1.01] transition-transform cursor-pointer shadow-lg">
+                                <div class="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <a href="/${finalChartUrl}" target="_blank" class="bg-slate-900/80 p-2 rounded-md text-xs">
+                                        <i class="fas fa-expand"></i>
+                                    </a>
+                                </div>
+                            </div>` : ''}
+                    </div>`;
+            }
+            
+            wrapper.innerHTML = content;
+            chatWindow.appendChild(wrapper);
+            chatWindow.scrollTo({ top: chatWindow.scrollHeight, behavior: 'smooth' });
+        }
+
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+</body>
+</html>
