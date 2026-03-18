@@ -27,4 +27,5 @@ DEFAULT_APPS = [
 PROJECT_APPS = [
     "apps.shared.apps.SharedConfig",
     "apps.Bot",
+    "apps.warehouse",
 ]
