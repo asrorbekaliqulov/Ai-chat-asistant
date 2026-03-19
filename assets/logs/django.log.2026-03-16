@@ -1,0 +1,80 @@
+INFO 2026-03-16 21:48:18,452 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 21:48:33,637 basehttp "GET / HTTP/1.1" 200 4583
+INFO 2026-03-16 21:48:35,415 basehttp "GET /static/images/telegram-icon.svg HTTP/1.1" 200 2449
+INFO 2026-03-16 21:48:35,417 basehttp "GET /static/images/github-icon.svg HTTP/1.1" 200 5303
+INFO 2026-03-16 21:48:35,418 basehttp "GET /static/images/instagram-icon.svg HTTP/1.1" 200 819
+INFO 2026-03-16 21:48:35,419 basehttp "GET /static/css/styles.css HTTP/1.1" 200 5440
+INFO 2026-03-16 21:48:36,196 basehttp "GET /static/js/main.js HTTP/1.1" 200 643
+INFO 2026-03-16 21:48:37,226 basehttp "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2026-03-16 21:48:37,537 basehttp "GET /en/admin/ HTTP/1.1" 302 0
+INFO 2026-03-16 21:48:37,939 basehttp "GET /en/admin/login/?next=/en/admin/ HTTP/1.1" 200 11135
+INFO 2026-03-16 21:48:38,342 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 200 608
+INFO 2026-03-16 21:48:38,368 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 200 4647
+INFO 2026-03-16 21:48:38,377 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 200 27176
+INFO 2026-03-16 21:48:38,379 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 200 200633
+INFO 2026-03-16 21:48:38,794 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 200 535
+INFO 2026-03-16 21:48:38,851 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 200 50918
+INFO 2026-03-16 21:48:38,854 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 200 157275
+INFO 2026-03-16 21:48:38,887 basehttp "GET /static/css/tailwind.css HTTP/1.1" 200 15588
+INFO 2026-03-16 21:48:38,924 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 200 7736
+INFO 2026-03-16 21:48:39,370 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 200 15524
+INFO 2026-03-16 21:48:39,510 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 200 837
+INFO 2026-03-16 21:48:39,543 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 200 703
+INFO 2026-03-16 21:48:39,550 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 200 44659
+INFO 2026-03-16 21:48:39,616 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 200 37891
+INFO 2026-03-16 21:48:40,175 basehttp "GET /static/images/login.png HTTP/1.1" 200 171031
+INFO 2026-03-16 21:48:40,224 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-16 21:48:40,225 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-16 21:48:40,226 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 200 256424
+INFO 2026-03-16 21:48:40,241 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 200 46552
+WARNING 2026-03-16 21:48:46,312 log Forbidden (Origin checking failed - https://localhost:8000 does not match any trusted origins.): /en/admin/login/
+WARNING 2026-03-16 21:48:46,312 basehttp "POST /en/admin/login/?next=/en/admin/ HTTP/1.1" 403 2555
+WARNING 2026-03-16 21:48:46,720 log Not Found: /favicon.ico
+WARNING 2026-03-16 21:48:46,721 basehttp "GET /favicon.ico HTTP/1.1" 404 3916
+INFO 2026-03-16 21:49:27,662 autoreload /workspaces/Ai-chat-asistant/taxibot/settings.py changed, reloading.
+INFO 2026-03-16 21:49:30,956 autoreload Watching for file changes with StatReloader
+WARNING 2026-03-16 21:49:35,136 log Forbidden (Origin checking failed - https://localhost:8000 does not match any trusted origins.): /en/admin/login/
+WARNING 2026-03-16 21:49:35,137 basehttp "POST /en/admin/login/?next=/en/admin/ HTTP/1.1" 403 2555
+INFO 2026-03-16 21:50:25,018 autoreload /workspaces/Ai-chat-asistant/taxibot/settings.py changed, reloading.
+INFO 2026-03-16 21:50:27,049 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 21:50:35,023 basehttp "POST /en/admin/login/?next=/en/admin/ HTTP/1.1" 302 0
+INFO 2026-03-16 21:50:35,884 basehttp "GET /en/admin/ HTTP/1.1" 200 38300
+INFO 2026-03-16 21:50:36,702 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 200 31764
+INFO 2026-03-16 21:50:36,839 basehttp "GET /static/images/user_profile.png HTTP/1.1" 200 4072
+INFO 2026-03-16 21:50:59,684 autoreload /workspaces/Ai-chat-asistant/taxibot/urls.py changed, reloading.
+INFO 2026-03-16 21:51:02,341 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 21:51:17,424 basehttp "GET /bot/ai-chat HTTP/1.1" 301 0
+INFO 2026-03-16 21:51:18,268 basehttp "GET /bot/ai-chat/ HTTP/1.1" 200 8595
+WARNING 2026-03-16 21:51:34,952 log Not Found: /pandasai-query/
+WARNING 2026-03-16 21:51:34,952 basehttp "POST /pandasai-query/ HTTP/1.1" 404 4076
+INFO 2026-03-16 21:51:59,882 autoreload /workspaces/Ai-chat-asistant/taxibot/urls.py changed, reloading.
+INFO 2026-03-16 21:52:04,243 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 21:52:22,022 basehttp "POST /pandasai-query/ HTTP/1.1" 200 69
+INFO 2026-03-16 21:53:37,070 autoreload /workspaces/Ai-chat-asistant/apps/Bot/views/base.py changed, reloading.
+INFO 2026-03-16 21:53:40,663 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 21:55:17,774 basehttp "GET /bot/ai-chat/ HTTP/1.1" 200 8589
+INFO 2026-03-16 21:55:38,881 basehttp "POST /pandasai-query/ HTTP/1.1" 200 55
+INFO 2026-03-16 21:56:25,770 basehttp "POST /pandasai-query/ HTTP/1.1" 200 120
+INFO 2026-03-16 21:59:34,708 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 21:59:53,471 basehttp "GET /bot/ai-chat/ HTTP/1.1" 200 9772
+INFO 2026-03-16 22:00:35,694 basehttp "POST /pandasai-query/ HTTP/1.1" 200 120
+WARNING 2026-03-16 22:00:37,179 log Not Found: /exports/charts/temp_chart_623f66e3-43a1-40f9-86ff-86fb6b7523e8.png
+WARNING 2026-03-16 22:00:37,180 basehttp "GET /exports/charts/temp_chart_623f66e3-43a1-40f9-86ff-86fb6b7523e8.png HTTP/1.1" 404 4518
+WARNING 2026-03-16 22:00:55,137 log Not Found: /exports/charts/temp_chart_623f66e3-43a1-40f9-86ff-86fb6b7523e8.png
+WARNING 2026-03-16 22:00:55,137 basehttp "GET /exports/charts/temp_chart_623f66e3-43a1-40f9-86ff-86fb6b7523e8.png HTTP/1.1" 404 4518
+INFO 2026-03-16 22:03:56,541 autoreload /workspaces/Ai-chat-asistant/taxibot/settings.py changed, reloading.
+INFO 2026-03-16 22:04:00,914 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 22:04:43,241 autoreload /workspaces/Ai-chat-asistant/taxibot/urls.py changed, reloading.
+INFO 2026-03-16 22:04:47,808 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 22:04:56,687 autoreload /workspaces/Ai-chat-asistant/taxibot/urls.py changed, reloading.
+INFO 2026-03-16 22:04:59,951 autoreload Watching for file changes with StatReloader
+INFO 2026-03-16 22:05:13,268 basehttp "GET /exports/charts/temp_chart_623f66e3-43a1-40f9-86ff-86fb6b7523e8.png HTTP/1.1" 200 22787
+INFO 2026-03-16 22:06:08,656 basehttp "POST /pandasai-query/ HTTP/1.1" 200 120
+INFO 2026-03-16 22:06:10,068 basehttp "GET /exports/charts/temp_chart_6446b9a9-3e32-4bf2-a9e5-22f90dff7bb8.png HTTP/1.1" 200 29124
+INFO 2026-03-16 22:08:49,429 basehttp "POST /pandasai-query/ HTTP/1.1" 200 93
+INFO 2026-03-16 22:09:20,709 basehttp "POST /pandasai-query/ HTTP/1.1" 200 208
+INFO 2026-03-16 22:09:56,265 basehttp "POST /pandasai-query/ HTTP/1.1" 200 200
+INFO 2026-03-16 22:10:21,765 basehttp "POST /pandasai-query/ HTTP/1.1" 200 103
+INFO 2026-03-16 22:11:00,583 basehttp "GET /bot/ai-chat/ HTTP/1.1" 200 9781
+INFO 2026-03-16 22:11:22,037 autoreload /workspaces/Ai-chat-asistant/apps/Bot/urls.py changed, reloading.
+INFO 2026-03-16 22:11:27,962 autoreload Watching for file changes with StatReloader

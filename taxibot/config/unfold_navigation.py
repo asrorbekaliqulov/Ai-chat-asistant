@@ -70,7 +70,69 @@ PAGES = [
     },
     {
         "seperator": True,
-        "title": _("Do'kon ma'lumotlari"),
+        "title": _("Mahsulotlar"),
+        "items": [
+            {
+                "title": _("Kategorya"),
+                "icon": "info",
+                "link": reverse_lazy("admin:warehouse_category_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_category"
+                ),
+            },
+            {
+                "title": _("Taminotchilar"),
+                "icon": "info",
+                "link": reverse_lazy("admin:warehouse_supplier_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_supplier"
+                ),
+            },
+            {
+                "title": _("Mahsulotlar"),
+                "icon": "inventory",
+                "link": reverse_lazy("admin:warehouse_product_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_product"
+                ),
+            },
+            {
+                "title": _("Mahsulot turlari"),
+                "icon": "inventory",
+                "link": reverse_lazy("admin:warehouse_productvariant_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_productvariant"
+                ),
+            },
+            {
+                "title": _("Kirim-chiqimlar"),
+                "icon": "inbox",
+                "link": reverse_lazy("admin:warehouse_stocktransaction_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_stocktransaction"
+                ),
+            },
+            {
+                "title": _("Narx o'zgarishlari"),
+                "icon": "inventory",
+                "link": reverse_lazy("admin:warehouse_pricehistory_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_pricehistory"
+                ),
+            },
+            {
+                "title": _("Inventarizatsiya"),
+                "icon": "inventory",
+                "link": reverse_lazy("admin:warehouse_inventoryaudit_changelist"),
+                "permission": lambda request: user_has_group_or_permission(
+                    request.user, "view_inventoryaudit"
+                ),
+            }
+        ],
+    },
+    {
+        "seperator": True,
+        "title": _("AI uchun ma'lumotlar"),
         "items": [
             {
                 "title": _("Ma'lumotlar"),
@@ -82,36 +144,36 @@ PAGES = [
             }
         ],
     },
-    {
-        "seperator": True,
-        "title": _("Buyurtmalar"),
-        "items": [
-            {
-                "title": _("Buyurtmalar"),
-                "icon": "orders",
-                "link": reverse_lazy("admin:Bot_order_changelist"),
-                "permission": lambda request: user_has_group_or_permission(
-                    request.user, "view_order"
-                ),
-            },
-            {
-                "title": _("Mahsulotlar"),
-                "icon": "inventory",
-                "link": reverse_lazy("admin:Bot_product_changelist"),
-                "permission": lambda request: user_has_group_or_permission(
-                    request.user, "view_product"
-                ),
-            },
-            {
-                "title": _("Savatlar"),
-                "icon": "shopping_cart",
-                "link": reverse_lazy("admin:Bot_cart_changelist"),
-                "permission": lambda request: user_has_group_or_permission(
-                    request.user, "view_cart"
-                ),
-            }
-        ],
-    }
+    # {
+    #     "seperator": True,
+    #     "title": _("Buyurtmalar"),
+    #     "items": [
+    #         {
+    #             "title": _("Buyurtmalar"),
+    #             "icon": "orders",
+    #             "link": reverse_lazy("admin:Bot_order_changelist"),
+    #             "permission": lambda request: user_has_group_or_permission(
+    #                 request.user, "view_order"
+    #             ),
+    #         },
+    #         {
+    #             "title": _("Mahsulotlar"),
+    #             "icon": "inventory",
+    #             "link": reverse_lazy("admin:Bot_product_changelist"),
+    #             "permission": lambda request: user_has_group_or_permission(
+    #                 request.user, "view_product"
+    #             ),
+    #         },
+    #         {
+    #             "title": _("Savatlar"),
+    #             "icon": "shopping_cart",
+    #             "link": reverse_lazy("admin:Bot_cart_changelist"),
+    #             "permission": lambda request: user_has_group_or_permission(
+    #                 request.user, "view_cart"
+    #             ),
+    #         }
+    #     ],
+    # }
     
 ]
 

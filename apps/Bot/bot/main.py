@@ -36,7 +36,8 @@ from ..BotHandler import (
     handle_finalize_checkout,
     handle_add_to_cart,
     handle_view_cart,
-    handle_quantity_change
+    handle_quantity_change,
+    product_ai_handler
 )
 
 from ..BotCommands.DownDB import DownlBD
@@ -71,6 +72,7 @@ def main():
     app.add_handler(add_data_handler)
     app.add_handler(show_data_handler)
     app.add_handler(delete_data_handler)
+    app.add_handler(product_ai_handler)
 
 
     # Inline hanlder

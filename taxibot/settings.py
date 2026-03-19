@@ -19,7 +19,7 @@ else:
     DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "161.97.143.23"]
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "http://localhost", "http://161.97.143.23"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "http://localhost", "http://161.97.143.23", "https://localhost:8000"]
 
 INSTALLED_APPS = [*THIRD_PARTY_APPS, *DEFAULT_APPS, *PROJECT_APPS]
 

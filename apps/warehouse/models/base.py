@@ -23,9 +23,9 @@ class Product(models.Model):
         ('dona', 'Dona'), ('kg', 'Kilogramm'), ('m2', 'Kvadrat metr'), 
         ('m3', 'Kub metr'), ('metr', 'Metr'), ('qop', 'Qop')
     ]
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, verbose_name="Mahsulot nomi")
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
-    unit = models.CharField(max_length=10, choices=UNIT_CHOICES)
+    unit = models.CharField(max_length=10, choices=UNIT_CHOICES, verbose_name="O'lchov birligi")
     description = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
 
@@ -38,12 +38,12 @@ class ProductVariant(models.Model):
     alohida narx va qoldiq saqlanadi. 
     """
     product = models.ForeignKey(Product, related_name='variants', on_delete=models.CASCADE)
-    brand = models.CharField(max_length=100)
-    size = models.CharField(max_length=50, blank=True, null=True)
-    purchase_price = models.DecimalField(max_digits=15, decimal_places=2) # Oxirgi kirim narxi
-    selling_price = models.DecimalField(max_digits=15, decimal_places=2)
-    stock = models.DecimalField(max_digits=15, decimal_places=2, default=0)
-    min_stock_limit = models.DecimalField(max_digits=15, decimal_places=2, default=5, help_text="Ogohlantirish uchun minimal miqdor")
+    brand = models.CharField(max_length=100, verbose_name="Zavod yoki Brand nomi")
+    size = models.CharField(max_length=50, blank=True, null=True, verbose_name="O'lchami")
+    purchase_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Kirim narxi") # Oxirgi kirim narxi
+    selling_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Sotish narxi")
+    stock = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="Qoldiq")
+    min_stock_limit = models.DecimalField(max_digits=15, decimal_places=2, default=5, help_text="Ogohlantirish uchun minimal miqdor", verbose_name="Minimal qoldiq")
 
     def __str__(self):
         return f"{self.product.name} | {self.brand} | {self.size}"
@@ -51,10 +51,10 @@ class ProductVariant(models.Model):
 class PriceHistory(models.Model):
     """ Narxlar o'zgarishini kuzatish uchun """
     variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name='price_history')
-    old_purchase_price = models.DecimalField(max_digits=15, decimal_places=2)
-    new_purchase_price = models.DecimalField(max_digits=15, decimal_places=2)
-    old_selling_price = models.DecimalField(max_digits=15, decimal_places=2)
-    new_selling_price = models.DecimalField(max_digits=15, decimal_places=2)
+    old_purchase_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Eski kirim narxi")
+    new_purchase_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Yangi kirim narxi")
+    old_selling_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Eski sotish narxi")
+    new_selling_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Yangi sotish narxi")
     changed_at = models.DateTimeField(auto_now_add=True)
 
 class StockTransaction(models.Model):
