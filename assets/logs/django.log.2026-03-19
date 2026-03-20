@@ -1,0 +1,382 @@
+INFO 2026-03-19 21:31:00,135 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:31:12,237 basehttp "GET / HTTP/1.1" 200 4583
+INFO 2026-03-19 21:31:13,147 basehttp "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:13,215 basehttp "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:13,246 basehttp "GET /static/images/instagram-icon.svg HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:13,337 basehttp "GET /static/images/telegram-icon.svg HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:13,340 basehttp "GET /static/images/github-icon.svg HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:20,191 basehttp "GET /en/admin/ HTTP/1.1" 200 48365
+INFO 2026-03-19 21:31:20,534 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:20,565 basehttp "GET /static/css/tailwind.css HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:20,569 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:20,686 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:20,688 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,057 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,058 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,137 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,140 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,275 basehttp "GET /static/images/user_profile.png HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,352 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,437 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,443 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,452 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,457 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,552 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,981 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:21,991 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:22,001 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 304 0
+INFO 2026-03-19 21:31:22,007 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 304 0
+INFO 2026-03-19 21:32:27,123 autoreload /workspaces/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-03-19 21:32:29,945 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:32:33,826 autoreload /workspaces/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-03-19 21:32:36,883 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:32:40,117 basehttp "GET /en/admin/ HTTP/1.1" 200 48360
+INFO 2026-03-19 21:32:41,267 basehttp "GET /static/images/favicon.ico HTTP/1.1" 304 0
+INFO 2026-03-19 21:33:11,744 autoreload /workspaces/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-03-19 21:33:13,612 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:33:17,186 basehttp "GET /en/admin/ HTTP/1.1" 200 48361
+INFO 2026-03-19 21:33:43,769 basehttp "GET /en/admin/warehouse/inventoryaudit/ HTTP/1.1" 200 53856
+INFO 2026-03-19 21:33:44,315 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-03-19 21:33:44,317 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-03-19 21:33:44,571 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9048
+INFO 2026-03-19 21:33:44,582 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:33:44,674 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-03-19 21:33:44,676 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-03-19 21:33:44,681 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-03-19 21:33:44,695 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-03-19 21:33:44,710 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-03-19 21:33:49,711 basehttp "GET /en/admin/warehouse/inventoryaudit/add/ HTTP/1.1" 200 54123
+INFO 2026-03-19 21:33:50,141 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:33:50,227 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-03-19 21:33:50,231 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-03-19 21:33:59,836 basehttp "GET /en/admin/warehouse/pricehistory/ HTTP/1.1" 200 48787
+INFO 2026-03-19 21:34:00,164 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:34:01,676 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 49755
+INFO 2026-03-19 21:34:02,102 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:35:59,538 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/admin/base.py changed, reloading.
+INFO 2026-03-19 21:36:01,613 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:36:05,298 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/admin/base.py changed, reloading.
+INFO 2026-03-19 21:36:06,374 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:36:08,040 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/admin/base.py changed, reloading.
+INFO 2026-03-19 21:36:09,283 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:36:10,951 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/admin/base.py changed, reloading.
+INFO 2026-03-19 21:36:13,129 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:36:15,519 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 49755
+INFO 2026-03-19 21:36:16,391 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:37:35,545 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 51635
+INFO 2026-03-19 21:37:36,529 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2026-03-19 21:37:44,563 log Forbidden (Origin checking failed - https://localhost:8000 does not match any trusted origins.): /en/admin/warehouse/category/add/
+WARNING 2026-03-19 21:37:44,564 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 403 2555
+WARNING 2026-03-19 21:37:45,432 log Not Found: /favicon.ico
+WARNING 2026-03-19 21:37:45,432 basehttp "GET /favicon.ico HTTP/1.1" 404 3916
+INFO 2026-03-19 21:38:17,936 autoreload /workspaces/Ai-chat-asistant/taxibot/settings.py changed, reloading.
+INFO 2026-03-19 21:38:20,371 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:38:44,490 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:38:50,445 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:38:51,504 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 58831
+INFO 2026-03-19 21:38:52,326 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:39:20,352 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 51680
+INFO 2026-03-19 21:39:20,679 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:39:25,905 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:39:26,180 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 61834
+INFO 2026-03-19 21:39:27,130 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:39:37,082 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 51739
+INFO 2026-03-19 21:39:37,481 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:39:40,981 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:39:41,257 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 64776
+INFO 2026-03-19 21:39:42,081 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:39:49,168 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 51794
+INFO 2026-03-19 21:39:50,624 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:39:53,578 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:39:53,861 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 67720
+INFO 2026-03-19 21:39:54,280 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:40:19,557 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 52270
+INFO 2026-03-19 21:40:19,899 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:40:24,233 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:40:24,519 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 71067
+INFO 2026-03-19 21:40:24,854 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:40:30,998 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 51905
+INFO 2026-03-19 21:40:31,350 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:40:34,849 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:40:35,133 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 74046
+INFO 2026-03-19 21:40:35,448 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:40:42,562 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 51961
+INFO 2026-03-19 21:40:42,895 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:40:45,826 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:40:46,108 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 76654
+INFO 2026-03-19 21:40:46,433 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:41:29,184 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 52453
+INFO 2026-03-19 21:41:29,999 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:41:32,891 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:41:33,182 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 80069
+INFO 2026-03-19 21:41:33,508 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:41:44,838 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 52917
+INFO 2026-03-19 21:41:45,192 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:41:48,909 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:41:49,198 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 83038
+INFO 2026-03-19 21:41:49,987 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:41:59,193 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 52165
+INFO 2026-03-19 21:42:00,084 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:42:03,198 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:42:03,487 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 85724
+INFO 2026-03-19 21:42:03,792 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:42:22,309 basehttp "GET /en/admin/warehouse/category/add/ HTTP/1.1" 200 52240
+INFO 2026-03-19 21:42:22,632 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:42:25,222 basehttp "POST /en/admin/warehouse/category/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:42:25,502 basehttp "GET /en/admin/warehouse/category/ HTTP/1.1" 200 88714
+INFO 2026-03-19 21:42:25,833 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:42:58,756 basehttp "GET /en/admin/warehouse/supplier/ HTTP/1.1" 200 49755
+INFO 2026-03-19 21:42:59,086 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+ERROR 2026-03-19 21:43:16,231 log Internal Server Error: /en/admin/warehouse/productvariant/
+Traceback (most recent call last):
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/engine.py", line 163, in find_template
+    raise TemplateDoesNotExist(name, tried=tried)
+django.template.exceptions.TemplateDoesNotExist: admin/import_export/change_list.html
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 109, in render
+    reraise(exc, self.backend)
+  File "/workspaces/Ai-chat-asistant/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 130, in reraise
+    raise new from exc
+django.template.exceptions.TemplateDoesNotExist: admin/import_export/change_list.html
+ERROR 2026-03-19 21:43:16,234 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 500 243874
+INFO 2026-03-19 21:44:50,985 autoreload /workspaces/Ai-chat-asistant/taxibot/config/apps.py changed, reloading.
+INFO 2026-03-19 21:44:54,522 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:44:58,161 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 56278
+INFO 2026-03-19 21:44:58,943 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:44:58,956 basehttp "GET /static/unfold/js/select2.init.js HTTP/1.1" 200 291
+INFO 2026-03-19 21:44:58,965 basehttp "GET /static/admin/css/vendor/select2/select2.css HTTP/1.1" 200 17358
+INFO 2026-03-19 21:44:58,985 basehttp "GET /static/admin/css/autocomplete.css HTTP/1.1" 200 9185
+INFO 2026-03-19 21:44:59,116 basehttp "GET /static/admin/js/vendor/select2/select2.full.js HTTP/1.1" 200 173566
+INFO 2026-03-19 21:45:04,746 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 58151
+INFO 2026-03-19 21:45:05,184 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:45:08,944 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 57189
+INFO 2026-03-19 21:45:09,276 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:45:12,210 basehttp "GET /en/admin/warehouse/pricehistory/ HTTP/1.1" 200 49802
+INFO 2026-03-19 21:45:13,044 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:45:17,082 basehttp "GET /en/admin/warehouse/inventoryaudit/ HTTP/1.1" 200 48807
+INFO 2026-03-19 21:45:17,403 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:45:25,087 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 58151
+INFO 2026-03-19 21:45:25,409 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:45:31,088 basehttp "GET /en/admin/warehouse/product/add/ HTTP/1.1" 200 68884
+INFO 2026-03-19 21:45:31,462 basehttp "GET /static/admin/js/inlines.js HTTP/1.1" 200 14687
+INFO 2026-03-19 21:45:31,462 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:46:03,702 basehttp "POST /en/admin/warehouse/product/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:46:04,443 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 67436
+INFO 2026-03-19 21:46:04,765 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:46:17,649 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 56278
+INFO 2026-03-19 21:46:18,552 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:46:22,185 basehttp "GET /en/admin/warehouse/productvariant/add/ HTTP/1.1" 200 64891
+INFO 2026-03-19 21:46:22,511 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:47:14,863 basehttp "POST /en/admin/warehouse/productvariant/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:47:15,149 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 66751
+INFO 2026-03-19 21:47:15,956 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:47:25,017 basehttp "GET /en/admin/warehouse/productvariant/1/change/ HTTP/1.1" 200 66197
+INFO 2026-03-19 21:47:25,357 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:47:31,896 basehttp "POST /en/admin/warehouse/productvariant/1/change/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:47:32,638 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 66727
+INFO 2026-03-19 21:47:32,971 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:47:35,181 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 57189
+INFO 2026-03-19 21:47:36,114 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:47:38,547 basehttp "GET /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 200 57744
+INFO 2026-03-19 21:47:38,871 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:47:59,877 basehttp "POST /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:48:00,165 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 67290
+INFO 2026-03-19 21:48:00,498 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:48:02,695 basehttp "GET /static/unfold/fonts/inter/Inter-Bold.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-19 21:48:03,163 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 67462
+INFO 2026-03-19 21:48:03,481 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:48:05,851 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 66322
+INFO 2026-03-19 21:48:06,180 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:48:10,842 basehttp "GET /en/admin/warehouse/productvariant/1/change/ HTTP/1.1" 200 66198
+INFO 2026-03-19 21:48:11,162 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:48:19,495 basehttp "POST /en/admin/warehouse/productvariant/1/change/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:48:20,258 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 66751
+INFO 2026-03-19 21:48:20,604 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:49:54,187 basehttp "GET /en/admin/warehouse/productvariant/add/ HTTP/1.1" 200 64891
+INFO 2026-03-19 21:49:55,074 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:50:10,885 basehttp "POST /en/admin/warehouse/productvariant/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:50:11,777 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 71440
+INFO 2026-03-19 21:50:12,103 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:50:20,548 basehttp "GET /en/admin/warehouse/productvariant/add/ HTTP/1.1" 200 64891
+INFO 2026-03-19 21:50:21,420 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:50:59,043 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/models/base.py changed, reloading.
+INFO 2026-03-19 21:51:02,664 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:51:05,371 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/models/base.py changed, reloading.
+INFO 2026-03-19 21:51:11,228 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:51:17,101 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/models/base.py changed, reloading.
+INFO 2026-03-19 21:51:22,765 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:51:25,397 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/models/base.py changed, reloading.
+INFO 2026-03-19 21:51:28,188 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:51:31,279 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/models/base.py changed, reloading.
+INFO 2026-03-19 21:51:34,616 autoreload Watching for file changes with StatReloader
+WARNING 2026-03-19 21:51:46,732 log Not Found: /.aws/
+WARNING 2026-03-19 21:51:46,732 basehttp "HEAD /.aws/ HTTP/1.1" 404 0
+WARNING 2026-03-19 21:51:46,745 log Not Found: /.ada/
+WARNING 2026-03-19 21:51:46,746 basehttp "HEAD /.ada/ HTTP/1.1" 404 0
+WARNING 2026-03-19 21:51:46,822 log Not Found: /.ssh/
+WARNING 2026-03-19 21:51:46,822 basehttp "HEAD /.ssh/ HTTP/1.1" 404 0
+WARNING 2026-03-19 21:51:46,836 log Not Found: /.midway/
+WARNING 2026-03-19 21:51:46,836 basehttp "HEAD /.midway/ HTTP/1.1" 404 0
+INFO 2026-03-19 21:51:51,264 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/models/base.py changed, reloading.
+INFO 2026-03-19 21:51:55,139 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:52:52,071 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:52:57,109 basehttp "GET /en/admin/warehouse/productvariant/add/ HTTP/1.1" 200 64908
+INFO 2026-03-19 21:52:57,595 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 200 50918
+INFO 2026-03-19 21:52:57,666 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-03-19 21:52:57,892 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-03-19 21:52:57,897 basehttp "GET /static/admin/css/autocomplete.css HTTP/1.1" 200 9185
+INFO 2026-03-19 21:52:57,924 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-03-19 21:52:57,994 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9048
+INFO 2026-03-19 21:52:58,036 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 200 7736
+INFO 2026-03-19 21:52:58,204 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-03-19 21:52:58,693 basehttp "GET /static/admin/css/vendor/select2/select2.css HTTP/1.1" 200 17358
+INFO 2026-03-19 21:52:58,791 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 200 535
+INFO 2026-03-19 21:52:58,795 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:52:58,924 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-03-19 21:52:58,924 basehttp "GET /static/admin/js/inlines.js HTTP/1.1" 200 14687
+INFO 2026-03-19 21:52:58,924 basehttp "GET /static/css/tailwind.css HTTP/1.1" 200 15588
+INFO 2026-03-19 21:52:58,931 basehttp "GET /static/unfold/js/select2.init.js HTTP/1.1" 200 291
+INFO 2026-03-19 21:52:58,932 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-03-19 21:52:58,934 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 200 4647
+INFO 2026-03-19 21:52:58,939 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 200 608
+INFO 2026-03-19 21:52:58,942 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 200 157275
+INFO 2026-03-19 21:52:58,996 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 200 200633
+INFO 2026-03-19 21:52:59,042 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-03-19 21:52:59,043 basehttp "GET /static/admin/js/vendor/select2/select2.full.js HTTP/1.1" 200 173566
+INFO 2026-03-19 21:52:59,681 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 200 31764
+INFO 2026-03-19 21:52:59,686 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-03-19 21:52:59,893 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 200 37891
+INFO 2026-03-19 21:52:59,900 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 200 703
+INFO 2026-03-19 21:52:59,904 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 200 27176
+INFO 2026-03-19 21:52:59,909 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 200 15524
+INFO 2026-03-19 21:52:59,916 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 200 837
+INFO 2026-03-19 21:52:59,922 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 200 44659
+INFO 2026-03-19 21:52:59,954 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-03-19 21:53:00,501 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-19 21:53:00,505 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-19 21:53:00,512 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 200 256424
+INFO 2026-03-19 21:53:00,533 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-19 21:53:01,358 basehttp "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2026-03-19 21:53:27,389 basehttp "POST /en/admin/warehouse/productvariant/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:53:27,697 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 76201
+INFO 2026-03-19 21:53:28,026 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:53:57,951 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 66841
+INFO 2026-03-19 21:53:58,433 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:53:59,091 basehttp "GET /static/unfold/fonts/inter/Inter-Bold.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-19 21:54:02,155 basehttp "GET /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 200 57830
+INFO 2026-03-19 21:54:02,506 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:54:16,463 basehttp "POST /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:54:17,293 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 71453
+INFO 2026-03-19 21:54:17,631 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:54:22,965 basehttp "GET /en/admin/warehouse/stocktransaction/export/? HTTP/1.1" 200 49849
+INFO 2026-03-19 21:54:23,315 basehttp "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2026-03-19 21:54:23,342 basehttp "GET /static/import_export/export.css HTTP/1.1" 200 121
+INFO 2026-03-19 21:54:23,343 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:54:23,352 basehttp "GET /static/import_export/export_selectable_fields.js HTTP/1.1" 200 1924
+INFO 2026-03-19 21:54:24,063 basehttp "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2026-03-19 21:54:32,602 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 71004
+INFO 2026-03-19 21:54:33,402 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:54:37,981 basehttp "GET /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 200 57830
+INFO 2026-03-19 21:54:38,322 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:54:48,912 basehttp "POST /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:54:49,197 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 75585
+INFO 2026-03-19 21:54:49,528 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:55:08,405 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 67526
+INFO 2026-03-19 21:55:08,777 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:55:11,759 basehttp "GET /en/admin/warehouse/product/add/ HTTP/1.1" 200 68953
+INFO 2026-03-19 21:55:12,128 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:55:23,148 basehttp "POST /en/admin/warehouse/product/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:55:23,914 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 71817
+INFO 2026-03-19 21:55:24,236 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:55:26,576 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 75767
+INFO 2026-03-19 21:55:26,908 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:55:29,667 basehttp "GET /en/admin/warehouse/productvariant/add/ HTTP/1.1" 200 64945
+INFO 2026-03-19 21:55:29,990 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:56:10,835 basehttp "POST /en/admin/warehouse/productvariant/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:56:11,128 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 80925
+INFO 2026-03-19 21:56:11,970 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:56:14,299 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 75136
+INFO 2026-03-19 21:56:14,633 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:56:36,712 basehttp "GET /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 200 57881
+INFO 2026-03-19 21:56:37,048 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:56:57,471 basehttp "POST /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:56:58,263 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 80132
+INFO 2026-03-19 21:56:58,575 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:57:02,426 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 71408
+INFO 2026-03-19 21:57:03,195 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:57:25,230 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 80486
+INFO 2026-03-19 21:57:26,071 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:57:59,884 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 79307
+INFO 2026-03-19 21:58:00,224 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:58:02,738 basehttp "GET /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 200 57881
+INFO 2026-03-19 21:58:03,634 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:58:23,596 basehttp "POST /en/admin/warehouse/stocktransaction/add/ HTTP/1.1" 302 0
+INFO 2026-03-19 21:58:24,308 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 83889
+INFO 2026-03-19 21:58:25,093 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:58:28,843 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 80486
+INFO 2026-03-19 21:58:29,790 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 21:59:16,697 autoreload /workspaces/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-03-19 21:59:20,308 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:59:21,960 autoreload /workspaces/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-03-19 21:59:24,461 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 21:59:47,850 autoreload /workspaces/Ai-chat-asistant/taxibot/config/unfold_navigation.py changed, reloading.
+INFO 2026-03-19 21:59:50,700 autoreload Watching for file changes with StatReloader
+INFO 2026-03-19 22:00:02,230 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 77259
+INFO 2026-03-19 22:00:03,074 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 22:00:08,078 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 80213
+INFO 2026-03-19 22:00:09,036 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 22:00:12,542 basehttp "GET /en/admin/warehouse/stocktransaction/export/? HTTP/1.1" 200 46622
+INFO 2026-03-19 22:00:12,892 basehttp "GET /static/import_export/export.css HTTP/1.1" 304 0
+INFO 2026-03-19 22:00:13,305 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 22:00:13,443 basehttp "GET /static/import_export/export_selectable_fields.js HTTP/1.1" 304 0
+INFO 2026-03-19 22:00:19,251 basehttp "POST /en/admin/warehouse/stocktransaction/export/? HTTP/1.1" 200 5372
+INFO 2026-03-19 22:01:23,569 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 80213
+INFO 2026-03-19 22:01:24,648 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 22:06:26,863 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 68181
+INFO 2026-03-19 22:06:28,073 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 22:06:31,627 basehttp "GET /en/admin/warehouse/productvariant/ HTTP/1.1" 200 77259
+INFO 2026-03-19 22:06:32,641 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-19 22:06:45,641 basehttp "GET /en/admin/warehouse/stocktransaction/ HTTP/1.1" 200 80213
+INFO 2026-03-19 22:06:46,872 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342

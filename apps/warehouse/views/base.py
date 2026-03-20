@@ -14,7 +14,7 @@ pai.config.set({"llm": llm})
 
 def admin_chat_page(request):
     """Chat sahifasini ochish"""
-    return render(request, 'admin/bot_chat.html')
+    return render(request, 'admin/warehouse_chat.html')
 
 def pandasai_query(request):
     """AI bilan savol-javob qilish"""
@@ -25,7 +25,7 @@ def pandasai_query(request):
         all_pai_dataframes = []
         try:
             # 'main' o'rniga o'z app-ingiz nomini yozing
-            app_models = apps.get_app_config('Bot').get_models() 
+            app_models = apps.get_app_config('warehouse').get_models() 
             
             for model in app_models:
                 queryset = model.objects.all().values()
