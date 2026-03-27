@@ -272,7 +272,7 @@ class Product(models.Model):
 
 class ChatMessage(models.Model):
     user = models.ForeignKey(TelegramUser, on_delete=models.CASCADE, related_name="messages")
-    role = models.CharField(max_length=10, choices=[('user', 'User'), ('model', 'AI')])
+    role = models.CharField(max_length=10, choices=[('user', 'User'), ('model', 'AI'), ('admin', 'Admin')], verbose_name="Xabar roli")
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 

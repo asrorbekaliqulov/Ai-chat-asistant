@@ -27,6 +27,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     unit = models.CharField(max_length=10, choices=UNIT_CHOICES, verbose_name="O'lchov birligi")
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='products/', blank=True, null=True, verbose_name="Asosiy rasm")
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -44,6 +45,7 @@ class ProductVariant(models.Model):
     selling_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Sotish narxi")
     stock = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="Qoldiq")
     min_stock_limit = models.DecimalField(max_digits=15, decimal_places=2, default=5, help_text="Ogohlantirish uchun minimal miqdor", verbose_name="Minimal qoldiq")
+    image = models.ImageField(upload_to='variants/', blank=True, null=True, verbose_name="Variant rasmi")
 
     def __str__(self):
         return f"{self.product.name} | {self.brand} | {self.size}"

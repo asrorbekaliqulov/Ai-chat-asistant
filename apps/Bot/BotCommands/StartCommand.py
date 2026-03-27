@@ -7,28 +7,9 @@ from ..decorators import (
     mandatory_channel_required,
 )
 from telegram import ReplyKeyboardRemove
-
+from apps.Bot import ADMIN_KYB
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton, ReplyKeyboardMarkup
 from asgiref.sync import sync_to_async
-
-
-async def user_type(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Foydalanuvchi turini so'rash"""
-    buttons = [
-        [InlineKeyboardButton("🏢 Mutaxasis", callback_data="mutaxasis")],
-        [InlineKeyboardButton("👥 Fuqaro", callback_data="fuqaro")],
-    ]
-    markup = InlineKeyboardMarkup(buttons)
-
-    if update.callback_query:
-        await update.callback_query.answer("Foydalanuvchi turini tanlang")
-        await update.callback_query.edit_message_text(
-            text="Iltimos, o'zingizni tanlang:", reply_markup=markup
-        )
-    else:
-        await update.message.reply_text(
-            text="Iltimos, o'zingizni tanlang:", reply_markup=markup
-        )
 
 
 
@@ -50,16 +31,12 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Foydalanuvchini bazaga saqlaymiz
     is_save = await save_user_to_db(data)
 
-    # user_typ = await TelegramUser.get_user_type(update.effective_user.id)
-    # print(user_typ)
-    # if user_typ is None:
-    #     return await user_type(update, context)
 
     # Inline tugmalar (faqat username bor adminlar uchun)
     buttons = [
         [
             KeyboardButton(f"📚 Katalog"), 
-            KeyboardButton("🛒 Savat")
+            # KeyboardButton("🛒 Savat")
         ]
     ]
 
@@ -75,17 +52,21 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=remove,
             parse_mode="html",
         )
-    text="""<b>👋 Salom! Men — Aromazona.uz virtual yordamchisiman.</b> 
+    text="""🧱<b> "DO‘NGARIQ STROY" — Sifatli qurilish poydevori!</b>
 
-Sizga dunyo brendlarining eng sara premium iforlarini tanlashda yordam beraman.  🧴✨
+Assalomu alaykum! Bizning botimiz orqali uyingiz yoki obyektingiz uchun kerakli barcha xom-ashyolarni topishingiz mumkin.
 
-Menga brend nomini yozing yoki xohishingizni bildiring.
+Qurilish mahsulotlari haqida ma’lumot olish, buyurtma berish va savollar bilan murojaat qilish uchun biz doimo tayyormiz.
 
-Men sizga darhol eng yaxshi variantlarni topaman! 🚀
+Bemalol so‘rang, biz sizga yordam berishdan mamnun bo‘lamiz!
 
 <b>Bog'lanish uchun:</b>
-📞 +998333635333 📱 Instagram: @Aromazone.uz"""
+📞 +998941687722 📱 Telegram: @dongariq_stroy"""
 
+    if update.effective_user.id in admin_id:
+        markup = ADMIN_KYB
+    else:
+        markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True) if buttons else None
     await context.bot.send_message(
         chat_id=update.effective_user.id,
         text=text,

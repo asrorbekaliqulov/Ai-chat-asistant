@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangi Mahsulot Qo'shish | Aromazona</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #camera-section, #form-section { display: none; margin-top: 20px; }
+        #video, #canvas { width: 100%; max-width: 400px; border-radius: 10px; }
+        #photo-preview { width: 100px; height: 100px; border-radius: 10px; object-fit: cover; display: none; }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <h2 class="text-center mb-4">🆕 Yangi Mahsulot</h2>
+
+    <div class="card p-3 mb-3 text-center">
+        <h4>Kamera orqali rasmga oling</h4>
+        <button class="btn btn-primary m-2" onclick="startCamera()">📷 Kamerani yoqish</button>
+        
+        <div id="camera-section">
+            <video id="video" autoplay playsinline></video>
+            <br>
+            <button class="btn btn-success m-2" onclick="takePhoto()">📸 Rasmga olish</button>
+        </div>
+
+        <canvas id="canvas" style="display:none;"></canvas>
+        <div id="ai-loading" class="text-info" style="display:none;">AI tahlil qilmoqda...</div>
+    </div>
+
+    <div id="form-section" class="card p-4">
+        <form id="product-form">
+            
+            <div class="text-center mb-3">
+                <img id="photo-preview" src="" alt="Mahsulot rasmi">
+                <input type="hidden" name="captured_image_base64" id="captured_image_base64">
+            </div>
+
+            <h5 class="text-muted">Asosiy ma'lumotlar (AI to'ldirishi mumkin)</h5>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Mahsulot nomi *</label>
+                    <input type="text" name="name" id="p-name" class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Zavod (Brand) *</label>
+                    <input type="text" name="brand" id="p-brand" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">O'lchami (Size)</label>
+                    <input type="text" name="size" id="p-size" class="form-control">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">O'lchov birligi *</label>
+                    <select name="unit" id="p-unit" class="form-select" required>
+                        <option value="dona">Dona</option>
+                        <option value="kg">KG</option>
+                        <option value="qop">Qop</option>
+                        <option value="m2">M2</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Kategoriya *</label>
+                    <select name="category" class="form-select" required>
+                        {% for cat in categories %}
+                        <option value="{{ cat.id }}">{{ cat.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <h5 class="text-muted mt-3">Ombor ma'lumotlari (Qo'lda kiritiladi)</h5>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Kirim narxi *</label>
+                    <input type="number" name="purchase_price" class="form-control" step="0.01" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Sotish narxi *</label>
+                    <input type="number" name="selling_price" class="form-control" step="0.01" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Qoldiq (Stock) *</label>
+                    <input type="number" name="stock" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tavsif (Description)</label>
+                <textarea name="description" class="form-control"></textarea>
+            </div>
+
+            <button type="button" class="btn btn-primary w-100" id="save-btn" onclick="submitProduct()">
+                <span id="save-btn-text">💾 Bazaga saqlash</span>
+                <div id="save-btn-spinner" class="spinner-border spinner-border-sm d-none" role="status">
+                    <span class="visually-hidden">Yuklanmoqda...</span>
+                </div>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const photoPreview = document.getElementById('photo-preview');
+    const cameraSection = document.getElementById('camera-section');
+    const formSection = document.getElementById('form-section');
+    const aiLoading = document.getElementById('ai-loading');
+
+    // 1. Kamerani yoqish
+    async function startCamera() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+            video.srcObject = stream;
+            cameraSection.style.display = 'block';
+        } catch (err) {
+            alert("Kameraga ruxsat berilmadi: " + err);
+        }
+    }
+
+    // 2. Rasmga olish va AI ga yuborish
+    function takePhoto() {
+        const context = canvas.getContext('2d');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+        
+        // Base64 formatida rasmni olish
+        const imageDataUrl = canvas.toDataURL('image/jpeg');
+        
+        // Kamerani o'chirish
+        video.srcObject.getTracks().forEach(track => track.stop());
+        cameraSection.style.display = 'none';
+
+        // Previyu va formani ko'rsatish
+        photoPreview.src = imageDataUrl;
+        photoPreview.style.display = 'block';
+        document.getElementById('captured_image_base64').value = imageDataUrl;
+        formSection.style.display = 'block';
+
+        // AI ga tahlilga yuborish
+        analyzeImage(imageDataUrl);
+    }
+
+    // 3. AI Tahlil API si bilan muloqot
+// 3. AI Tahlil API si bilan muloqot
+    async function analyzeImage(imageBase64) {
+        aiLoading.style.display = 'block';
+        
+        // Debug: Tahlil boshlanganini bilish
+        console.log("Rasmni tahlilga yuborish boshlandi...");
+
+        try {
+            const response = await fetch('/warehouse/analyze-vision/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image: imageBase64 })
+            });
+            const result = await response.json();
+
+            // Debug: AI dan kelgan to'liq javobni konsolda ko'rish
+            console.log("AI dan kelgan javob:", result);
+
+            if (result.status === 'success' && result.data) {
+                // Topilgan ma'lumotlarni mos inputlarga qo'shish
+                const data = result.data;
+                
+                // Har bir maydonni alohida tekshirib qo'shamiz (null bo'lsa o'tkazib yuboramiz)
+                if (data.name) document.getElementById('p-name').value = data.name;
+                if (data.brand) document.getElementById('p-brand').value = data.brand;
+                if (data.size) document.getElementById('p-size').value = data.size;
+                if (data.description) document.querySelector('textarea[name="description"]').value = data.description;
+                
+                // O'lchov birligini tekshirish
+                if (data.unit) {
+                    const unitSelect = document.getElementById('p-unit');
+                    // Agar AI qaytargan birlik selectda bo'lsa, uni tanlaymiz
+                    for (let i = 0; i < unitSelect.options.length; i++) {
+                        if (unitSelect.options[i].value === data.unit) {
+                            unitSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+                if (data.category) {
+                    const categorySelect = document.querySelector('select[name="category"]');
+                    for (let i = 0; i < categorySelect.options.length; i++) {
+                        if (categorySelect.options[i].text.toLowerCase() === data.category.toLowerCase()) {
+                            categorySelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+                console.log("Inputlar to'ldirildi.");
+            } else {
+                console.warn("AI ma'lumot topa olmadi yoki format xato.");
+            }
+        } catch (error) {
+            // Debug: Tarmoq yoki boshqa xatolarni konsolga chiqarish
+            console.error("Tarmoq yoki API Error:", error);
+        } finally {
+            aiLoading.style.display = 'none';
+        }
+    }
+
+    // 4. Yakuniy formani saqlash (Rasm va JSON)
+    async function submitProduct() {
+        const saveBtn = document.getElementById('save-btn');
+        const saveBtnText = document.getElementById('save-btn-text');
+        const saveBtnSpinner = document.getElementById('save-btn-spinner');
+        const form = document.getElementById('product-form');
+
+        // 1. Tugmani bloklash (Ikkinchi marta bosishni oldini olish)
+        saveBtn.disabled = true;
+        saveBtnText.innerText = "Saqlanmoqda...";
+        saveBtnSpinner.classList.remove('d-none');
+
+        const formData = new FormData(form);
+
+        // Rasm qo'shish qismi (avvalgi koddagidek)
+        const base64Image = document.getElementById('captured_image_base64').value;
+        if (base64Image) {
+            try {
+                const res = await fetch(base64Image);
+                const blob = await res.blob();
+                formData.append('variant_image', blob, 'product_photo.jpg');
+                formData.append('product_image', blob, 'product_main.jpg');
+            } catch (e) {
+                console.error("Rasmni tayyorlashda xato:", e);
+            }
+        }
+
+        try {
+            const response = await fetch('/warehouse/save-product/', {
+                method: 'POST',
+                body: formData,
+                // CSRF token zarur bo'lsa (Django uchun):
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken') 
+                }
+            });
+            
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                alert("✅ Muvaffaqiyatli saqlandi!");
+                location.reload(); 
+            } else {
+                alert("❌ Xato: " + result.message);
+                resetSaveButton(); // Xato bo'lsa tugmani qayta yoqish
+            }
+        } catch (error) {
+            console.error("Save Error:", error);
+            alert("🌐 Server bilan aloqa uzildi!");
+            resetSaveButton();
+        }
+    }
+
+    // Tugmani asl holiga qaytaruvchi yordamchi funksiya
+    function resetSaveButton() {
+        const saveBtn = document.getElementById('save-btn');
+        const saveBtnText = document.getElementById('save-btn-text');
+        const saveBtnSpinner = document.getElementById('save-btn-spinner');
+
+        saveBtn.disabled = false;
+        saveBtnText.innerText = "💾 Bazaga saqlash";
+        saveBtnSpinner.classList.add('d-none');
+    }
+
+    // Django CSRF tokenini olish uchun (agar kerak bo'lsa)
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+</script>
+
+</body>
+</html>

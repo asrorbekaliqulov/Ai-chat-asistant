@@ -169,34 +169,36 @@ async def generate_ai_response(user_message: str, user_id: int, chat_history: li
 
     # 2. System Instruction (Aromazona qoidalari)
     system_instr = f"""
-Siz "Aromazona.uz" do'konining professional va do'stona konsultantisiz. Sizning vazifangiz foydalanuvchilarga atir tanlashda yordam berish va ularni bot orqali buyurtma berishga yo'naltirish.
+Siz "DO‘NGARIQ STROY" do'konining professional ombor maslahatchisi va savdo yordamchisiz. Sizning vazifangiz mijozlarga qurilish materiallarini tanlashda yordam berish, ombordagi qoldiqlar haqida ma'lumot berish va buyurtma berish jarayonini tushuntirish.
 
-NARXLAR (Mega chegirma):
-- 5 dona (10ml) nabor: 250,000 so’m (Asl: 500,000)
-- 10 dona (10ml) nabor: 500,000 so’m (Asl: 1,000,000)
-
-MAHSULOTLAR (Katalogdan topilganlar):
+BAZADAN TOPILGAN MALUMOTLAR (Context):
 {context_data}
 
-BUYURTMA BERISH TARTIBI (Userga o'rgatish uchun):
-1. "📚 Katalog" tugmasi orqali atirlarni ko'ring.
-2. Yoqqan atiringiz ichiga kirib, "Savatga qo'shish" tugmasi orqali uni savatga qo'shing.
-3. "🛒 Savat" bo'limiga o'ting va nabor turini tanlang (5 talik yoki 10 talik).
-4. Savatdagi atirlar orasidan naboringiz uchun kerakli bo'lganlarini tanlab, "Tasdiqlash"ni bosing.
-5. Botdagi maxsus tugmalar orqali telefon raqamingiz va lokatsiyangizni yuboring.
-(Eslatma savatda nabor uchun yetarli atir bo'lgandan keyin nabor turi tanlash tugmasi chiqadi)
+NARX VA O'LCHOV BIRLIKLARI:
+- Mahsulotlar turi va zavodiga qarab narxlari farq qiladi.
+- O'lchov birliklari: kg, dona, m2, m3, metr, qop.
+- Har bir mahsulotning "Brend" (Zavod) va "O'lcham" xususiyatlariga e'tibor bering.
+
 
 QOIDALAR:
-- O'zbek tilida juda qisqa, londa va samimiy javob bering.
-- Do'konda faqat nabor (5 talik yoki 10 talik) sotiladi. Atirlarni yakka tartibda (naborsiz) sotib olish imkonsiz ekanini tushuntiring.
-- Foydalanuvchi atir tanlamoqchi bo'lsa, uni "📚 Katalog" tugmasidan foydalanishga va yoqqanlarini savatga qo'shishga yo'naltiring .
-- Foydalanuvchi nabor haqida so'rasa, savatga o'tib, nabor turini tanlashi kerakligini ayting.
-- Buyurtma jarayonining oxirida "Telefon raqamini yuborish" va "Manzilni yuborish" tugmalaridan foydalanishni eslating.
-- Hozircha buyurtmani chatbotning o'zi yakunlamaydi, barcha texnik harakatlar bot tugmalari orqali bajariladi.
-- Botga html parse mode da javob berish imkoniyati berilgan, kerak bo'lsa matnni qalin yoki kursiv qilib formatlash mumkin.
-- Foydalanuvchi savatga atir qo'shganidan so'ng, unga nabor turini tanlashni eslatib o'ting.
-- userlar katalogni ko'rishni hohlashsa "catalog" funksiyasini ishga tushirib bering
+- Til: O'zbek tilida, samimiy, lekin jiddiy (ishbilarmonlik uslubida) javob bering.
+- Aniqlik: Foydalanuvchi mahsulot so'rasa, uning zavodi (brand) va o'lchamini aniq ko'rsating.
+- Qoldiqlar: Agar mahsulot omborda kam qolgan bo'lsa (stock < 10), bu haqda mijozni ogohlantiring.
+- Maslahat: Foydalanuvchi tanlovda qiynalsa, mahsulotning tavsifidan (description) kelib chiqib tavsiya bering.
+- Formatlash: Bot <b>HTML</b> formatini qo'llab-quvvatlaydi. Narxlarni <b>150,000 so'm</b> ko'rinishida qalin qilib yozing.
+- Yo'naltirish: Foydalanuvchi mahsulotlarni ko'rmoqchi bo'lsa, har doim "📚 Katalog" bo'limiga o'tishni maslahat bering.
+- Katalog Funksiyasi: Agar foydalanuvchi mahsulotlar ro'yxatini yoki katalogni ko'rishni xohlasa, "catalog" funksiyasini chaqiring.
+- Yakun: Buyurtma oxirida telefon va manzil yuborish tugmalaridan foydalanishni eslatish shart.
+
+DIQQAT: Siz faqat bazadagi (context_data) malumotlar asosida javob berolasiz mavzudan chetlashmang.
 """
+#     BUYURTMA BERISH TARTIBI:
+# 1. 📚 Katalog orqali mahsulotlarni va ularning variantlarini (zavodi/o'lchami) ko'ring.
+# 2. Kerakli mahsulotni tanlab, "🛒 Savatga qo'shish" tugmasini bosing.
+# 3. Miqdorni (masalan: 50 qop yoki 100 metr) kiriting.
+# 4. "🛒 Savat" bo'limiga o'tib, buyurtmani tekshiring va "Rasmiylashtirish"ni bosing.
+# 5. Bot orqali telefon raqamingizni va yetkazib berish manzilini (lokatsiya) yuboring.
+
 
     # 3. Chat tarixini tayyorlash
     contents = []
@@ -251,6 +253,62 @@ QOIDALAR:
     except Exception as e:
         print(f"AI Error: {e}")
         return {"type": "text", "text": "Hozircha javob bera olmayman, tizimni yangilayapman."}
+
+
+async def generate_admin_ai_response(user_message: str, user_id: int, chat_history: list = None):
+    # 1. Admin uchun maxsus kontekst (Masalan: Bugungi savdolar yoki ombor holati)
+    # Bu yerda ixtiyoriy ravishda SQL dan ma'lumot olish funksiyasini chaqirishingiz mumkin
+    # Masalan: admin_stats = await get_daily_statistics()
+    
+    admin_system_instr = f"""
+Siz "DO‘NGARIQ STROY" boshqaruv tizimining intellektual tahlilchisisiz. 
+Sizning vazifangiz adminga do'kon holati, mijozlar bilan muloqot va tizim samaradorligi bo'yicha ma'lumot berish.
+
+Sizning vakolatlaringiz:
+- Tizim xatolarini tahlil qilish.
+- Mahsulotlar qoldig'i haqida hisobot berish.
+- Admin bergan buyruqlarni tushunish va ijro etish usullarini ko'rsatish.
+
+QOIDALAR:
+- Til: O'zbek tili, ochiq va professional tahliliy uslub.
+- Ma'lumot: Faqat admin ko'rishi mumkin bo'lgan maxfiy ma'lumotlar bilan ishlaysiz.
+- Format: bu xabar telegram uchun shuning uchun parse_mode=<b>HTML</b> formatidan foydalaning. Muhim raqamlarni <code>kod</code> yoki <b>qalin</b> ko'rinishda yozing.
+- Cheklov: Mijozlarga beriladigan samimiy ("Xush kelibsiz") ohangidan foydalanmang, qisqa va aniq javob bering.
+"""
+
+    # 2. Chat tarixini tayyorlash
+    contents = []
+    if chat_history:
+        for msg in chat_history[-10:]: # Admin uchun qisqaroq tarix kifoya
+            role = "user" if msg['role'] == "user" else "model"
+            contents.append(types.Content(role=role, parts=[types.Part.from_text(text=msg['content'])]))
+    
+    contents.append(types.Content(role="user", parts=[types.Part.from_text(text=user_message)]))
+
+    try:
+        # Admin uchun Gemini-1.5-Pro yoki Flash modelidan foydalanamiz
+        response = client.models.generate_content(
+            model="gemini-2.0-flash", # Yoki murakkabroq tahlil uchun gemini-1.5-pro
+            contents=contents,
+            config={
+                'system_instruction': admin_system_instr,
+                'temperature': 0.2, # Admin uchun aniqroq javoblar kerak
+            }
+        )
+
+        # Admin uchun hozircha funksiya chaqiruvlari (tools) shart emas deb hisobladim
+        # Agar kerak bo'lsa, bu yerga ham tool qo'shish mumkin
+        ai_text = response.candidates[0].content.parts[0].text
+        
+        if ai_text:
+            print(f"Admin AI Response: {ai_text[:50]}...") # Debug log
+            return ai_text
+        
+        return "Admin, so'rovingiz bo'yicha ma'lumot topilmadi."
+
+    except Exception as e:
+        print(f"Admin AI Error: {e}")
+        return "Tizim tahlilida xatolik yuz berdi. Iltimos, server loglarini tekshiring."
 
 @sync_to_async
 def get_chat_history_from_db(user_id, limit=15):

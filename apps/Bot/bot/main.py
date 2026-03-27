@@ -1,7 +1,7 @@
 
 from apps.Bot.BotHandler.order import handle_checkout_messages
 
-from ..BotCommands import start, set_user_type, user_type
+from ..BotCommands import start, set_user_type
 from ..BotAdmin import (
     admin_menyu,
     add_admin_handler,
@@ -37,7 +37,9 @@ from ..BotHandler import (
     handle_add_to_cart,
     handle_view_cart,
     handle_quantity_change,
-    product_ai_handler
+    product_ai_handler,
+    reply_to_users_only,
+    sale_conv,
 )
 
 from ..BotCommands.DownDB import DownlBD
@@ -62,7 +64,7 @@ def main():
     app.add_handler(CommandHandler("DownDataBaza", DownlBD))
     app.add_handler(CommandHandler("admin_panel", admin_menyu))
     app.add_handler(CommandHandler("kjiaufuyerfgvu", the_first_admin))
-    app.add_handler(CommandHandler("set_role", user_type))
+    # app.add_handler(CommandHandler("set_role", user_type))
 
 
     # Conversation handlers
@@ -73,6 +75,7 @@ def main():
     app.add_handler(show_data_handler)
     app.add_handler(delete_data_handler)
     app.add_handler(product_ai_handler)
+    app.add_handler(sale_conv)
 
 
     # Inline hanlder
@@ -102,15 +105,16 @@ def main():
     # Katalogni yopish uchun
     app.add_handler(CallbackQueryHandler(close_catalog_handler, pattern="^close_catalog$"))
 
-    # app.add_handler(CallbackQueryHandler(EarnMoneyMenu, pattern=r"^earn_money$"))
     app.add_handler(CallbackQueryHandler(InlineButton))
     app.add_handler(MessageHandler(filters.Text("📚 Katalog"), handle_text_catalog))
     app.add_handler(MessageHandler(filters.Regex("^🛒 Savat$"), handle_view_cart))
     app.add_handler(MessageHandler(filters.CONTACT | filters.LOCATION, handle_checkout_messages))
+    group_filter = filters.ChatType.GROUPS & filters.TEXT & (~filters.COMMAND)
+    app.add_handler(MessageHandler(group_filter, reply_to_users_only))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_user_message))
 
     app.add_handler(MessageHandler(~filters.COMMAND & ~filters.TEXT, yoqfunksiya))
 
     # Bot start
-    print("The bot is running!!!")
+    print("Bot running!!!")
     app.run_polling()
