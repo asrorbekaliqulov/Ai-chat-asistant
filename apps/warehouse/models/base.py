@@ -47,8 +47,14 @@ class ProductVariant(models.Model):
     min_stock_limit = models.DecimalField(max_digits=15, decimal_places=2, default=5, help_text="Ogohlantirish uchun minimal miqdor", verbose_name="Minimal qoldiq")
     image = models.ImageField(upload_to='variants/', blank=True, null=True, verbose_name="Variant rasmi")
 
+    embedding = models.JSONField(null=True, blank=True, verbose_name="Vektorli ma'lumot")
+    
     def __str__(self):
         return f"{self.product.name} | {self.brand} | {self.size}"
+    
+    def get_search_text(self):
+        """Vektor hosil qilish uchun asos bo'ladigan matn"""
+        return f"{self.product.name} {self.brand} {self.size}".strip()
 
 class PriceHistory(models.Model):
     """ Narxlar o'zgarishini kuzatish uchun """

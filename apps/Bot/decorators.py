@@ -109,13 +109,26 @@ def mandatory_channel_required(func):
 
 
 def typing_action(func):
+    from .utils import save_user_to_db
     @wraps(func)
     async def wrapper(
         update: Update, context: ContextTypes.DEFAULT_TYPE, *args, **kwargs
     ):
-        await context.bot.send_chat_action(
-            chat_id=update.effective_user.id, action=ChatAction.TYPING
-        )
+        # 1. Foydalanuvchi ma'lumotlarini tekshirish
+        user = update.effective_user
+        if user:
+            # Bazaga saqlash funksiyasini chaqiramiz
+            # Bu funksiya orqafonda foydalanuvchi ma'lumotlarini yangilab qo'yadi
+            await save_user_to_db(user)
+
+        # 2. Chat action yuborish (Typing...)
+        if update.effective_chat:
+            await context.bot.send_chat_action(
+                chat_id=update.effective_chat.id, 
+                action=ChatAction.TYPING
+            )
+
+        # 3. Asosiy funksiyani bajarish
         return await func(update, context, *args, **kwargs)
 
     return wrapper
