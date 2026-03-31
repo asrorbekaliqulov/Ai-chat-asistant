@@ -1,6 +1,5 @@
 
 from apps.Bot.BotHandler.analytics_handler import analytics_callback_handler, analytics_dashboard
-from apps.Bot.BotHandler.order import handle_checkout_messages
 
 from ..BotCommands import start, set_user_type
 from ..BotAdmin import (
@@ -30,11 +29,6 @@ from ..BotHandler import (
     catalog_pagination_handler,
     product_detail_handler,
     close_catalog_handler,
-    handle_remove_item,
-    handle_set_package,
-    handle_toggle_select,
-    handle_not_ready,
-    handle_finalize_checkout,
     handle_add_to_cart,
     handle_view_cart,
     handle_quantity_change,
@@ -93,30 +87,16 @@ def main():
     app.add_handler(CallbackQueryHandler(AdminList, pattern=r"^admin_list$"))
     app.add_handler(CallbackQueryHandler(admin_menyu, pattern="^exit_admin$"))
     app.add_handler(CallbackQueryHandler(start, pattern=r"^BackToMainMenu$"))
-    app.add_handler(CallbackQueryHandler(handle_remove_item, pattern=r"^remove_item_(\d+)$"))
-    app.add_handler(CallbackQueryHandler(handle_set_package, pattern=r"^set_package_(5|10)_set$"))
-    app.add_handler(CallbackQueryHandler(handle_toggle_select, pattern=r"^toggle_select_(\d+)$"))
-    app.add_handler(CallbackQueryHandler(handle_not_ready, pattern=r"^not_ready$"))
-    app.add_handler(CallbackQueryHandler(handle_finalize_checkout, pattern=r"^finalize_checkout$"))
     app.add_handler(CallbackQueryHandler(handle_add_to_cart, pattern=r"^add_to_cart_(\d+)$"))
     app.add_handler(CallbackQueryHandler(handle_quantity_change, pattern=r"^(inc|dec)_(\d+)$"))
     app.add_handler(CallbackQueryHandler(handle_text_catalog, pattern=r"^open_catalog$"))
 
-    # Sahifalar o'rtasida navigatsiya uchun (masalan: cat_page_2)
-    app.add_handler(CallbackQueryHandler(catalog_pagination_handler, pattern="^cat_page_"))
 
-    # Alohida atir ma'lumotini ko'rish uchun (masalan: prod_15)
-    app.add_handler(CallbackQueryHandler(product_detail_handler, pattern="^prod_"))
-
-    # Katalogni yopish uchun
-    app.add_handler(CallbackQueryHandler(close_catalog_handler, pattern="^close_catalog$"))
 
     app.add_handler(CallbackQueryHandler(InlineButton))
-    app.add_handler(MessageHandler(filters.Text("📚 Katalog"), handle_text_catalog))
     app.add_handler(MessageHandler(filters.Regex("^🛒 Savat$"), handle_view_cart))
     app.add_handler(MessageHandler(filters.Text("^📊 Tahlil$"), analytics_dashboard))
 
-    app.add_handler(MessageHandler(filters.CONTACT | filters.LOCATION, handle_checkout_messages))
     group_filter = filters.ChatType.GROUPS & filters.TEXT & (~filters.COMMAND)
     app.add_handler(MessageHandler(group_filter, ai_group_assistant))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_user_message))

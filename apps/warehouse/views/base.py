@@ -82,7 +82,6 @@ def add_product_page(request):
     return render(request, 'warehouse/add_product.html', {'categories': categories})
 
 
-
 @csrf_exempt
 def analyze_product_image(request):
     if request.method == "POST":
@@ -90,33 +89,33 @@ def analyze_product_image(request):
             data = json.loads(request.body)
             image_data = data.get('image')
 
-            # 1. Bazadagi barcha mavjud mahsulot nomlarini olish
+            # 1. Kontekst tayyorlash
             existing_products = list(Product.objects.values_list('name', flat=True))
-            products_context = ", ".join(existing_products) if existing_products else "Hozircha baza bo'sh."
-            categorys_name = [cat.name for cat in Category.objects.all()]
-            if not categorys_name:
-                category_name = "Categoryni aytish shart emas, chunki bazada kategoriyalar mavjud emas."
+            products_context = ", ".join(existing_products) if existing_products else "Baza bo'sh."
+            categories = [cat.name for cat in Category.objects.all()]
             
+            # 2. Rasmni decode qilish
             header, encoded = image_data.split(",", 1)
             image_bytes = base64.b64decode(encoded)
 
             prompt = f"""
             Siz qurilish do'koni yordamchisisiz. Rasmdagi mahsulotni aniqlang.
-            
-            MAVJUD MAHSULOTLAR RO'YXATI: [{products_context}]
-            
+            MAVJUD MAHSULOTLAR: [{products_context}]
+            KATEGORIYALAR: {categories}
+
             QOIDALAR:
-            1. Agar rasmdagi mahsulot yuqoridagi ro'yxatda bor bo'lsa (hatto kichik farq bilan ham, masalan 'Sement M500' va 'Sement 500'), ro'yxatdagi NOMNI ANIQ qaytaring.
-            2. Agar ro'yxatda mutlaqo bo'lmasa, Mahsulot nomini yozing.
-            3. Javobni FAQAT JSON formatida bering:
-            Eslatma: Natijani o'zbek tilida qaytaring va quyidagi formatda bo'lishi kerak
+            1. Agar mahsulot ro'yxatda bo'lsa, shuni qaytaring.
+            2. Javobni FAQAT bitta JSON obyekti ko'rinishida bering.
+            3. Til: O'zbek tili (Lotin alifbosi).
+            
+            Format:
             {{
-                "name": "Mahsulot nomi",
-                "brand": "Brand nomi",
-                "size": "O'lchami",
-                "unit": "dona, kg, qop, m2, m3, metr lardan biri"
-                "description": "Mahsulot haqida qisqacha ma'lumot (ixtiyoriy)",
-                "category": f"Mahsulot kategoriyasi (quyidagilardan biri bo'lsin: {categorys_name})"
+                "name": "Nomi",
+                "brand": "Brendi (yo'q bo'lsa bo'sh qoldiring)",
+                "size": "O'lchami (yo'q bo'lsa bo'sh qoldiring)",
+                "unit": "dona, kg, qop, m2 lardan biri",
+                "description": "Qisqa ta'rif",
+                "category": "Kategoriya nomi (ro'yxatdan tanlang)"
             }}
             """
 
@@ -136,13 +135,20 @@ def analyze_product_image(request):
                 )
             )
 
-            ai_data = json.loads(response.text)
-            print("AI javobi:", ai_data)
-            return JsonResponse({'status': 'success', 'data': ai_data})
+            ai_json = json.loads(response.text)
+            
+            # MUHIM: Agar AI [{...}] (list) qaytarsa, ichidagi obyektni olamiz
+            if isinstance(ai_json, list) and len(ai_json) > 0:
+                ai_json = ai_json[0]
+
+            print("Tozalangan AI javobi:", ai_json)
+            return JsonResponse({'status': 'success', 'data': ai_json})
 
         except Exception as e:
+            print(f"Xatolik: {e}")
             return JsonResponse({'status': 'error', 'message': str(e)})
-    return JsonResponse({'status': 'error', 'message': 'Invalid request'})
+            
+    return JsonResponse({'status': 'error', 'message': 'Faqat POST so\'rovi qabul qilinadi'})
 
 @csrf_exempt
 def save_final_product(request):

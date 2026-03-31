@@ -106,7 +106,7 @@ product_ai_handler = ConversationHandler(
     entry_points=[
         # Agar tugma orqali bo'lsa CallbackQueryHandler, komanda bo'lsa CommandHandler
         CallbackQueryHandler(start_add_product_process, pattern='^add_product_ai$'),
-        CommandHandler('add_product', start_add_product_process)
+        CommandHandler('add_produc_t', start_add_product_process)
     ],
     states={
         WAITING_FOR_DATA: [

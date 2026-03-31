@@ -35,7 +35,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Inline tugmalar (faqat username bor adminlar uchun)
     buttons = [
         [
-            KeyboardButton(f"📚 Katalog"), 
+            # KeyboardButton(f"📚 Katalog"), 
             # KeyboardButton("🛒 Savat")
         ]
     ]
@@ -52,16 +52,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             reply_markup=remove,
             parse_mode="html",
         )
-    text="""🧱<b> "DO‘NGARIQ STROY" — Sifatli qurilish poydevori!</b>
-
-Assalomu alaykum! Bizning botimiz orqali uyingiz yoki obyektingiz uchun kerakli barcha xom-ashyolarni topishingiz mumkin.
-
-Qurilish mahsulotlari haqida ma’lumot olish, buyurtma berish va savollar bilan murojaat qilish uchun biz doimo tayyormiz.
-
-Bemalol so‘rang, biz sizga yordam berishdan mamnun bo‘lamiz!
+    text="""<b>"DO‘NGARIQ STROY"</b> do'konimizga xush kelibsiz! Barcha mahsulotlar va buyurtmalar bo'yicha savollaringizga @dongariq_stroy guruhimizda tezkor javob olishingiz mumkin. Biz sizga yordam berishdan mamnunmiz! 🧱
 
 <b>Bog'lanish uchun:</b>
-📞 +998941687722 📱 Telegram: @dongariq_stroy"""
+📞 +998330576161 📱 Telegram: @dongariq_stroy"""
 
     if update.effective_user.id in admin_id:
         markup = ADMIN_KYB

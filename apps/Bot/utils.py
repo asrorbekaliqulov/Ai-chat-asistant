@@ -105,62 +105,6 @@ def get_similar_products(user_vector, top_k=5):
 
 
 
-async def finalize_order(user_id: int, package_type: str, products: list, phone: str, address: str):
-    """AI tomonidan chaqiriladigan buyurtma yakunlash funksiyasi"""
-    order_id = await save_order_to_db(user_id, package_type, products, phone, address)
-    
-    atirlar_text = "\n".join([f"• {p['name']} ({p.get('qty', 1)} ta)" for p in products])
-    
-    admin_message = (
-        f"🚨 <b>YANGI BUYURTMA #{order_id}</b>\n"
-        f"📦 Nabor: {package_type}\n"
-        f"🧪 Atirlar:\n{atirlar_text}\n"
-        f"📞 Tel: {phone}\n"
-        f"📍 Manzil: {address}"
-    )
-    return {
-        "admin_msg": admin_message, 
-        "user_msg": f"✅ Buyurtmangiz qabul qilindi! Buyurtma raqami: <b>#{order_id}</b>"
-    }
-
-# Gemini Tools Declarations
-order_tool = types.FunctionDeclaration(
-    name="finalize_order",
-    description="Foydalanuvchi nabor sotib olishga qaror qilganda va barcha ma'lumotlar mavjud bo'lganda chaqiriladi.",
-    parameters={
-        "type": "OBJECT",
-        "properties": {
-            "package_type": {"type": "STRING", "description": "Nabor turi: '5_set' yoki '10_set'"},
-            "products": {
-                "type": "ARRAY", 
-                "items": {
-                    "type": "OBJECT",
-                    "properties": {
-                        "name": {"type": "STRING", "description": "Atir nomi"},
-                        "qty": {"type": "INTEGER", "description": "Soni"}
-                    }
-                },
-                "description": "Nabor ichidagi atirlar ro'yxati"
-            },
-            "phone": {"type": "STRING", "description": "Telefon raqami"},
-            "address": {"type": "STRING", "description": "Yetkazib berish manzili"}
-        },
-        "required": ["package_type", "products", "phone", "address"]
-    }
-)
-
-catalog_tool = types.FunctionDeclaration(
-    name="catalog",
-    description="Foydalanuvchi katalogni ko'rishni, atirlar ro'yxatini yoki eng yaxshilarini so'raganda chaqiriladi.",
-    parameters={
-        "type": "OBJECT",
-        "properties": {
-            "page": {"type": "INTEGER", "description": "Sahifa raqami, odatda 1"}
-        },
-        "required": ["page"]
-    }
-)
-
 async def generate_ai_response(user_message: str, user_id: int, chat_history: list = None):
     # 1. RAG qismi (Atirlar haqida ma'lumot)
     user_emb_resp = client.models.embed_content(model="gemini-embedding-001", contents=user_message)
@@ -169,38 +113,10 @@ async def generate_ai_response(user_message: str, user_id: int, chat_history: li
 
     # 2. System Instruction (Aromazona qoidalari)
     system_instr = f"""
-Siz "DO‘NGARIQ STROY" do'konining professional ombor maslahatchisi va savdo yordamchisiz. Sizning vazifangiz mijozlarga qurilish materiallarini tanlashda yordam berish, ombordagi qoldiqlar haqida ma'lumot berish va buyurtma berish jarayonini tushuntirish.
+Siz "DO‘NGARIQ STROY" do'konining professional ombor maslahatchisi va savdo yordamchisiz. Sizning vazifangiz mijozlarga foydalanuvchilarni @dongariq_stroy guruhiga taklif qilish. U yerdan savoliga To'liq javob olishini aytish.
 
-BAZADAN TOPILGAN MALUMOTLAR (Context):
-{context_data}
-
-NARX VA O'LCHOV BIRLIKLARI:
-- Mahsulotlar turi va zavodiga qarab narxlari farq qiladi.
-- O'lchov birliklari: kg, dona, m2, m3, metr, qop.
-- Har bir mahsulotning "Brend" (Zavod) va "O'lcham" xususiyatlariga e'tibor bering.
-
-
-QOIDALAR:
-- Til: O'zbek tilida, samimiy, lekin jiddiy (ishbilarmonlik uslubida) javob bering.
-- Aniqlik: Foydalanuvchi mahsulot so'rasa, uning zavodi (brand) va o'lchamini aniq ko'rsating.
-- Qoldiqlar: Agar mahsulot omborda kam qolgan bo'lsa (stock < 10), bu haqda mijozni ogohlantiring.
-- Maslahat: Foydalanuvchi tanlovda qiynalsa, mahsulotning tavsifidan (description) kelib chiqib tavsiya bering.
-- Formatlash: Bot <b>HTML</b> formatini qo'llab-quvvatlaydi. Narxlarni <b>150,000 so'm</b> ko'rinishida qalin qilib yozing.
-- Yo'naltirish: Foydalanuvchi mahsulotlarni ko'rmoqchi bo'lsa, har doim "📚 Katalog" bo'limiga o'tishni maslahat bering.
-- Katalog Funksiyasi: Agar foydalanuvchi mahsulotlar ro'yxatini yoki katalogni ko'rishni xohlasa, "catalog" funksiyasini chaqiring.
-- Yakun: Buyurtma oxirida telefon va manzil yuborish tugmalaridan foydalanishni eslatish shart.
-
-DIQQAT: Siz faqat bazadagi (context_data) malumotlar asosida javob berolasiz mavzudan chetlashmang.
 """
-#     BUYURTMA BERISH TARTIBI:
-# 1. 📚 Katalog orqali mahsulotlarni va ularning variantlarini (zavodi/o'lchami) ko'ring.
-# 2. Kerakli mahsulotni tanlab, "🛒 Savatga qo'shish" tugmasini bosing.
-# 3. Miqdorni (masalan: 50 qop yoki 100 metr) kiriting.
-# 4. "🛒 Savat" bo'limiga o'tib, buyurtmani tekshiring va "Rasmiylashtirish"ni bosing.
-# 5. Bot orqali telefon raqamingizni va yetkazib berish manzilini (lokatsiya) yuboring.
 
-
-    # 3. Chat tarixini tayyorlash
     contents = []
     if chat_history:
         for msg in chat_history[-15:]:
@@ -219,8 +135,6 @@ DIQQAT: Siz faqat bazadagi (context_data) malumotlar asosida javob berolasiz mav
             contents=contents,
             config={
                 'system_instruction': system_instr,
-                'tools': [types.Tool(function_declarations=[catalog_tool, order_tool])],
-                'tool_config': tool_config,
                 'temperature': 0.1,
             }
         )
@@ -232,20 +146,11 @@ DIQQAT: Siz faqat bazadagi (context_data) malumotlar asosida javob berolasiz mav
                 fn_name = part.function_call.name
                 fn_args = part.function_call.args
                 
-                if fn_name == "catalog":
-                    print(f"AI requested catalog page: {fn_args.get('page', 1)}")  # Debug log
-                    return {"type": "catalog", "page": fn_args.get("page", 1)}
-                
-                elif fn_name == "finalize_order":
-                    res = await finalize_order(user_id, **fn_args)
-                    return {"type": "order_completed", **res}
             
             if part.text:
                 print(f"AI responded with text: {part.text}")  # Debug log
                 # Agar model baribir matn qaytarsa (lekin ichida catalog so'zi bo'lsa)
                 # Bu qo'shimcha "straxovka" (ixtiyoriy)
-                if "catalog(" in part.text:
-                     return {"type": "catalog", "page": 1}
                 return {"type": "text", "text": part.text}
 
         return {"type": "text", "text": "Tushunarsiz so'rov."}
