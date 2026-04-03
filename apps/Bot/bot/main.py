@@ -25,13 +25,6 @@ from ..BotHandler import (
     delete_data_handler,
     handle_user_message,
     yoqfunksiya,
-    handle_text_catalog,
-    catalog_pagination_handler,
-    product_detail_handler,
-    close_catalog_handler,
-    handle_add_to_cart,
-    handle_view_cart,
-    handle_quantity_change,
     product_ai_handler,
     ai_group_assistant,
     sale_conv,
@@ -87,14 +80,9 @@ def main():
     app.add_handler(CallbackQueryHandler(AdminList, pattern=r"^admin_list$"))
     app.add_handler(CallbackQueryHandler(admin_menyu, pattern="^exit_admin$"))
     app.add_handler(CallbackQueryHandler(start, pattern=r"^BackToMainMenu$"))
-    app.add_handler(CallbackQueryHandler(handle_add_to_cart, pattern=r"^add_to_cart_(\d+)$"))
-    app.add_handler(CallbackQueryHandler(handle_quantity_change, pattern=r"^(inc|dec)_(\d+)$"))
-    app.add_handler(CallbackQueryHandler(handle_text_catalog, pattern=r"^open_catalog$"))
-
 
 
     app.add_handler(CallbackQueryHandler(InlineButton))
-    app.add_handler(MessageHandler(filters.Regex("^🛒 Savat$"), handle_view_cart))
     app.add_handler(MessageHandler(filters.Text("^📊 Tahlil$"), analytics_dashboard))
 
     group_filter = filters.ChatType.GROUPS & filters.TEXT & (~filters.COMMAND)

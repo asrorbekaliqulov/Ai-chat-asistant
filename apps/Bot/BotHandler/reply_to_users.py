@@ -89,83 +89,79 @@ async def ai_group_assistant(update: Update, context: ContextTypes.DEFAULT_TYPE)
     user_msg = update.message.text
     chat_id = update.effective_chat.id
 
-    # Foydalanuvchi statusini tekshirish
+    # Adminligini tekshirish
     member = await context.bot.get_chat_member(chat_id, user.id)
     is_admin = member.status in [ChatMemberStatus.ADMINISTRATOR, ChatMemberStatus.OWNER]
     
-    # Xabarni bazaga saqlash
     await save_message_to_db(user.id, 'admin' if is_admin else 'user', user_msg)
-
-    # Admin xabarlariga AI javob bermaydi
     if is_admin: return
 
-    # SYSTEM INSTRUCTION: Asosiy qoidalar to'plami
     system_instr = (
         "Sen 'Do'ngariq Stroy' do'konining rasmiy yordamchisisan. Isming: Do'ngariq AI. "
         "MUHIM KONTAKTLAR: Islom aka (+998330576161), Zohid (+998933222207). "
         "QOIDALAR: "
-        "1. REKLAMA FILTRI: Agar xabar reklama (xizmat taklifi, yuk tashish e'lonlari, mahsulot sotish ro'yxati) bo'lsa, "
-        "FAQAT 'Iltimos, guruhda reklama tarqatmang!' deb javob ber. "
-        "2. TUSHUNARSIZ XABAR: Agar xabar do'konga tegishli bo'lmasa yoki shunchaki tushunarsiz so'zlar bo'lsa, "
-        "HECH QANDAY JAVOB QAYTARMA (bo'sh matn yubor). "
-        "3. FORMAT: Faqat oddiy matn (Plain text). HTML teglar (<b>, <i>) yoki Markdown (**bold**) ishlatma. "
-        "4. Tushunarsiz salom-aliklarga qisqa alik ol, lekin keraksiz gap sotma."
+        "1. REKLAMA: Reklama bo'lsa 'Iltimos, guruhda reklama tarqatmang!' deb javob ber. "
+        "2. BAZA: Mahsulot so'ralsa FAQAT 'search_warehouse' funksiyasini ishlat. "
+        "3. FORMAT: Faqat oddiy matn. HTML yoki Markdown ishlatma."
     )
 
     try:
-        # Suhbatlar tarixini olish
+        # Suhbat tarixini yuklash
         history = await AIManager.get_chat_history(user.id)
         
-        # 1-QADAM: AI xabarni tahlil qiladi
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=history + [types.Content(role="user", parts=[types.Part.from_text(text=user_msg)])],
-            config=types.GenerateContentConfig(
-                system_instruction=system_instr, 
-                tools=tools,
-                temperature=0.1 # Aniqlik uchun past harorat
-            )
-        )
-
-        ai_response_text = response.text.strip() if response.text else ""
+        # AI bilan muloqot konteksini tayyorlash
+        messages = history + [types.Content(role="user", parts=[types.Part.from_text(text=user_msg)])]
         
-        # Agar AI xabarni tushunmasa yoki javob berish shart emas deb topsa
-        if not ai_response_text and not any(p.function_call for p in response.candidates[0].content.parts):
-            return
-
-        call = next((p.function_call for p in response.candidates[0].content.parts if p.function_call), None)
         image_to_send = None
+        final_text = ""
 
-        # 2-QADAM: Agar AI funksiya chaqirsa (ombordan qidirish)
-        if call:
-            if call.name == "search_warehouse":
-                data = await AIManager.get_inventory_data(call.args.get('keywords', []))
-                if data:
-                    # Ma'lumotlarni mijozga chiroyli matn qilib berish
-                    context_msg = f"Mijoz: {user_msg}\nTopilgan ma'lumotlar: {data}\nShu asosida oddiy matnda javob yoz."
-                    final_gen = client.models.generate_content(model="gemini-2.0-flash", contents=context_msg)
-                    ai_response_text = final_gen.text
-                    image_to_send = data[0]['image_path']
-                else:
-                    # Omborda yo'qligini chiroyli tushuntirish
-                    ai_response_text = "Uzr, so'ralgan mahsulot hozirda omborimizda mavjud emas."
+        # Maksimal 2 marta urinish (1-savol, 2-funksiya natijasi tahlili)
+        for _ in range(2):
+            response = client.models.generate_content(
+                model="gemini-2.0-flash",
+                contents=messages,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instr, 
+                    tools=tools,
+                    temperature=0.0
+                )
+            )
 
-            elif call.name == "search_store_knowledge":
-                knowledge = await AIManager.get_company_info(call.args.get('topic'))
-                context_msg = f"Do'kon ma'lumoti: {knowledge}\nMijoz savoli: {user_msg}\nJavob ber."
-                final_gen = client.models.generate_content(model="gemini-2.0-flash", contents=context_msg)
-                ai_response_text = final_gen.text
+            # AI javobini (content) xabarlar ro'yxatiga qo'shamiz
+            res_content = response.candidates[0].content
+            messages.append(res_content)
 
-        # 3-QADAM: Javobni tozalash va yuborish
-        if ai_response_text:
-            # Har qanday holatda ham teglarni tozalash
-            clean_text = re.sub(r'<[^<]+?>', '', ai_response_text)
-            clean_text = clean_text.replace('**', '').replace('__', '')
+            # Funksiya chaqirildimi?
+            call = next((p.function_call for p in res_content.parts if p.function_call), None)
 
-            # Ma'lumotlar bazasiga saqlash
+            if call:
+                db_res = None
+                if call.name == "search_warehouse":
+                    db_res = await AIManager.get_inventory_data(call.args.get('keywords', []))
+                    if db_res: image_to_send = db_res[0].get('image_path')
+                
+                elif call.name == "search_store_knowledge":
+                    db_res = await AIManager.get_company_info(call.args.get('topic'))
+
+                # Funksiya natijasini AIga qaytarish (MUHIM QADAM)
+                messages.append(types.Content(
+                    role="user",
+                    parts=[types.Part.from_function_response(name=call.name, response={"result": db_res})]
+                ))
+                continue # AI natijani ko'rib, odam tilida javob yozishi uchun loop davom etadi
+            else:
+                # Agar funksiya chaqirilmasa, demak AI yakuniy matnni qaytardi
+                final_text = response.text
+                break
+
+        # Xabarni yuborish
+        if final_text and final_text.strip():
+            # Tozalash
+            clean_text = re.sub(r'<(?!/?(b|i|code)\b)[^>]+>', '', final_text)
+            clean_text = clean_text.replace('**', '').replace('__', '').strip()
+
             await save_message_to_db(user.id, 'model', clean_text)
 
-            # Telegramga yuborish (Rasm bilan yoki rasmsiz)
             if image_to_send and os.path.exists(image_to_send):
                 with open(image_to_send, 'rb') as photo:
                     await update.message.reply_photo(photo=photo, caption=clean_text)
@@ -173,5 +169,4 @@ async def ai_group_assistant(update: Update, context: ContextTypes.DEFAULT_TYPE)
                 await update.message.reply_text(clean_text)
 
     except Exception as e:
-        # Xatoliklarni log qilish (Faqat dev rejimda)
-        print(f"AI ERROR: {e}")
+        print(f"AI ERROR: {str(e)}")

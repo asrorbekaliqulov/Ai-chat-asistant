@@ -1,13 +1,13 @@
 from asgiref.sync import sync_to_async
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
-from apps.Bot.BotHandler.catalog import get_catalog_markup
+# from apps.Bot.BotHandler.catalog import get_catalog_markup
 from .models.TelegramBot import TelegramUser, Channel, CompanyData, ChatMessage, Order, Product, OrderItem, Cart, SelectedItem
 import os
 import numpy as np
 from google import genai
 from google.genai import types
-from asgiref.sync import sync_to_async
+# from asgiref.sync import sync_to_async
 
 import re
 from django.db.models import Sum, Count
