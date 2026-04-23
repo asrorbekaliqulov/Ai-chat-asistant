@@ -1,0 +1,117 @@
+INFO 2026-03-31 10:33:45,288 autoreload Watching for file changes with StatReloader
+INFO 2026-03-31 10:34:47,277 basehttp "GET / HTTP/1.1" 200 4578
+INFO 2026-03-31 10:34:48,116 basehttp "GET /static/images/instagram-icon.svg HTTP/1.1" 200 819
+INFO 2026-03-31 10:34:48,305 basehttp "GET /static/images/telegram-icon.svg HTTP/1.1" 200 2449
+INFO 2026-03-31 10:34:48,316 basehttp "GET /static/images/github-icon.svg HTTP/1.1" 200 5303
+INFO 2026-03-31 10:34:48,351 basehttp "GET /static/js/main.js HTTP/1.1" 200 643
+INFO 2026-03-31 10:34:48,385 basehttp "GET /static/css/styles.css HTTP/1.1" 200 5440
+INFO 2026-03-31 10:34:49,406 basehttp "GET /static/images/favicon.ico HTTP/1.1" 200 15406
+INFO 2026-03-31 10:34:55,295 basehttp "GET /en/admin/ HTTP/1.1" 302 0
+INFO 2026-03-31 10:34:55,648 basehttp "GET /en/admin/login/?next=/en/admin/ HTTP/1.1" 200 11135
+INFO 2026-03-31 10:34:55,929 basehttp "GET /static/css/tailwind.css HTTP/1.1" 200 15588
+INFO 2026-03-31 10:34:55,967 basehttp "GET /static/unfold/css/simplebar.css HTTP/1.1" 200 4647
+INFO 2026-03-31 10:34:55,972 basehttp "GET /static/unfold/js/htmx.js HTTP/1.1" 200 50918
+INFO 2026-03-31 10:34:55,975 basehttp "GET /static/unfold/css/styles.css HTTP/1.1" 200 157275
+INFO 2026-03-31 10:34:56,019 basehttp "GET /static/unfold/js/chart.js HTTP/1.1" 200 200633
+INFO 2026-03-31 10:34:56,033 basehttp "GET /static/unfold/js/simplebar.js HTTP/1.1" 200 27176
+INFO 2026-03-31 10:34:56,395 basehttp "GET /static/unfold/fonts/material-symbols/styles.css HTTP/1.1" 200 535
+INFO 2026-03-31 10:34:56,428 basehttp "GET /static/unfold/js/app.js HTTP/1.1" 200 7736
+INFO 2026-03-31 10:34:56,441 basehttp "GET /static/unfold/fonts/inter/styles.css HTTP/1.1" 200 608
+INFO 2026-03-31 10:34:56,754 basehttp "GET /static/unfold/js/alpine.persist.js HTTP/1.1" 200 837
+INFO 2026-03-31 10:34:56,779 basehttp "GET /static/unfold/js/alpine.sort.js HTTP/1.1" 200 37891
+INFO 2026-03-31 10:34:56,787 basehttp "GET /static/unfold/js/alpine.resize.js HTTP/1.1" 200 703
+INFO 2026-03-31 10:34:56,794 basehttp "GET /static/unfold/js/alpine.js HTTP/1.1" 200 44659
+INFO 2026-03-31 10:34:57,221 basehttp "GET /static/unfold/js/alpine.anchor.js HTTP/1.1" 200 15524
+INFO 2026-03-31 10:34:57,667 basehttp "GET /static/unfold/fonts/inter/Inter-Regular.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-31 10:34:57,668 basehttp "GET /static/unfold/fonts/material-symbols/Material-Symbols-Outlined.woff2 HTTP/1.1" 200 256424
+INFO 2026-03-31 10:34:57,699 basehttp "GET /static/unfold/fonts/inter/Inter-SemiBold.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-31 10:34:57,823 basehttp "GET /static/images/login.png HTTP/1.1" 200 171031
+INFO 2026-03-31 10:34:57,827 basehttp "GET /static/unfold/fonts/inter/Inter-Medium.woff2 HTTP/1.1" 200 46552
+INFO 2026-03-31 10:35:01,360 basehttp "POST /en/admin/login/?next=/en/admin/ HTTP/1.1" 302 0
+INFO 2026-03-31 10:35:01,655 basehttp "GET /en/admin/ HTTP/1.1" 200 46717
+INFO 2026-03-31 10:35:01,939 basehttp "GET /static/images/django-logo.webp HTTP/1.1" 200 31764
+INFO 2026-03-31 10:35:02,172 basehttp "GET /static/images/user_profile.png HTTP/1.1" 200 4072
+INFO 2026-03-31 10:35:04,197 basehttp "GET /en/admin/warehouse/product/ HTTP/1.1" 200 81113
+INFO 2026-03-31 10:35:04,483 basehttp "GET /static/admin/css/autocomplete.css HTTP/1.1" 200 9185
+INFO 2026-03-31 10:35:04,486 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-31 10:35:04,496 basehttp "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2026-03-31 10:35:04,498 basehttp "GET /static/admin/css/vendor/select2/select2.css HTTP/1.1" 200 17358
+INFO 2026-03-31 10:35:04,502 basehttp "GET /static/unfold/js/select2.init.js HTTP/1.1" 200 291
+INFO 2026-03-31 10:35:04,506 basehttp "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2026-03-31 10:35:04,512 basehttp "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2026-03-31 10:35:04,596 basehttp "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9048
+INFO 2026-03-31 10:35:04,598 basehttp "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2026-03-31 10:35:04,602 basehttp "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2026-03-31 10:35:04,604 basehttp "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2026-03-31 10:35:04,652 basehttp "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2026-03-31 10:35:04,709 basehttp "GET /static/admin/js/vendor/select2/select2.full.js HTTP/1.1" 200 173566
+INFO 2026-03-31 10:39:25,150 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 53527
+INFO 2026-03-31 10:39:26,019 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2026-03-31 10:57:30,998 log Not Found: /.aws/
+WARNING 2026-03-31 10:57:30,999 basehttp "HEAD /.aws/ HTTP/1.1" 404 0
+WARNING 2026-03-31 10:57:31,042 log Not Found: /.ada/
+WARNING 2026-03-31 10:57:31,042 basehttp "HEAD /.ada/ HTTP/1.1" 404 0
+WARNING 2026-03-31 10:57:31,058 log Not Found: /.ssh/
+WARNING 2026-03-31 10:57:31,058 basehttp "HEAD /.ssh/ HTTP/1.1" 404 0
+WARNING 2026-03-31 10:57:31,144 log Not Found: /.midway/
+WARNING 2026-03-31 10:57:31,144 basehttp "HEAD /.midway/ HTTP/1.1" 404 0
+INFO 2026-03-31 11:01:34,870 basehttp "GET /en/admin/Bot/companydata/add/ HTTP/1.1" 200 46074
+INFO 2026-03-31 11:01:35,581 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-31 11:01:35,996 basehttp "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2026-03-31 11:01:36,019 basehttp "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2026-03-31 11:01:49,352 basehttp "POST /en/admin/Bot/companydata/add/ HTTP/1.1" 302 0
+INFO 2026-03-31 11:01:50,138 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 56506
+INFO 2026-03-31 11:01:51,007 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-31 11:02:39,619 basehttp "GET /en/admin/Bot/companydata/2/change/ HTTP/1.1" 200 90029
+INFO 2026-03-31 11:02:40,326 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-31 11:02:48,656 basehttp "POST /en/admin/Bot/companydata/2/change/ HTTP/1.1" 302 0
+INFO 2026-03-31 11:02:49,364 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 56431
+INFO 2026-03-31 11:02:50,273 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-31 11:06:35,219 basehttp "GET /warehouse/add-product HTTP/1.1" 301 0
+INFO 2026-03-31 11:06:36,067 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 13520
+WARNING 2026-03-31 11:06:37,375 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:06:37,376 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:06:40,975 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 55968
+INFO 2026-03-31 11:09:41,090 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 12896
+WARNING 2026-03-31 11:09:42,186 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:09:42,186 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:10:05,912 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 487
+INFO 2026-03-31 11:10:48,906 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/views/base.py changed, reloading.
+INFO 2026-03-31 11:10:56,868 autoreload Watching for file changes with StatReloader
+INFO 2026-03-31 11:11:09,080 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 12896
+WARNING 2026-03-31 11:11:10,170 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:11:10,170 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:11:14,909 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 252
+INFO 2026-03-31 11:11:45,345 autoreload Watching for file changes with StatReloader
+INFO 2026-03-31 11:11:55,943 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 12896
+INFO 2026-03-31 11:12:00,886 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 207
+INFO 2026-03-31 11:14:17,763 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/views/base.py changed, reloading.
+INFO 2026-03-31 11:14:22,714 autoreload Watching for file changes with StatReloader
+INFO 2026-03-31 11:14:54,070 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 14183
+WARNING 2026-03-31 11:14:55,250 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:14:55,255 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:15:00,676 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 188
+INFO 2026-03-31 11:15:58,698 autoreload /workspaces/Ai-chat-asistant/apps/warehouse/views/base.py changed, reloading.
+INFO 2026-03-31 11:16:01,888 autoreload Watching for file changes with StatReloader
+INFO 2026-03-31 11:16:12,024 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 14183
+WARNING 2026-03-31 11:16:13,156 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:16:13,157 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:16:17,953 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 261
+INFO 2026-03-31 11:16:34,455 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 14183
+WARNING 2026-03-31 11:16:35,523 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:16:35,524 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:16:50,252 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 213
+INFO 2026-03-31 11:17:06,534 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 14183
+WARNING 2026-03-31 11:17:07,571 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:17:07,572 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:17:15,580 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 204
+INFO 2026-03-31 11:18:16,611 basehttp "GET /warehouse/add-product/ HTTP/1.1" 200 14183
+WARNING 2026-03-31 11:18:17,591 log Not Found: /favicon.ico
+WARNING 2026-03-31 11:18:17,592 basehttp "GET /favicon.ico HTTP/1.1" 404 4216
+INFO 2026-03-31 11:18:27,916 basehttp "POST /warehouse/analyze-vision/ HTTP/1.1" 200 164
+INFO 2026-03-31 11:22:39,296 autoreload Watching for file changes with StatReloader
+INFO 2026-03-31 11:23:25,674 basehttp "GET /en/admin/Bot/companydata/ HTTP/1.1" 200 55968
+INFO 2026-03-31 11:23:29,099 basehttp "GET /en/admin/Bot/chatmessage/ HTTP/1.1" 200 368049
+INFO 2026-03-31 11:23:29,868 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2026-03-31 11:23:35,026 basehttp "GET /en/admin/Bot/chatmessage/?o=-4 HTTP/1.1" 200 369310
+INFO 2026-03-31 11:23:35,795 basehttp "GET /en/admin/jsi18n/ HTTP/1.1" 200 3342
