@@ -1,38 +1,51 @@
 import os
 import io
+import json
+import tempfile
 from decimal import Decimal
 from django.db import transaction
 from django.db.models import Q
 from asgiref.sync import sync_to_async
+
 from apps.Bot.keybaords import ADMIN_KYB
-from google import genai
-from google.genai import types
 from telegram import (
     Update, 
     InlineKeyboardButton, 
     InlineKeyboardMarkup, 
-    ReplyKeyboardMarkup, 
-    ReplyKeyboardRemove
+    ReplyKeyboardMarkup
 )
 from telegram.ext import (
     ContextTypes, 
     ConversationHandler, 
     MessageHandler, 
     CallbackQueryHandler,
-    CommandHandler, 
     filters
 )
 
 # Modellarni import qilish
 from apps.warehouse.models.base import ProductVariant, StockTransaction
 
-# 1. Gemini Sozlamalari
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+# AI Importlari
+from google import genai
+from google.genai import types
+from openai import AsyncOpenAI
 
-# AI uchun funksiya deklaratsiyasi
-search_tool = types.FunctionDeclaration(
+# 1. AI Sozlamalari
+AI_MODE = os.getenv("AI_MODE", "gemini").lower()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+if AI_MODE == "chatgpt":
+    ai_client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+else:
+    ai_client = genai.Client(api_key=GEMINI_API_KEY)
+
+tool_description = "Ombordagi mahsulotlarni nomi, brendi yoki o'lchami bo'yicha qidiradi."
+
+# --- Gemini Tool ---
+search_tool_gemini = types.FunctionDeclaration(
     name="search_warehouse",
-    description="Ombordagi mahsulotlarni nomi, brendi yoki o'lchami bo'yicha qidiradi.",
+    description=tool_description,
     parameters=types.Schema(
         type="OBJECT",
         properties={
@@ -44,8 +57,26 @@ search_tool = types.FunctionDeclaration(
         required=["search_query"]
     )
 )
+gemini_tools = [types.Tool(function_declarations=[search_tool_gemini])]
 
-inventory_tools = [types.Tool(function_declarations=[search_tool])]
+# --- ChatGPT Tool ---
+openai_tools = [{
+    "type": "function",
+    "function": {
+        "name": "search_warehouse",
+        "description": tool_description,
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "search_query": {
+                    "type": "string", 
+                    "description": "Qidirilayotgan mahsulot kalit so'zlari (masalan: 'sement abusahiy')"
+                }
+            },
+            "required": ["search_query"]
+        }
+    }
+}]
 
 # Holatlar
 SEARCHING, WAITING_QTY = range(2)
@@ -73,7 +104,7 @@ class SearchManager:
             
             results.append({
                 "id": v.id,
-                "name": f"{v.product.name} | {v.brand} | {v.size}",
+                "name": f"{v.product.name} | {v.brand} | {v.size}".strip(" | "),
                 "price": float(v.selling_price),
                 "stock": float(v.stock),
                 "unit": v.product.get_unit_display(),
@@ -104,38 +135,95 @@ async def start_search_mode(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return SEARCHING
 
 async def handle_search_input(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_msg = update.message.text
-    if user_msg == "❌ Chiqish": return await cancel_search(update, context)
+    user_msg = update.message.text if update.message.text else None
+    user_audio = None
+    voice_file_path = None
 
-    # Ovozli bo'lsa ovozni Gemini-ga yuboramiz
-    parts = []
+    if user_msg == "❌ Chiqish": 
+        return await cancel_search(update, context)
+
+    # Ovozli xabarni tahlil qilish
     if update.message.voice:
         v_file = await update.message.voice.get_file()
-        v_data = io.BytesIO()
-        await v_file.download_to_memory(v_data)
-        parts.append(types.Part.from_bytes(data=v_data.getvalue(), mime_type="audio/ogg"))
-        parts.append(types.Part.from_text(text="Ushbu ovozli xabarni tahlil qil va mahsulotni topish uchun search_warehouse funksiyasini chaqir."))
-    else:
-        parts.append(types.Part.from_text(text=f"Foydalanuvchi so'rovi: {user_msg}. Mahsulotni topish uchun search_warehouse funksiyasini chaqir."))
+        
+        if AI_MODE == "chatgpt":
+            # ChatGPT uchun ovozni faylga saqlab, Whisper orqali matnga aylantiramiz
+            with tempfile.NamedTemporaryFile(suffix=".ogg", delete=False) as tf:
+                voice_file_path = tf.name
+            await v_file.download_to_drive(custom_path=voice_file_path)
+            
+            try:
+                with open(voice_file_path, "rb") as audio_file:
+                    transcript = await ai_client.audio.transcriptions.create(
+                        model="whisper-1", 
+                        file=audio_file
+                    )
+                user_msg = transcript.text
+            finally:
+                if os.path.exists(voice_file_path):
+                    os.remove(voice_file_path)
+        else:
+            # Gemini uchun to'g'ridan-to'g'ri baytlarni olamiz
+            v_data = io.BytesIO()
+            await v_file.download_to_memory(v_data)
+            user_audio = v_data.getvalue()
+
+    instruction = "Ushbu so'rovni tahlil qil va mahsulotni topish uchun 'search_warehouse' funksiyasini chaqir."
+    extracted_queries = []
 
     try:
-        # AI-ga so'rov yuborish
-        response = client.models.generate_content(
-            model="gemini-2.0-flash",
-            contents=[types.Content(role="user", parts=parts)],
-            config=types.GenerateContentConfig(tools=inventory_tools)
-        )
+        if AI_MODE == "chatgpt":
+            # --- ChatGPT bilan ishlash ---
+            messages = [{"role": "system", "content": instruction}]
+            if user_msg:
+                messages.append({"role": "user", "content": user_msg})
+            else:
+                await update.message.reply_text("Iltimos, xabar yuboring.")
+                return SEARCHING
 
-        # AI funksiya chaqirdimi?
-        function_calls = [p.function_call for p in response.candidates[0].content.parts if p.function_call]
-        
-        if not function_calls:
+            response = await ai_client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=messages,
+                tools=openai_tools,
+                temperature=0.0
+            )
+
+            msg = response.choices[0].message
+            if msg.tool_calls:
+                for tc in msg.tool_calls:
+                    if tc.function.name == "search_warehouse":
+                        args = json.loads(tc.function.arguments)
+                        extracted_queries.append(args.get("search_query"))
+
+        else:
+            # --- Gemini bilan ishlash ---
+            parts = []
+            if user_msg:
+                parts.append(types.Part.from_text(text=f"Foydalanuvchi so'rovi: {user_msg}. {instruction}"))
+            elif user_audio:
+                parts.append(types.Part.from_bytes(data=user_audio, mime_type="audio/ogg"))
+                parts.append(types.Part.from_text(text=instruction))
+
+            def call_gemini():
+                return ai_client.models.generate_content(
+                    model="gemini-2.0-flash",
+                    contents=[types.Content(role="user", parts=parts)],
+                    config=types.GenerateContentConfig(tools=gemini_tools, temperature=0.0)
+                )
+            
+            response = await sync_to_async(call_gemini)()
+            
+            for part in response.candidates[0].content.parts:
+                if part.function_call and part.function_call.name == "search_warehouse":
+                    args = part.function_call.args
+                    extracted_queries.append(args.get('search_query'))
+
+        # Tahlil natijasiga ko'ra bazadan qidirish
+        if not extracted_queries:
             await update.message.reply_text("🤔 Mahsulot nomini aniqlay olmadim. Iltimos, aniqroq yozing.")
             return SEARCHING
 
-        for call in function_calls:
-            search_query = call.args.get('search_query')
-            # Bazadan qidirish
+        for search_query in extracted_queries:
             products = await SearchManager.db_search(search_query)
 
             if not products:
@@ -146,7 +234,7 @@ async def handle_search_input(update: Update, context: ContextTypes.DEFAULT_TYPE
                 cap = f"📦 <b>{p['name']}</b>\n💰 Narxi: {p['price']:,} so'm\n📉 Qoldiq: {p['stock']} {p['unit']}"
                 kb = InlineKeyboardMarkup([[InlineKeyboardButton("🛒 Sotish", callback_data=f"q:{p['id']}:{p['name']}") ]])
                 
-                if p['image']:
+                if p['image'] and os.path.exists(p['image']):
                     with open(p['image'], 'rb') as f:
                         await update.message.reply_photo(photo=f, caption=cap, parse_mode='HTML', reply_markup=kb)
                 else:
