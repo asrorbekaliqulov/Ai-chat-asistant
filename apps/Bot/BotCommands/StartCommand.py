@@ -41,7 +41,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     ]
 
 
-    markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True) if buttons else None
+    # markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True) if buttons else None
 
     # Agar user admin bo‘lsa, admin panelni ham ko‘rsatamiz
     admin_id = await TelegramUser.get_admin_ids()
@@ -57,10 +57,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 <b>Bog'lanish uchun:</b>
 📞 +998330576161 📱 Telegram: @dongariq_stroy"""
 
-    if update.effective_user.id in admin_id:
-        markup = ADMIN_KYB
-    else:
-        markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True) if buttons else None
+    # if update.effective_user.id in admin_id:
+    markup = ADMIN_KYB
+    # else:
+    #     markup = ReplyKeyboardMarkup(buttons, resize_keyboard=True) if buttons else None
     await context.bot.send_message(
         chat_id=update.effective_user.id,
         text=text,

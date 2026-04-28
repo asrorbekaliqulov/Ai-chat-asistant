@@ -30,6 +30,8 @@ from ..BotHandler import (
     sale_conv,
     search_handler,
     stock_ai_conv,
+    admin_callback_handler,
+    global_admin_search_handler,
 )
 
 from ..BotCommands.DownDB import DownlBD
@@ -68,6 +70,7 @@ def main():
     app.add_handler(sale_conv)
     app.add_handler(search_handler)
     app.add_handler(stock_ai_conv)
+    # app.add_handler(delete_handler)
 
 
     # Inline hanlder
@@ -80,14 +83,17 @@ def main():
     app.add_handler(CallbackQueryHandler(AdminList, pattern=r"^admin_list$"))
     app.add_handler(CallbackQueryHandler(admin_menyu, pattern="^exit_admin$"))
     app.add_handler(CallbackQueryHandler(start, pattern=r"^BackToMainMenu$"))
-
+    # Faqat adminlar uchun filters.Chat ham qo'shishingiz mumkin
+    app.add_handler(CallbackQueryHandler(admin_callback_handler, pattern="^adm_"))
 
     app.add_handler(CallbackQueryHandler(InlineButton))
     app.add_handler(MessageHandler(filters.Text("^📊 Tahlil$"), analytics_dashboard))
 
     group_filter = filters.ChatType.GROUPS & filters.TEXT & (~filters.COMMAND)
     app.add_handler(MessageHandler(group_filter, ai_group_assistant))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_user_message))
+    app.add_handler(MessageHandler(filters.TEXT | filters.VOICE, global_admin_search_handler))
+
+    # app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_user_message))
 
     app.add_handler(MessageHandler(~filters.COMMAND & ~filters.TEXT, yoqfunksiya))
 

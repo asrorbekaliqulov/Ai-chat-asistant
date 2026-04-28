@@ -11,3 +11,4 @@ from .reply_to_users import ai_group_assistant
 from .sale_handler import sale_conv
 from .search_handler import search_handler
 from .AddOldProduct import stock_ai_conv
+from .manage_product import global_admin_search_handler, admin_callback_handler

@@ -41,12 +41,12 @@ class ProductVariant(models.Model):
     product = models.ForeignKey(Product, related_name='variants', on_delete=models.CASCADE)
     brand = models.CharField(max_length=100, verbose_name="Zavod yoki Brand nomi")
     size = models.CharField(max_length=50, blank=True, null=True, verbose_name="O'lchami")
-    purchase_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Kirim narxi") # Oxirgi kirim narxi
+    purchase_price = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True, verbose_name="Kirim narxi") # Oxirgi kirim narxi
     selling_price = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Sotish narxi")
     stock = models.DecimalField(max_digits=15, decimal_places=2, default=0, verbose_name="Qoldiq")
     min_stock_limit = models.DecimalField(max_digits=15, decimal_places=2, default=5, help_text="Ogohlantirish uchun minimal miqdor", verbose_name="Minimal qoldiq")
     image = models.ImageField(upload_to='variants/', blank=True, null=True, verbose_name="Variant rasmi")
-
+    is_active = models.BooleanField(default=True, verbose_name="Sotuvda bormi?")
     embedding = models.JSONField(null=True, blank=True, verbose_name="Vektorli ma'lumot")
     
     def __str__(self):

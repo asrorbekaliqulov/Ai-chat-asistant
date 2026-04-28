@@ -53,23 +53,18 @@ class AIManager:
     @staticmethod
     @sync_to_async
     def get_inventory_data(keywords):
-        """Yangi Product va ProductVariant modellariga asoslangan qidiruv"""
+        """Aktiv va noaktiv mahsulotlarni qidirish"""
         if not keywords: return None
         query_filter = Q()
         for word in keywords:
-            # Mahsulot nomi, zavod(brand) yoki kategoriya bo'yicha qidirish
-            query_filter |= Q(product__name__icontains=word) | Q(brand__icontains=word) | Q(product__category__name__icontains=word)
+            query_filter |= Q(product__name__icontains=word) | Q(brand__icontains=word)
         
-        # Qidiruv natijalarini olish
-        variants = ProductVariant.objects.filter(query_filter).select_related('product', 'product__category').distinct()[:10]
+        # Diqqat: filterdan is_active=True olib tashlandi, AI o'zi tekshirishi uchun
+        variants = ProductVariant.objects.filter(query_filter).select_related('product').distinct()[:5]
         if not variants.exists(): return None
         
         data_list = []
         for v in variants:
-            # O'lcham qo'shish
-            size_info = f" ({v.size})" if v.size else ""
-            
-            # Rasm mantig'i: Avval variant rasmi, yo'q bo'lsa asosiy mahsulot rasmi
             img_path = None
             if v.image and os.path.exists(v.image.path):
                 img_path = v.image.path
@@ -77,12 +72,13 @@ class AIManager:
                 img_path = v.product.image.path
 
             data_list.append({
-                "product": f"{v.product.name}{size_info} - {v.brand}".strip(),
+                "product": f"{v.product.name} - {v.brand}".strip(),
                 "price": f"{v.selling_price:,.0f} so'm",
-                # "stock": f"{v.stock} {v.product.unit}",
+                "is_available": v.is_active, # True/False holati
                 "image_path": img_path,
             })
         return data_list
+
 
     @staticmethod
     @sync_to_async
@@ -141,17 +137,14 @@ async def ai_group_assistant(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
         # QAT'IY SYSTEM PROMPT
         system_instr = (
-            "Sen 'Do'ngariq Stroy' do'konining yordamchisisan. "
-            "So'rab qolsa do'kon egasi Islom akaning nomeri +998330576161, har extimolga qarshi ukasi Zohidning nomeri +998933222207. Shularni userga ber. "
-            "QOIDALAR (Qat'iyan buzilmasin): "
-            "1. JAVOB BERISH SHARTLARI: Sen FAQAT quyidagi 3 ta holatda odam tilida matn yozasan:\n"
-            "   A) Mijoz mahsulot so'rasa va u bazadan TOPILSA (faqat nomi, narxi va qoldig'ini yoz).\n"
-            "   B) Do'kon haqida (manzil, telefon, ish vaqti) savol berilsa va u ma'lumot topilsa.\n"
-            "   C) Xabarda aniq REKLAMA (ishga taklif, uy-joy savdosi, havolalar/ssilkalar, e'lonlar) bo'lsa -> 'Iltimos, guruhda reklama tarqatmang!' deb yoz.\n"
-            "2. JIM TURISH (IGNORE): Qolgan BARCHA holatlarda sen guruhga yozishing TAQIQLANADI! "
-            "Agar xabar salomlashish (Assalomu alaykum, salom), hol-ahvol so'rash (Tinchmi, nimaga), tasdiqlash (xo'p, rahmat) bo'lsa YONI mahsulot bazadan TOPILMASA, sen FAQAT 'IGNORE' degan maxsus so'zni yoz! Boshqa bitta ham harf qo'shma.\n"
-            f"3. BAZADAGI MAHSULOTLAR: [{product_names_str}]. "
-            "Mijoz xato yozgan bo'lsa, shu ro'yxatdan o'zagini topib `search_warehouse` funksiyasiga ber."
+            "Sen FAQAT mahsulot qidiruvchi botsan. Boshqa mavzularda (do'kon manzili, raqami, salom-alik) FAQAT 'IGNORE' deb javob ber.\n"
+            f"BAZADAGI MAHSULOTLAR: [{product_names_str}].\n"
+            "VAZIFANG:\n"
+            "1. Mijoz mahsulot so'rasa `search_warehouse` orqali bazani tekshir.\n"
+            "2. Agar `is_available: True` bo'lsa: Faqat nomi va narxini yozib, bor deb ayt.\n"
+                "Misol: 'Sement Xuaxin bor. Narxi: 50,000 so'm'.\n"
+            "3. Agar `is_available: False` bo'lsa: 'Ushbu mahsulot hozirda tugab qolgan, tez kunda keladi' deb javob ber.\n"
+            "4. Agar mahsulot bazadan umuman topilmasa yoki boshqa har qanday gap yozilsa, FAQAT 'IGNORE' so'zini qaytar."
         )
 
         raw_history = await AIManager.get_chat_history_raw(user.id)
@@ -238,19 +231,17 @@ async def ai_group_assistant(update: Update, context: ContextTypes.DEFAULT_TYPE)
 
         # Natijani tozalash va yuborish
         if final_text and final_text.strip():
-            clean_text = re.sub(r'<(?!/?(b|i|code)\b)[^>]+>', '', final_text)
-            clean_text = clean_text.replace('**', '').replace('__', '').strip()
+            # Agar AI javobi ichida IGNORE bo'lsa, mutlaqo jim turamiz
+            if "IGNORE" in final_text.upper():
+                return
 
-            # MUHIM: Agar AI xabarni e'tiborsiz qoldirishga qaror qilgan bo'lsa
-            if "IGNORE" in clean_text.upper():
-                return  # Hech narsa yuborilmaydi va kod shu yerda to'xtaydi
-
-            # Faqatgina IGNORE bo'lmasa, xabarni bazaga saqlab, guruhga yuboramiz
-            await save_message_to_db(user.id, 'model', clean_text)
-
+            clean_text = final_text.replace('**', '').replace('__', '').strip()
+            
+            # Faqat is_available bo'lgandagina rasm yuborish mantiqi
+            # (db_res ma'lumotini saqlab qolgan bo'lsangiz)
             if image_to_send and os.path.exists(image_to_send):
-                with open(image_to_send, 'rb') as photo:
-                    await update.message.reply_photo(photo=photo, caption=clean_text)
+                # Faqat mahsulot topilgan va u True bo'lgan holatda rasm chiqadi
+                await update.message.reply_photo(photo=open(image_to_send, 'rb'), caption=clean_text)
             else:
                 await update.message.reply_text(clean_text)
 
