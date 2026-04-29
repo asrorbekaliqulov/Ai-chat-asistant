@@ -61,136 +61,73 @@ def pandasai_query(request):
     return JsonResponse({'status': 'error', 'message': 'Invalid request'})
 
 
-
-import os
-import json
-import base64
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-# Yangi SDK ni import qilish
-from google import genai
-from google.genai import types
 from apps.warehouse.models.base import Category, Product, ProductVariant
-
-# Clientni global sozlash
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+import json
 
 def add_product_page(request):
-    """HTML sahifani ochish"""
     categories = Category.objects.all()
     return render(request, 'warehouse/add_product.html', {'categories': categories})
 
+def search_products(request):
+    """Mahsulot nomini bazadan qidirish"""
+    query = request.GET.get('q', '')
+    if len(query) < 2:
+        return JsonResponse({'products': []})
+    
+    products = Product.objects.filter(name__icontains=query).values('id', 'name', 'category_id', 'unit')[:5]
+    return JsonResponse({'products': list(products)})
 
 @csrf_exempt
-def analyze_product_image(request):
+def save_mega_product(request):
+    """Bitta product va uning bir nechta variantlarini saqlash"""
     if request.method == "POST":
         try:
-            data = json.loads(request.body)
-            image_data = data.get('image')
-
-            # 1. Kontekst tayyorlash
-            existing_products = list(Product.objects.values_list('name', flat=True))
-            products_context = ", ".join(existing_products) if existing_products else "Baza bo'sh."
-            categories = [cat.name for cat in Category.objects.all()]
-            
-            # 2. Rasmni decode qilish
-            header, encoded = image_data.split(",", 1)
-            image_bytes = base64.b64decode(encoded)
-
-            prompt = f"""
-            Siz qurilish do'koni yordamchisisiz. Rasmdagi mahsulotni aniqlang.
-            MAVJUD MAHSULOTLAR: [{products_context}]
-            KATEGORIYALAR: {categories}
-
-            QOIDALAR:
-            1. Agar mahsulot ro'yxatda bo'lsa, shuni qaytaring.
-            2. Javobni FAQAT bitta JSON obyekti ko'rinishida bering.
-            3. Til: O'zbek tili (Lotin alifbosi).
-            
-            Format:
-            {{
-                "name": "Nomi",
-                "brand": "Brendi (yo'q bo'lsa bo'sh qoldiring)",
-                "size": "O'lchami (yo'q bo'lsa bo'sh qoldiring)",
-                "unit": "dona, kg, qop, m2 lardan biri",
-                "description": "Qisqa ta'rif",
-                "category": "Kategoriya nomi (ro'yxatdan tanlang)"
-            }}
-            """
-
-            response = client.models.generate_content(
-                model="gemini-2.0-flash",
-                contents=[
-                    types.Content(
-                        parts=[
-                            types.Part.from_bytes(data=image_bytes, mime_type="image/jpeg"),
-                            types.Part.from_text(text=prompt)
-                        ]
-                    )
-                ],
-                config=types.GenerateContentConfig(
-                    response_mime_type='application/json',
-                    temperature=0.0,
-                )
-            )
-
-            ai_json = json.loads(response.text)
-            
-            # MUHIM: Agar AI [{...}] (list) qaytarsa, ichidagi obyektni olamiz
-            if isinstance(ai_json, list) and len(ai_json) > 0:
-                ai_json = ai_json[0]
-
-            print("Tozalangan AI javobi:", ai_json)
-            return JsonResponse({'status': 'success', 'data': ai_json})
-
-        except Exception as e:
-            print(f"Xatolik: {e}")
-            return JsonResponse({'status': 'error', 'message': str(e)})
-            
-    return JsonResponse({'status': 'error', 'message': 'Faqat POST so\'rovi qabul qilinadi'})
-
-@csrf_exempt
-def save_final_product(request):
-    """Frontenddan kelgan yakuniy ma'lumotlarni rasm bilan saqlash"""
-    if request.method == "POST":
-        try:
-            # Matnli ma'lumotlar
-            p_name = request.POST.get('name')
-            p_brand = request.POST.get('brand')
+            # 1. Asosiy mahsulot ma'lumotlari
+            p_name = request.POST.get('product_name')
             p_category_id = request.POST.get('category')
+            p_unit = request.POST.get('product_unit')
             
-            # Fayllar (Rasm)
-            product_image = request.FILES.get('product_image')
-            variant_image = request.FILES.get('variant_image')
+            if not p_name or not p_category_id:
+                return JsonResponse({'status': 'error', 'message': 'Mahsulot nomi va kategoriya majburiy!'})
 
             category = Category.objects.get(id=p_category_id)
 
-            # 1. Asosiy mahsulotni yaratish yoki yangilash
+            # Mahsulotni yaratish yoki mavjudini olish
             product, created = Product.objects.get_or_create(
                 name=p_name,
                 category=category,
-                defaults={'unit': request.POST.get('unit')}
+                defaults={'unit': p_unit}
             )
+
+            # 2. Variantlarni qayta ishlash
+            # Frontenddan keladigan variantlar sonini aniqlaymiz
+            variant_indices = [k.split('_')[1] for k in request.POST.keys() if k.startswith('brand_')]
             
-            if product_image:
-                product.image = product_image # Modelda ImageField bo'lishi shart
-                product.save()
+            for idx in variant_indices:
+                brand = request.POST.get(f'brand_{idx}')
+                price = request.POST.get(f'price_{idx}')
+                size = request.POST.get(f'size_{idx}')
+                stock = request.POST.get(f'stock_{idx}', 0)
+                
+                # Rasm (har bir variant uchun alohida)
+                v_image = request.FILES.get(f'v_image_file_{idx}')
 
-            # 2. Variantni yaratish
-            variant = ProductVariant.objects.create(
-                product=product,
-                brand=p_brand,
-                size=request.POST.get('size'),
-                purchase_price=request.POST.get('purchase_price'),
-                selling_price=request.POST.get('selling_price'),
-                stock=request.POST.get('stock')
-            )
+                if brand and price:
+                    variant = ProductVariant.objects.create(
+                        product=product,
+                        brand=brand,
+                        selling_price=price,
+                        size=size,
+                        stock=stock,
+                        is_active=True
+                    )
+                    if v_image:
+                        variant.image = v_image
+                        variant.save()
 
-            if variant_image:
-                variant.image = variant_image
-                variant.save()
-
-            return JsonResponse({'status': 'success', 'message': 'Saqlandi!'})
+            return JsonResponse({'status': 'success', 'message': 'Muvaffaqiyatli saqlandi!'})
         except Exception as e:
             return JsonResponse({'status': 'error', 'message': str(e)})

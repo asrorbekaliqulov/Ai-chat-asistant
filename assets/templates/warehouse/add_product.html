@@ -3,303 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yangi Mahsulot Qo'shish | Aromazona</title>
+    <title>Yangi Mahsulot | Aromazona</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        #camera-section, #form-section { display: none; margin-top: 20px; }
-        #video, #canvas { width: 100%; max-width: 400px; border-radius: 10px; border: 2px solid #ddd; }
-        #photo-preview { width: 150px; height: 150px; border-radius: 10px; object-fit: cover; display: none; margin: 10px auto; border: 3px solid #0d6efd; }
-        .btn-group-custom { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        body { background-color: #f4f7f6; padding-bottom: 50px; }
+        .sticky-header {
+            position: sticky; top: 0; z-index: 1000;
+            background: white; border-bottom: 1px solid #eee;
+            padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .product-card { border-radius: 12px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .variant-card { border-left: 5px solid #0d6efd; background: white; margin-bottom: 20px; transition: 0.3s; }
+        .variant-card:hover { transform: translateY(-3px); }
+        .search-results {
+            position: absolute; width: 100%; z-index: 100;
+            background: white; border: 1px solid #ddd; border-radius: 8px;
+        }
+        .img-preview { width: 100px; height: 100px; object-fit: cover; border-radius: 10px; border: 2px dashed #ccc; cursor: pointer; }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
-<div class="container py-4">
-    <h2 class="text-center mb-4">🆕 Yangi Mahsulot</h2>
-
-    <div class="card p-4 mb-3 text-center shadow-sm">
-        <h4>Mahsulot rasmini kiriting</h4>
-        <p class="text-muted small">Kameradan oling yoki galereyadan yuklang</p>
-        
-        <div class="btn-group-custom">
-            <button class="btn btn-primary" onclick="startCamera()">📷 Kamerani yoqish</button>
-            <button class="btn btn-secondary" onclick="document.getElementById('file-input').click()">📁 Galereyadan tanlash</button>
-        </div>
-
-        <input type="file" id="file-input" accept="image/*" style="display:none;" onchange="handleFileUpload(event)">
-        
-        <div id="camera-section" class="mt-3">
-            <video id="video" autoplay playsinline></video>
-            <br>
-            <button class="btn btn-success mt-2" onclick="takePhoto()">📸 Rasmga olish</button>
-        </div>
-
-        <canvas id="canvas" style="display:none;"></canvas>
-        <div id="ai-loading" class="mt-3 text-primary fw-bold" style="display:none;">
-            <div class="spinner-grow spinner-grow-sm" role="status"></div> AI tahlil qilmoqda...
-        </div>
+<div class="sticky-header mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+        <h4 class="m-0 fw-bold text-dark">📦 Yangi Mahsulot</h4>
+        <button type="button" class="btn btn-primary px-4 fw-bold shadow" onclick="submitMegaForm()">
+            <i class="bi bi-check-lg"></i> Saqlash
+        </button>
     </div>
+</div>
 
-    <div id="form-section" class="card p-4 shadow-sm">
-        <form id="product-form">
-            
-            <div class="text-center mb-3">
-                <img id="photo-preview" src="" alt="Mahsulot rasmi">
-                <input type="hidden" name="captured_image_base64" id="captured_image_base64">
-            </div>
-
-            <h5 class="text-muted border-bottom pb-2">Asosiy ma'lumotlar (AI to'ldirishi mumkin)</h5>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Mahsulot nomi *</label>
-                    <input type="text" name="name" id="p-name" class="form-control" required>
+<div class="container">
+    <form id="mega-form" enctype="multipart/form-data">
+        <div class="card product-card p-4 mb-4">
+            <h5 class="border-bottom pb-2 mb-3"><i class="bi bi-info-circle"></i> Asosiy ma'lumotlar</h5>
+            <div class="row g-3">
+                <div class="col-md-6 position-relative">
+                    <label class="form-label fw-bold">Mahsulot nomi *</label>
+                    <input type="text" name="product_name" id="p-name" class="form-control" placeholder="Nomini yozing..." autocomplete="off" oninput="liveSearch(this.value)" required>
+                    <div id="search-res" class="list-group search-results d-none shadow"></div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Zavod (Brand) *</label>
-                    <input type="text" name="brand" id="p-brand" class="form-control" required>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">O'lchami (Size)</label>
-                    <input type="text" name="size" id="p-size" class="form-control">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">O'lchov birligi *</label>
-                    <select name="unit" id="p-unit" class="form-select" required>
-                        <option value="dona">Dona</option>
-                        <option value="kg">KG</option>
-                        <option value="qop">Qop</option>
-                        <option value="m2">M2</option>
-                    </select>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Kategoriya *</label>
-                    <select name="category" id="p-category" class="form-select" required>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Kategoriya *</label>
+                    <select name="category" id="p-cat" class="form-select" required>
                         <option value="">Tanlang...</option>
                         {% for cat in categories %}
                         <option value="{{ cat.id }}">{{ cat.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
-            </div>
-
-            <h5 class="text-muted mt-3 border-bottom pb-2">Ombor ma'lumotlari (Qo'lda kiritiladi)</h5>
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Kirim narxi *</label>
-                    <input type="number" name="purchase_price" class="form-control" step="0.01" required>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Sotish narxi *</label>
-                    <input type="number" name="selling_price" class="form-control" step="0.01" required>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Qoldiq (Stock) *</label>
-                    <input type="number" name="stock" class="form-control" required>
+                <div class="col-md-3">
+                    <label class="form-label fw-bold">Birlik</label>
+                    <select name="product_unit" id="p-unit" class="form-select">
+                        <option value="dona">Dona</option>
+                        <option value="kg">KG</option>
+                        <option value="qop">Qop</option>
+                        <option value="m2">M2</option>
+                    </select>
                 </div>
             </div>
+        </div>
 
-            <div class="mb-3">
-                <label class="form-label">Tavsif (Description)</label>
-                <textarea name="description" id="p-description" class="form-control" rows="3"></textarea>
+        <div id="variants-list"></div>
+
+        <button type="button" class="btn btn-outline-primary w-100 py-3 fw-bold rounded-3 mb-4" onclick="addNewVariant()">
+            <i class="bi bi-plus-circle"></i> Mahsulot turini (variant) qo'shish
+        </button>
+    </form>
+</div>
+
+<div class="modal fade" id="cameraModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <video id="v-feed" autoplay playsinline class="w-100 rounded"></video>
+                <button class="btn btn-lg btn-primary rounded-circle mt-3" onclick="doCapture()"><i class="bi bi-camera"></i></button>
             </div>
-
-            <button type="button" class="btn btn-primary w-100 py-2 fw-bold" id="save-btn" onclick="submitProduct()">
-                <span id="save-btn-text">💾 Bazaga saqlash</span>
-                <div id="save-btn-spinner" class="spinner-border spinner-border-sm d-none" role="status"></div>
-            </button>
-        </form>
+        </div>
     </div>
 </div>
 
 <script>
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const photoPreview = document.getElementById('photo-preview');
-    const cameraSection = document.getElementById('camera-section');
-    const formSection = document.getElementById('form-section');
-    const aiLoading = document.getElementById('ai-loading');
-    const fileInput = document.getElementById('file-input');
+    let vCount = 0;
+    let activeVId = null;
 
-    // 1. Kamerani yoqish
-    async function startCamera() {
-        try {
-            const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
-            video.srcObject = stream;
-            cameraSection.style.display = 'block';
-            formSection.style.display = 'none';
-        } catch (err) {
-            alert("Kameraga ruxsat berilmadi yoki kamera topilmadi.");
-        }
-    }
+    // Sahifa ochilganda bitta bo'sh variant bo'lsin
+    document.addEventListener('DOMContentLoaded', () => addNewVariant());
 
-    // 2. Kameradan rasmga olish
-    function takePhoto() {
-        const context = canvas.getContext('2d');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-        
-        const imageDataUrl = canvas.toDataURL('image/jpeg');
-        stopCamera();
-        processImage(imageDataUrl);
-    }
+    function liveSearch(val) {
+        const resDiv = document.getElementById('search-res');
+        if (val.length < 2) { resDiv.classList.add('d-none'); return; }
 
-    // 3. Galereyadan rasm yuklash
-    function handleFileUpload(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            stopCamera();
-            processImage(e.target.result);
-        };
-        reader.readAsDataURL(file);
-    }
-
-    // Kamerani o'chirish yordamchi funksiyasi
-    function stopCamera() {
-        if (video.srcObject) {
-            video.srcObject.getTracks().forEach(track => track.stop());
-        }
-        cameraSection.style.display = 'none';
-    }
-
-    // Rasmni ko'rsatish va AIga yuborish mantiqi
-    function processImage(base64Data) {
-        photoPreview.src = base64Data;
-        photoPreview.style.display = 'block';
-        document.getElementById('captured_image_base64').value = base64Data;
-        formSection.style.display = 'block';
-        
-        // AI tahlilini boshlash
-        analyzeImage(base64Data);
-    }
-
-    // 4. AI Vision Tahlili
-    async function analyzeImage(imageBase64) {
-        aiLoading.style.display = 'block';
-        console.log("AI tahlil boshladi...");
-
-        try {
-            const response = await fetch('/warehouse/analyze-vision/', {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken') 
-                },
-                body: JSON.stringify({ image: imageBase64 })
+        fetch(`/warehouse/search-products/?q=${val}`)
+            .then(res => res.json())
+            .then(data => {
+                resDiv.innerHTML = '';
+                if(data.products.length > 0) {
+                    data.products.forEach(p => {
+                        let a = document.createElement('a');
+                        a.className = "list-group-item list-group-item-action";
+                        a.innerHTML = `<b>${p.name}</b> <small class="text-muted">(${p.unit})</small>`;
+                        a.onclick = () => {
+                            document.getElementById('p-name').value = p.name;
+                            document.getElementById('p-cat').value = p.category_id;
+                            document.getElementById('p-unit').value = p.unit;
+                            resDiv.classList.add('d-none');
+                        };
+                        resDiv.appendChild(a);
+                    });
+                    resDiv.classList.remove('d-none');
+                } else {
+                    resDiv.classList.add('d-none');
+                }
             });
-            
-            const result = await response.json();
-            console.log("Serverdan kelgan to'liq natija:", result);
+    }
 
-            if (result.status === 'success' && result.data) {
-                const data = result.data;
-                
-                // 1. Text inputlarni to'ldirish (.trim() bilan bo'sh joylarni olib tashlaymiz)
-                if (data.name) document.getElementById('p-name').value = data.name.trim();
-                if (data.brand) document.getElementById('p-brand').value = (data.brand === "yo'q") ? "" : data.brand.trim();
-                if (data.size) document.getElementById('p-size').value = (data.size === "yo'q") ? "" : data.size.trim();
-                
-                // 2. Tavsif (textarea)
-                const descArea = document.getElementById('p-description') || document.querySelector('textarea[name="description"]');
-                if (descArea && data.description) {
-                    descArea.value = (data.description === "yo'q") ? "" : data.description.trim();
-                }
+    function addNewVariant() {
+        vCount++;
+        const html = `
+            <div class="card variant-card p-3 shadow-sm position-relative" id="v-row-${vCount}">
+                <button type="button" class="btn-close position-absolute top-0 end-0 m-2" onclick="this.parentElement.remove()"></button>
+                <div class="row g-3">
+                    <div class="col-md-2 text-center border-end">
+                        <label class="form-label small fw-bold">Rasm</label><br>
+                        <img src="https://via.placeholder.com/100" id="img-v-${vCount}" class="img-preview mb-2" onclick="document.getElementById('file-v-${vCount}').click()">
+                        <input type="file" name="v_image_file_${vCount}" id="file-v-${vCount}" hidden onchange="previewImg(this, ${vCount})">
+                        <div class="btn-group btn-group-sm w-100">
+                            <button type="button" class="btn btn-light" onclick="startCam(${vCount})"><i class="bi bi-camera"></i></button>
+                            <button type="button" class="btn btn-light" onclick="document.getElementById('file-v-${vCount}').click()"><i class="bi bi-folder"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row g-2">
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Zavod / Brend *</label>
+                                <input type="text" name="brand_${vCount}" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Sotish narxi *</label>
+                                <input type="number" name="price_${vCount}" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">O'lcham</label>
+                                <input type="text" name="size_${vCount}" class="form-control" placeholder="masalan: 40x40">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label small fw-bold">Qoldiq</label>
+                                <input type="number" name="stock_${vCount}" class="form-control" value="0">
+                            </div>
+                            <div class="col-md-9">
+                                <label class="form-label small fw-bold">Tavsif</label>
+                                <input type="text" name="desc_${vCount}" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.getElementById('variants-list').insertAdjacentHTML('beforeend', html);
+    }
 
-                // 3. O'lchov birligi (select)
-                if (data.unit) {
-                    const unitSelect = document.getElementById('p-unit');
-                    unitSelect.value = data.unit.toLowerCase(); // dona, kg va h.k.
-                }
-
-                // 4. Kategoriya (select ichidan matn bo'yicha qidirish)
-                if (data.category) {
-                    const catSelect = document.getElementById('p-category') || document.querySelector('select[name="category"]');
-                    if (catSelect) {
-                        for (let i = 0; i < catSelect.options.length; i++) {
-                            // Agar kategoriyada qisman o'xshashlik bo'lsa tanlaydi
-                            if (catSelect.options[i].text.toLowerCase().includes(data.category.toLowerCase())) {
-                                catSelect.selectedIndex = i;
-                                break;
-                            }
-                        }
-                    }
-                }
-                console.log("Forma muvaffaqiyatli to'ldirildi!");
-            } else {
-                console.error("AI ma'lumot qaytarmadi:", result.message);
-            }
-        } catch (error) {
-            console.error("Fetch xatosi:", error);
-        } finally {
-            aiLoading.style.display = 'none';
+    function previewImg(input, id) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => document.getElementById(`img-v-${id}`).src = e.target.result;
+            reader.readAsDataURL(input.files[0]);
         }
     }
-    // 5. Ma'lumotlarni saqlash
-    async function submitProduct() {
-        const saveBtn = document.getElementById('save-btn');
-        const saveBtnText = document.getElementById('save-btn-text');
-        const saveBtnSpinner = document.getElementById('save-btn-spinner');
-        const form = document.getElementById('product-form');
 
-        saveBtn.disabled = true;
-        saveBtnText.innerText = "Saqlanmoqda...";
-        saveBtnSpinner.classList.remove('d-none');
+    async function submitMegaForm() {
+        const form = document.getElementById('mega-form');
+        if (!form.checkValidity()) { form.reportValidity(); return; }
 
         const formData = new FormData(form);
-        const base64Image = document.getElementById('captured_image_base64').value;
-
-        if (base64Image) {
-            try {
-                const res = await fetch(base64Image);
-                const blob = await res.blob();
-                formData.append('variant_image', blob, 'photo.jpg');
-                formData.append('product_image', blob, 'main.jpg');
-            } catch (e) { console.error("Image blob error:", e); }
-        }
+        const btn = document.querySelector('.btn-primary');
+        btn.disabled = true;
+        btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span> Saqlanmoqda...`;
 
         try {
-            const response = await fetch('/warehouse/save-product/', {
+            const res = await fetch('/warehouse/save-mega-product/', {
                 method: 'POST',
-                body: formData,
-                headers: { 'X-CSRFToken': getCookie('csrftoken') }
+                body: formData
             });
-            const result = await response.json();
-
-            if (result.status === 'success') {
-                alert("✅ Saqlandi!");
+            const data = await res.json();
+            if(data.status === 'success') {
+                alert("Muvaffaqiyatli saqlandi!");
                 location.reload();
             } else {
-                alert("❌ Xato: " + result.message);
+                alert("Xato: " + data.message);
+                btn.disabled = false;
+                btn.innerHTML = `<i class="bi bi-check-lg"></i> Saqlash`;
             }
-        } catch (error) {
-            alert("🌐 Aloqa xatosi!");
-        } finally {
-            saveBtn.disabled = false;
-            saveBtnText.innerText = "💾 Bazaga saqlash";
-            saveBtnSpinner.classList.add('d-none');
+        } catch (e) {
+            alert("Tarmoq xatosi!");
+            btn.disabled = false;
         }
     }
 
-    function getCookie(name) {
-        let cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                const cookie = cookies[i].trim();
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
+    // Camera Logic (Soddalashtirilgan)
+    function startCam(id) {
+        activeVId = id;
+        const modal = new bootstrap.Modal(document.getElementById('cameraModal'));
+        modal.show();
+        navigator.mediaDevices.getUserMedia({video: {facingMode: 'environment'}})
+            .then(s => document.getElementById('v-feed').srcObject = s);
+    }
+
+    function doCapture() {
+        const video = document.getElementById('v-feed');
+        const canvas = document.createElement('canvas');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        
+        canvas.toBlob(blob => {
+            const file = new File([blob], "capture.jpg", {type: "image/jpeg"});
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(file);
+            document.getElementById(`file-v-${activeVId}`).files = dataTransfer.files;
+            document.getElementById(`img-v-${activeVId}`).src = URL.createObjectURL(blob);
+            
+            bootstrap.Modal.getInstance(document.getElementById('cameraModal')).hide();
+            video.srcObject.getTracks().forEach(t => t.stop());
+        }, 'image/jpeg');
     }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
